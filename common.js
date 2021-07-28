@@ -1141,6 +1141,7 @@ function cantidad_articulos_validateData() {
 
 	// check all required fields have values
 	if(!AppGini.Validation.fieldRequired('lookup', 'nombre_articulo', 'Articulo')) return false;
+	if(!AppGini.Validation.fieldRequired('text', 'cantidad', 'Cantidad')) return false;
 
 	return !errors;
 }
@@ -1180,6 +1181,9 @@ function compra_dispo_validateData() {
 function articulos_validateData() {
 	$j('.has-error').removeClass('has-error');
 	var errors = false;
+
+	// check all required fields have values
+	if(!AppGini.Validation.fieldRequired('lookup', 'presentacion', 'Presentacion')) return false;
 
 	return !errors;
 }

@@ -29,6 +29,11 @@ function articulos_insert(&$error_message = '') {
 		'creado_por' => parseCode('<%%creatorUsername%%>', true),
 	];
 
+	if($data['presentacion'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Presentacion': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
 
 	// hook: articulos_before_insert
 	if(function_exists('articulos_before_insert')) {
@@ -210,6 +215,11 @@ function articulos_update(&$selected_id, &$error_message = '') {
 		'estado' => Request::lookup('estado', ''),
 	];
 
+	if($data['presentacion'] === '') {
+		echo StyleSheet() . "\n\n<div class=\"alert alert-danger\">{$Translation['error:']} 'Presentacion': {$Translation['field not null']}<br><br>";
+		echo '<a href="" onclick="history.go(-1); return false;">' . $Translation['< back'] . '</a></div>';
+		exit;
+	}
 	// get existing values
 	$old_data = getRecord('articulos', $selected_id);
 	if(is_array($old_data)) {
