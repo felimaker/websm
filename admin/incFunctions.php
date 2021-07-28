@@ -3881,7 +3881,7 @@ INNER JOIN `tipo_grupo_mobilia`
 ON `mobiliario`.`grupo` = `tipo_grupo_mobilia`.`id_gru_mo`
 INNER JOIN `tipo_mobiliario`
 ON `mobiliario`.`tipo_mobiliario` = `tipo_mobiliario`.`id`
-WHERE `mobiliario`.`id_mobiliario`=%ID%',
+WHERE `mobiliario`.`id_mobiliario`= %ID%',
 			),
 			'contactos' => array(
 			),
