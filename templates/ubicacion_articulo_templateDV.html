@@ -19,6 +19,15 @@
 		<div class="col-md-8 col-lg-10" id="ubicacion_articulo_dv_form">
 			<fieldset class="form-horizontal">
 
+				<!-- Field: Articulo -->
+				<div class="form-group ubicacion_articulo-id_articulo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id_articulo" data-parent_link="view_parent_modal">Articulo</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(id_articulo)%%><%%PLINK(id_articulo)%%><%%ADDNEW(articulos)%%></div>
+					</div>
+				</div>
+
 				<!-- Field: Ubicacion -->
 				<div class="form-group ubicacion_articulo-ubicacion">
 					<hr class="hidden-md hidden-lg">
@@ -68,7 +77,6 @@
 		</div>
 	</div>
 
-	<input type="hidden" name="id_articulo" value="<%%VALUE(id_articulo)%%>">
 
 </div><!-- /div class="panel-body" -->
 	<script>
@@ -91,14 +99,14 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.ubicacion_articulo-ubicacion')
+						return $j('.form-group.ubicacion_articulo-id_articulo')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0;
 					},
 					action: function() {
 						$j('#ubicacion_articulo_dv_container-loading').addClass('hidden');
 						$j('#ubicacion_articulo_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('ubicacion_articulo', 'ubicacion');
+						AppGini.focusFormElement('ubicacion_articulo', 'id_articulo');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

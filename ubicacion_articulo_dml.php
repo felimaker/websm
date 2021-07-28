@@ -43,11 +43,6 @@ function ubicacion_articulo_insert(&$error_message = '') {
 
 	$recID = db_insert_id(db_link());
 
-	// automatic id_articulo if passed as filterer
-	if($_REQUEST['filterer_id_articulo']) {
-		sql("UPDATE `ubicacion_articulo` SET `id_articulo`='" . makeSafe($_REQUEST['filterer_id_articulo']) . "' WHERE `id`='" . makeSafe($recID, false) . "'", $eo);
-	}
-
 	update_calc_fields('ubicacion_articulo', $recID, calculated_fields()['ubicacion_articulo']);
 
 	// hook: ubicacion_articulo_after_insert
@@ -473,6 +468,8 @@ function ubicacion_articulo_form($selected_id = '', $AllowUpdate = 1, $AllowInse
 	// set records to read only if user can't insert new records and can't edit current record
 	if(($selected_id && !$AllowUpdate && !$AllowInsert) || (!$selected_id && !$AllowInsert)) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\tjQuery('#id_articulo').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#id_articulo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#ubicacion').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#ubicacion_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
@@ -532,8 +529,8 @@ function ubicacion_articulo_form($selected_id = '', $AllowUpdate = 1, $AllowInse
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(id_articulo)%%>', ( $_REQUEST['FilterField'][1]=='2' && $_REQUEST['FilterOperator'][1]=='<=>' ? $combo_id_articulo->SelectedData : ''), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(id_articulo)%%>', urlencode( $_REQUEST['FilterField'][1]=='2' && $_REQUEST['FilterOperator'][1]=='<=>' ? $combo_id_articulo->SelectedData : ''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(id_articulo)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(id_articulo)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(ubicacion)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado)%%>', '<%%creationDateTime%%>', $templateCode);

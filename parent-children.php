@@ -1120,7 +1120,7 @@
 					'child-primary-key-index' => 0,
 					'tab-label' => 'Ubicacion <span class="hidden child-label-ubicacion_articulo child-field-caption">(Articulo)</span>',
 					'auto-close' => true,
-					'table-icon' => 'table.gif',
+					'table-icon' => 'resources/table_icons/building.png',
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
@@ -1135,7 +1135,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-ubicacion_articulo',
 					'template-printable' => 'children-ubicacion_articulo-printable',
-					'query' => "SELECT `ubicacion_articulo`.`id` as 'id', IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`, ' ', `marcas1`.`marca`), '') as 'id_articulo', IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') as 'ubicacion', if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'') as 'creado', `ubicacion_articulo`.`creado_por` as 'creado_por' FROM `ubicacion_articulo` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`ubicacion_articulo`.`id_articulo` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos1`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos1`.`marca` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_articulo`.`ubicacion` "
+					'query' => "SELECT `ubicacion_articulo`.`id` as 'id', IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') as 'id_articulo', IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') as 'ubicacion', if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'') as 'creado', `ubicacion_articulo`.`creado_por` as 'creado_por' FROM `ubicacion_articulo` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`ubicacion_articulo`.`id_articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos1`.`marca` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_articulo`.`ubicacion` "
 				],
 				'ubicacion' => [
 					'parent-table' => 'unidades',
@@ -1144,7 +1144,7 @@
 					'child-primary-key-index' => 0,
 					'tab-label' => 'Articulos <span class="hidden child-label-ubicacion_articulo child-field-caption">(Ubicacion)</span>',
 					'auto-close' => true,
-					'table-icon' => 'table.gif',
+					'table-icon' => 'resources/table_icons/building.png',
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
@@ -1159,10 +1159,34 @@
 					'show-page-progress' => true,
 					'template' => 'children-ubicacion_articulo',
 					'template-printable' => 'children-ubicacion_articulo-printable',
-					'query' => "SELECT `ubicacion_articulo`.`id` as 'id', IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`, ' ', `marcas1`.`marca`), '') as 'id_articulo', IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') as 'ubicacion', if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'') as 'creado', `ubicacion_articulo`.`creado_por` as 'creado_por' FROM `ubicacion_articulo` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`ubicacion_articulo`.`id_articulo` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos1`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos1`.`marca` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_articulo`.`ubicacion` "
+					'query' => "SELECT `ubicacion_articulo`.`id` as 'id', IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') as 'id_articulo', IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') as 'ubicacion', if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'') as 'creado', `ubicacion_articulo`.`creado_por` as 'creado_por' FROM `ubicacion_articulo` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`ubicacion_articulo`.`id_articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos1`.`marca` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_articulo`.`ubicacion` "
 				],
 			],
 			'ubicacion_mobiliario' => [
+				'id_mobiliario' => [
+					'parent-table' => 'mobiliario',
+					'parent-primary-key' => 'id_mobiliario',
+					'child-primary-key' => 'id',
+					'child-primary-key-index' => 0,
+					'tab-label' => 'Ubicacion <span class="hidden child-label-ubicacion_mobiliario child-field-caption">(Id mobiliario)</span>',
+					'auto-close' => true,
+					'table-icon' => 'table.gif',
+					'display-refresh' => true,
+					'display-add-new' => true,
+					'forced-where' => '',
+					'display-fields' => array(2 => 'Ubicacion'),
+					'display-field-names' => array(2 => 'ubicacion'),
+					'sortable-fields' => array(0 => '`ubicacion_mobiliario`.`id`', 1 => 2, 2 => 3, 3 => '`ubicacion_mobiliario`.`creado`', 4 => 5),
+					'records-per-page' => 10,
+					'default-sort-by' => false,
+					'default-sort-direction' => 'asc',
+					'open-detail-view-on-click' => true,
+					'display-page-selector' => true,
+					'show-page-progress' => true,
+					'template' => 'children-ubicacion_mobiliario',
+					'template-printable' => 'children-ubicacion_mobiliario-printable',
+					'query' => "SELECT `ubicacion_mobiliario`.`id` as 'id', IF(    CHAR_LENGTH(`mobiliario1`.`nombre`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `mobiliario1`.`nombre`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') as 'id_mobiliario', IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') as 'ubicacion', if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'') as 'creado', `ubicacion_mobiliario`.`creado_por` as 'creado_por' FROM `ubicacion_mobiliario` LEFT JOIN `mobiliario` as mobiliario1 ON `mobiliario1`.`id_mobiliario`=`ubicacion_mobiliario`.`id_mobiliario` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario1`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_mobiliario`.`ubicacion` "
+				],
 				'ubicacion' => [
 					'parent-table' => 'unidades',
 					'parent-primary-key' => 'id_unidades',
@@ -1174,8 +1198,8 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(2 => 'Ubicacion', 3 => 'Creado', 4 => 'Creado por'),
-					'display-field-names' => array(2 => 'ubicacion', 3 => 'creado', 4 => 'creado_por'),
+					'display-fields' => array(2 => 'Ubicacion'),
+					'display-field-names' => array(2 => 'ubicacion'),
 					'sortable-fields' => array(0 => '`ubicacion_mobiliario`.`id`', 1 => 2, 2 => 3, 3 => '`ubicacion_mobiliario`.`creado`', 4 => 5),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
@@ -1185,7 +1209,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-ubicacion_mobiliario',
 					'template-printable' => 'children-ubicacion_mobiliario-printable',
-					'query' => "SELECT `ubicacion_mobiliario`.`id` as 'id', IF(    CHAR_LENGTH(`tipo_grupo_mobilia1`.`grupo`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_grupo_mobilia1`.`grupo`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') as 'id_mobiliario', IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') as 'ubicacion', if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'') as 'creado', `ubicacion_mobiliario`.`creado_por` as 'creado_por' FROM `ubicacion_mobiliario` LEFT JOIN `mobiliario` as mobiliario1 ON `mobiliario1`.`id_mobiliario`=`ubicacion_mobiliario`.`id_mobiliario` LEFT JOIN `tipo_grupo_mobilia` as tipo_grupo_mobilia1 ON `tipo_grupo_mobilia1`.`id_gru_mo`=`mobiliario1`.`grupo` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario1`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_mobiliario`.`ubicacion` "
+					'query' => "SELECT `ubicacion_mobiliario`.`id` as 'id', IF(    CHAR_LENGTH(`mobiliario1`.`nombre`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `mobiliario1`.`nombre`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') as 'id_mobiliario', IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') as 'ubicacion', if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'') as 'creado', `ubicacion_mobiliario`.`creado_por` as 'creado_por' FROM `ubicacion_mobiliario` LEFT JOIN `mobiliario` as mobiliario1 ON `mobiliario1`.`id_mobiliario`=`ubicacion_mobiliario`.`id_mobiliario` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario1`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_mobiliario`.`ubicacion` "
 				],
 			],
 			'precio_dispo_medico' => [

@@ -20,7 +20,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`ubicacion_mobiliario`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`tipo_grupo_mobilia1`.`grupo`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_grupo_mobilia1`.`grupo`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "id_mobiliario",
+		"IF(    CHAR_LENGTH(`mobiliario1`.`nombre`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `mobiliario1`.`nombre`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "id_mobiliario",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "creado_por",
@@ -37,7 +37,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`ubicacion_mobiliario`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`tipo_grupo_mobilia1`.`grupo`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_grupo_mobilia1`.`grupo`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "id_mobiliario",
+		"IF(    CHAR_LENGTH(`mobiliario1`.`nombre`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `mobiliario1`.`nombre`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "id_mobiliario",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "creado_por",
@@ -45,7 +45,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`ubicacion_mobiliario`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`tipo_grupo_mobilia1`.`grupo`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_grupo_mobilia1`.`grupo`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "Id mobiliario",
+		"IF(    CHAR_LENGTH(`mobiliario1`.`nombre`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `mobiliario1`.`nombre`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "Id mobiliario",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "Ubicacion",
 		"`ubicacion_mobiliario`.`creado`" => "Creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "Creado por",
@@ -54,7 +54,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`ubicacion_mobiliario`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`tipo_grupo_mobilia1`.`grupo`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_grupo_mobilia1`.`grupo`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "id_mobiliario",
+		"IF(    CHAR_LENGTH(`mobiliario1`.`nombre`) || CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `mobiliario1`.`nombre`, ' ', `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Id mobiliario */" => "id_mobiliario",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "creado_por",
@@ -63,7 +63,7 @@
 	// Lookup fields that can be used as filterers
 	$x->filterers = ['id_mobiliario' => 'Id mobiliario', 'ubicacion' => 'Ubicacion', ];
 
-	$x->QueryFrom = "`ubicacion_mobiliario` LEFT JOIN `mobiliario` as mobiliario1 ON `mobiliario1`.`id_mobiliario`=`ubicacion_mobiliario`.`id_mobiliario` LEFT JOIN `tipo_grupo_mobilia` as tipo_grupo_mobilia1 ON `tipo_grupo_mobilia1`.`id_gru_mo`=`mobiliario1`.`grupo` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario1`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_mobiliario`.`ubicacion` ";
+	$x->QueryFrom = "`ubicacion_mobiliario` LEFT JOIN `mobiliario` as mobiliario1 ON `mobiliario1`.`id_mobiliario`=`ubicacion_mobiliario`.`id_mobiliario` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario1`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_mobiliario`.`ubicacion` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -91,10 +91,10 @@
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`ubicacion_mobiliario`.`id`';
 
-	$x->ColWidth = [150, 150, 150, ];
-	$x->ColCaption = ['Ubicacion', 'Creado', 'Creado por', ];
-	$x->ColFieldName = ['ubicacion', 'creado', 'creado_por', ];
-	$x->ColNumber  = [3, 4, 5, ];
+	$x->ColWidth = [150, ];
+	$x->ColCaption = ['Ubicacion', ];
+	$x->ColFieldName = ['ubicacion', ];
+	$x->ColNumber  = [3, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/ubicacion_mobiliario_templateTV.html';

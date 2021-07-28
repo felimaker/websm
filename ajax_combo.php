@@ -2339,7 +2339,7 @@
 			'id_articulo' => array(
 				'parent_table' => 'articulos',
 				'parent_pk_field' => 'id',
-				'parent_caption' => 'IF(CHAR_LENGTH(`articulos`.`tipo_dispo`) || CHAR_LENGTH(`articulos`.`marca`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`), CONCAT_WS(\'\',   `tipo_dispositivo1`.`tipo_dispositivo`), \'\'), \' \', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS(\'\',   `marcas1`.`marca`), \'\')), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`articulos`.`nombre_unico`) || CHAR_LENGTH(`articulos`.`marca`), CONCAT_WS(\'\', `articulos`.`nombre_unico`, \' \', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS(\'\',   `marcas1`.`marca`), \'\')), \'\')',
 				'parent_from' => '`articulos` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos`.`marca` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`articulos`.`modelo` LEFT JOIN `marca_presetacion` as marca_presetacion1 ON `marca_presetacion1`.`id`=`articulos`.`presentacion` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion1`.`unidad_medida` LEFT JOIN `articulos_familia` as articulos_familia1 ON `articulos_familia1`.`id`=`articulos`.`familia` LEFT JOIN `tipo_estado_dispo` as tipo_estado_dispo1 ON `tipo_estado_dispo1`.`id`=`articulos`.`estado` ',
 				'filterers' => array(),
 				'custom_query' => '',
@@ -2363,7 +2363,7 @@
 			'id_mobiliario' => array(
 				'parent_table' => 'mobiliario',
 				'parent_pk_field' => 'id_mobiliario',
-				'parent_caption' => 'IF(CHAR_LENGTH(`mobiliario`.`grupo`) || CHAR_LENGTH(`mobiliario`.`tipo_mobiliario`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`tipo_grupo_mobilia1`.`grupo`), CONCAT_WS(\'\',   `tipo_grupo_mobilia1`.`grupo`), \'\'), \' \', IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS(\'\',   `tipo_mobiliario1`.`tipo_mobiliario`), \'\')), \'\')',
+				'parent_caption' => 'IF(CHAR_LENGTH(`mobiliario`.`nombre`) || CHAR_LENGTH(`mobiliario`.`tipo_mobiliario`), CONCAT_WS(\'\', `mobiliario`.`nombre`, \' \', IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS(\'\',   `tipo_mobiliario1`.`tipo_mobiliario`), \'\')), \'\')',
 				'parent_from' => '`mobiliario` LEFT JOIN `tipo_grupo_mobilia` as tipo_grupo_mobilia1 ON `tipo_grupo_mobilia1`.`id_gru_mo`=`mobiliario`.`grupo` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`mobiliario`.`unidad` ',
 				'filterers' => array(),
 				'custom_query' => '',

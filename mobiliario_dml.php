@@ -13,6 +13,7 @@ function mobiliario_insert(&$error_message = '') {
 	if(!$arrPerm['insert']) return false;
 
 	$data = [
+		'codigo' => Request::val('codigo', ''),
 		'grupo' => Request::lookup('grupo', ''),
 		'tipo_mobiliario' => Request::lookup('tipo_mobiliario', ''),
 		'descripcion' => Request::val('descripcion', ''),
@@ -199,6 +200,7 @@ function mobiliario_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('mobiliario', $selected_id, 'edit')) return false;
 
 	$data = [
+		'codigo' => Request::val('codigo', ''),
 		'grupo' => Request::lookup('grupo', ''),
 		'tipo_mobiliario' => Request::lookup('tipo_mobiliario', ''),
 		'descripcion' => Request::val('descripcion', ''),
@@ -678,6 +680,7 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 	// set records to read only if user can't insert new records and can't edit current record
 	if(($selected_id && !$AllowUpdate && !$AllowInsert) || (!$selected_id && !$AllowInsert)) {
 		$jsReadOnly = '';
+		$jsReadOnly .= "\tjQuery('#codigo').replaceWith('<div class=\"form-control-static\" id=\"codigo\">' + (jQuery('#codigo').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#grupo').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#grupo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#tipo_mobiliario').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
@@ -752,7 +755,8 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(id_mobiliario)%%>', safe_html($urow['id_mobiliario']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(id_mobiliario)%%>', html_attr($row['id_mobiliario']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id_mobiliario)%%>', urlencode($urow['id_mobiliario']), $templateCode);
-		$templateCode = str_replace('<%%VALUE(codigo)%%>', safe_html($urow['codigo']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(codigo)%%>', safe_html($urow['codigo']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(codigo)%%>', html_attr($row['codigo']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(codigo)%%>', urlencode($urow['codigo']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(nombre)%%>', safe_html($urow['nombre']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(nombre)%%>', urlencode($urow['nombre']), $templateCode);

@@ -704,7 +704,7 @@
 				'ubicacion_articulo' => array(
 					'Caption' => 'Ubicacion articulo',
 					'Description' => '',
-					'tableIcon' => 'table.gif',
+					'tableIcon' => 'resources/table_icons/building.png',
 					'group' => $tg[1],
 					'homepageShowCount' => 0
 				),
@@ -3875,7 +3875,7 @@ WHERE `dispositivos`.`id_dispo`=\'%ID%\'',
 WHERE `financiero`.`id_dispo`=\'%ID%\'',
 			),
 			'mobiliario' => array(
-				'nombre' => 'SELECT CONCAT(`tipo_grupo_mobilia`.`grupo`,\' \',`tipo_mobiliario`.`tipo_mobiliario`, \' \',`mobiliario`.`codigo`)
+				'nombre' => 'SELECT CONCAT(`tipo_grupo_mobilia`.`grupo`,\' \',`tipo_mobiliario`.`tipo_mobiliario`, \' \',`mobiliario`.`id_mobiliario`)
 FROM `mobiliario` 
 INNER JOIN `tipo_grupo_mobilia`
 ON `mobiliario`.`grupo` = `tipo_grupo_mobilia`.`id_gru_mo`
@@ -4618,11 +4618,11 @@ WHERE `movi_recepcion`.`id_movi` = %ID%',
 				'telefono' => 'SELECT `contactos`.`id_contactos`, `contactos`.`telefono` FROM `contactos` LEFT JOIN `contactos_tipo_contacto` as contactos_tipo_contacto1 ON `contactos_tipo_contacto1`.`id_tipo_contacto`=`contactos`.`tipo_contacto` LEFT JOIN `tipo_iden` as tipo_iden1 ON `tipo_iden1`.`id_iden`=`contactos`.`tipo_iden` LEFT JOIN `ciudades` as ciudades1 ON `ciudades1`.`id_ciudad`=`contactos`.`ciudad` LEFT JOIN `tipo_relacion` as tipo_relacion1 ON `tipo_relacion1`.`id_tiporelac`=`contactos`.`tipo_relacion` ORDER BY 2',
 			],
 			'ubicacion_articulo' => [
-				'id_articulo' => 'SELECT `articulos`.`id`, IF(CHAR_LENGTH(`articulos`.`tipo_dispo`) || CHAR_LENGTH(`articulos`.`marca`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`), CONCAT_WS(\'\',   `tipo_dispositivo1`.`tipo_dispositivo`), \'\'), \' \', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS(\'\',   `marcas1`.`marca`), \'\')), \'\') FROM `articulos` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos`.`marca` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`articulos`.`modelo` LEFT JOIN `marca_presetacion` as marca_presetacion1 ON `marca_presetacion1`.`id`=`articulos`.`presentacion` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion1`.`unidad_medida` LEFT JOIN `articulos_familia` as articulos_familia1 ON `articulos_familia1`.`id`=`articulos`.`familia` LEFT JOIN `tipo_estado_dispo` as tipo_estado_dispo1 ON `tipo_estado_dispo1`.`id`=`articulos`.`estado` ORDER BY 2',
+				'id_articulo' => 'SELECT `articulos`.`id`, IF(CHAR_LENGTH(`articulos`.`nombre_unico`) || CHAR_LENGTH(`articulos`.`marca`), CONCAT_WS(\'\', `articulos`.`nombre_unico`, \' \', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS(\'\',   `marcas1`.`marca`), \'\')), \'\') FROM `articulos` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos`.`marca` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`articulos`.`modelo` LEFT JOIN `marca_presetacion` as marca_presetacion1 ON `marca_presetacion1`.`id`=`articulos`.`presentacion` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion1`.`unidad_medida` LEFT JOIN `articulos_familia` as articulos_familia1 ON `articulos_familia1`.`id`=`articulos`.`familia` LEFT JOIN `tipo_estado_dispo` as tipo_estado_dispo1 ON `tipo_estado_dispo1`.`id`=`articulos`.`estado` ORDER BY 2',
 				'ubicacion' => 'SELECT `unidades`.`id_unidades`, `unidades`.`nombre` FROM `unidades` LEFT JOIN `ciudades` as ciudades1 ON `ciudades1`.`id_ciudad`=`unidades`.`ciudad` LEFT JOIN `prestador` as prestador1 ON `prestador1`.`id`=`unidades`.`prestador` ORDER BY 2',
 			],
 			'ubicacion_mobiliario' => [
-				'id_mobiliario' => 'SELECT `mobiliario`.`id_mobiliario`, IF(CHAR_LENGTH(`mobiliario`.`grupo`) || CHAR_LENGTH(`mobiliario`.`tipo_mobiliario`), CONCAT_WS(\'\', IF(    CHAR_LENGTH(`tipo_grupo_mobilia1`.`grupo`), CONCAT_WS(\'\',   `tipo_grupo_mobilia1`.`grupo`), \'\'), \' \', IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS(\'\',   `tipo_mobiliario1`.`tipo_mobiliario`), \'\')), \'\') FROM `mobiliario` LEFT JOIN `tipo_grupo_mobilia` as tipo_grupo_mobilia1 ON `tipo_grupo_mobilia1`.`id_gru_mo`=`mobiliario`.`grupo` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`mobiliario`.`unidad` ORDER BY 2',
+				'id_mobiliario' => 'SELECT `mobiliario`.`id_mobiliario`, IF(CHAR_LENGTH(`mobiliario`.`nombre`) || CHAR_LENGTH(`mobiliario`.`tipo_mobiliario`), CONCAT_WS(\'\', `mobiliario`.`nombre`, \' \', IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS(\'\',   `tipo_mobiliario1`.`tipo_mobiliario`), \'\')), \'\') FROM `mobiliario` LEFT JOIN `tipo_grupo_mobilia` as tipo_grupo_mobilia1 ON `tipo_grupo_mobilia1`.`id_gru_mo`=`mobiliario`.`grupo` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`mobiliario`.`unidad` ORDER BY 2',
 				'ubicacion' => 'SELECT `unidades`.`id_unidades`, IF(CHAR_LENGTH(`unidades`.`nombre`) || CHAR_LENGTH(`unidades`.`abreviado`), CONCAT_WS(\'\', `unidades`.`nombre`, \' \', `unidades`.`abreviado`), \'\') FROM `unidades` LEFT JOIN `ciudades` as ciudades1 ON `ciudades1`.`id_ciudad`=`unidades`.`ciudad` LEFT JOIN `prestador` as prestador1 ON `prestador1`.`id`=`unidades`.`prestador` ORDER BY 2',
 			],
 			'precio_dispo_medico' => [

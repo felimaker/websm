@@ -20,7 +20,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`ubicacion_articulo`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
+		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_articulo`.`creado_por`" => "creado_por",
@@ -37,7 +37,7 @@
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`ubicacion_articulo`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
+		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_articulo`.`creado_por`" => "creado_por",
@@ -45,7 +45,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`ubicacion_articulo`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "Articulo",
+		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "Articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "Ubicacion",
 		"`ubicacion_articulo`.`creado`" => "Creado",
 		"`ubicacion_articulo`.`creado_por`" => "Creado por",
@@ -54,7 +54,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`ubicacion_articulo`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
+		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_articulo`.`creado_por`" => "creado_por",
@@ -63,7 +63,7 @@
 	// Lookup fields that can be used as filterers
 	$x->filterers = ['id_articulo' => 'Articulo', 'ubicacion' => 'Ubicacion', ];
 
-	$x->QueryFrom = "`ubicacion_articulo` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`ubicacion_articulo`.`id_articulo` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos1`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos1`.`marca` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_articulo`.`ubicacion` ";
+	$x->QueryFrom = "`ubicacion_articulo` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`ubicacion_articulo`.`id_articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos1`.`marca` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`ubicacion_articulo`.`ubicacion` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -88,7 +88,7 @@
 	$x->ScriptFileName = 'ubicacion_articulo_view.php';
 	$x->RedirectAfterInsert = 'ubicacion_articulo_view.php?SelectedID=#ID#';
 	$x->TableTitle = 'Ubicacion articulo';
-	$x->TableIcon = 'table.gif';
+	$x->TableIcon = 'resources/table_icons/building.png';
 	$x->PrimaryKey = '`ubicacion_articulo`.`id`';
 
 	$x->ColWidth = [150, 150, 150, ];
