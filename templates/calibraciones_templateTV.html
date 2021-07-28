@@ -1,0 +1,20 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the calibraciones_init() hook (in hooks/calibraciones.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="calibraciones-codigo-<%%VALUE(id)%%>" class="calibraciones-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-serial-<%%VALUE(id)%%>" class="calibraciones-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-tipo_calibracion-<%%VALUE(id)%%>" class="calibraciones-tipo_calibracion"><%%SELECT%%><%%VALUE(tipo_calibracion)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-no_documento-<%%VALUE(id)%%>" class="calibraciones-no_documento"><%%SELECT%%><%%VALUE(no_documento)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-fecha_calibra-<%%VALUE(id)%%>" class="calibraciones-fecha_calibra"><%%SELECT%%><%%VALUE(fecha_calibra)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-fecha_expiracion-<%%VALUE(id)%%>" class="calibraciones-fecha_expiracion"><%%SELECT%%><%%VALUE(fecha_expiracion)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-empresa-<%%VALUE(id)%%>" class="calibraciones-empresa"><%%SELECT%%><%%VALUE(empresa)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-telefono-<%%VALUE(id)%%>" class="calibraciones-telefono"><%%SELECT%%><%%VALUE(telefono)%%><%%ENDSELECT%%></td>
+		<td id="calibraciones-documento-<%%VALUE(id)%%>" class="calibraciones-documento"><a href="link.php?t=calibraciones&f=documento&i=<%%VALUE(id)%%>" target="_blank"><%%VALUE(documento)%%></a></td>
+		<td id="calibraciones-descripcion-<%%VALUE(id)%%>" class="calibraciones-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>
+		<script>$j(function() {
+			var e_documento = '<%%VALUE(documento)%%>'; if(e_documento == '' || e_documento == '&nbsp;') $j(/*<*/ '#calibraciones-documento-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

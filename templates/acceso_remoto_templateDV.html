@@ -1,0 +1,336 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/acceso_remoto-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="acceso_remoto_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="acceso_remoto_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="acceso_remoto_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group acceso_remoto-id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Unidad -->
+				<div class="form-group acceso_remoto-unidad">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="unidad" data-parent_link="view_parent_modal">Unidad<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(unidad)%%><%%PLINK(unidad)%%><%%ADDNEW(unidades)%%><span id="unidadLoading"></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Ciudad -->
+				<div class="form-group acceso_remoto-ciudad">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Ciudad</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="ciudad"></div>
+					</div>
+				</div>
+
+				<!-- Field: Servicio -->
+				<div class="form-group acceso_remoto-servicio">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="servicio">Servicio</label>
+					<div class="col-lg-9">
+						<%%COMBO(servicio)%%>
+					</div>
+				</div>
+
+				<!-- Field: Anydesk -->
+				<div class="form-group acceso_remoto-anydesk">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="anydesk">Anydesk<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#anydesk-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="anydesk-description"><div class="alert alert-info bspacer-xs">Numero anydesk sin espacios</div></span>
+						<input maxlength="40" type="text" class="form-control" name="anydesk" id="anydesk" value="<%%VALUE(anydesk)%%>" required><div class="text-danger vspacer-md" id="anydesk-uniqueness-note" style="display: none;"><%%TRANSLATION(unique field error)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Acceso -->
+				<div class="form-group acceso_remoto-acceso">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="acceso">Acceso<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#acceso-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="acceso-description"><div class="alert alert-info bspacer-xs">Contrase&#241;a de acceso teniendo en cuenta mayusculas</div></span>
+						<input maxlength="40" type="text" class="form-control" name="acceso" id="acceso" value="<%%VALUE(acceso)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Teamviewer -->
+				<div class="form-group acceso_remoto-teamviewer">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="teamviewer">Teamviewer</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="teamviewer" id="teamviewer" value="<%%VALUE(teamviewer)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Acceso Team -->
+				<div class="form-group acceso_remoto-acceso2">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="acceso2">Acceso Team</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="acceso2" id="acceso2" value="<%%VALUE(acceso2)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Equipo relacionado -->
+				<div class="form-group acceso_remoto-codigo_equipo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="codigo_equipo" data-parent_link="view_parent_modal">Equipo relacionado <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#codigo_equipo-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="codigo_equipo-description"><div class="alert alert-info bspacer-xs">Codigo del equipo relacionado, Inicialmente el equipo debe estar dentro de la unidad registrado</div></span>
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(codigo_equipo)%%><%%PLINK(codigo_equipo)%%><%%ADDNEW(dispositivos)%%><span id="codigo_equipoLoading"></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Equipo -->
+				<div class="form-group acceso_remoto-equipo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Equipo</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="equipo"></div>
+					</div>
+				</div>
+
+				<!-- Field: Ultima verificacion -->
+				<div class="form-group acceso_remoto-ultima_verifica">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="ultima_verifica-dd">Ultima verificacion<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(ultima_verifica)%%>
+					</div>
+				</div>
+
+				<!-- Field: Comentario -->
+				<div class="form-group acceso_remoto-comentario">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="comentario">Comentario <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#comentario-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="comentario-description"><div class="alert alert-info bspacer-xs">(Opcional)</div></span>
+						<textarea class="form-control" name="comentario" id="comentario" rows=" 5"><%%VALUE(comentario)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Creado -->
+				<div class="form-group acceso_remoto-creado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado"><%%VALUE(creado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado por -->
+				<div class="form-group acceso_remoto-creado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado_por"><%%VALUE(creado_por)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Editado -->
+				<div class="form-group acceso_remoto-editado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Editado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="editado"><%%VALUE(editado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Editado por -->
+				<div class="form-group acceso_remoto-editado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Editado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="editado_por"><%%VALUE(editado_por)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="acceso_remoto_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.acceso_remoto-unidad')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0;
+					},
+					action: function() {
+						$j('#acceso_remoto_dv_container-loading').addClass('hidden');
+						$j('#acceso_remoto_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('acceso_remoto', 'unidad');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#acceso_remoto_dv_container-loading').addClass('hidden');
+				$j('#acceso_remoto_dv_container').removeClass('hidden');
+			}
+
+			$j('form').eq(0).change(function() {
+				if($j(this).data('already_changed')) return;
+				if($j('#deselect').length) $j('#deselect').removeClass('btn-default').addClass('btn-warning').get(0).lastChild.data = " <%%TRANSLATION(Cancel)%%>";
+				$j(this).data('already_changed', true);
+			});
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				/* add a horizontal spacer to [add new parent] buttons that don't have a spacered element before them */
+				$j('.add_new_parent').prev(':not(.hspacer-md)').next().addClass('hspacer-md');
+
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'acceso_remoto',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			enforce_uniqueness('acceso_remoto', 'anydesk');
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=acceso_remoto&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=acceso_remoto&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+
+			/* warn user if 'add new' clicked while unsaved changes exist */
+			$j('#addNew').click(function() {
+				if($j('#deselect.btn-warning').length) {
+					return confirm('<%%TRANSLATION(discard changes confirm)%%>');
+				}
+			});
+
+		});
+	</script>

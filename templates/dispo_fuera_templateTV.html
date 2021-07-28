@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the dispo_fuera_init() hook (in hooks/dispo_fuera.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="dispo_fuera-img-<%%VALUE(id)%%>" class="dispo_fuera-img"><%%SELECT%%><%%VALUE(img)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-codigo-<%%VALUE(id)%%>" class="dispo_fuera-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-serial-<%%VALUE(id)%%>" class="dispo_fuera-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-ubicacion_final-<%%VALUE(id)%%>" class="dispo_fuera-ubicacion_final"><%%SELECT%%><%%VALUE(ubicacion_final)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-tipo_fuera_servicio-<%%VALUE(id)%%>" class="dispo_fuera-tipo_fuera_servicio"><%%SELECT%%><%%VALUE(tipo_fuera_servicio)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-fecha_reporte-<%%VALUE(id)%%>" class="dispo_fuera-fecha_reporte"><%%SELECT%%><%%VALUE(fecha_reporte)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-descripcion-<%%VALUE(id)%%>" class="dispo_fuera-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-creado-<%%VALUE(id)%%>" class="dispo_fuera-creado"><%%SELECT%%><%%VALUE(creado)%%><%%ENDSELECT%%></td>
+		<td id="dispo_fuera-creado_por-<%%VALUE(id)%%>" class="dispo_fuera-creado_por"><%%SELECT%%><%%VALUE(creado_por)%%><%%ENDSELECT%%></td>

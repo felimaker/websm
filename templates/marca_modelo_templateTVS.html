@@ -1,0 +1,13 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the marca_modelo_init() hook (in hooks/marca_modelo.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="marca_modelo-marca-<%%VALUE(id_mmodelo)%%>" class="marca_modelo-marca"><%%VALUE(marca)%%></td>
+		<td id="marca_modelo-modelo-<%%VALUE(id_mmodelo)%%>" class="marca_modelo-modelo"><%%VALUE(modelo)%%></td>
+		<td id="marca_modelo-img-<%%VALUE(id_mmodelo)%%>" class="marca_modelo-img"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(img)%%>" data-lightbox="marca_modelo-img"><img src="thumbnail.php?i=<%%VALUE(img)%%>&t=marca_modelo&f=img&v=tv" class="img-thumbnail"></a></td>
+		<td id="marca_modelo-fabricante-<%%VALUE(id_mmodelo)%%>" class="marca_modelo-fabricante"><%%VALUE(fabricante)%%></td>
+		<td id="marca_modelo-descripcion-<%%VALUE(id_mmodelo)%%>" class="marca_modelo-descripcion"><%%VALUE(descripcion)%%></td>
+		<td id="marca_modelo-creado-<%%VALUE(id_mmodelo)%%>" class="marca_modelo-creado"><%%VALUE(creado)%%></td>

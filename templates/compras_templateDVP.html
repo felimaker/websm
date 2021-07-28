@@ -1,0 +1,114 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group compras-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tipo -->
+		<div class="form-group compras-tipo_compra" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_compra<%%RND1%%>"><%%COMBOTEXT(tipo_compra)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de transaccion -->
+		<div class="form-group compras-fecha_compra" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de transaccion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fecha_compra)%%></div>
+			</div>
+		</div>
+		<!-- Field: Reponsable -->
+		<div class="form-group compras-comprador" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Reponsable</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(comprador)%%></div>
+			</div>
+		</div>
+		<!-- Field: Resumen -->
+		<div class="form-group compras-resumen" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Resumen</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(resumen)%%></div>
+			</div>
+		</div>
+		<!-- Field: Estado -->
+		<div class="form-group compras-estado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Estado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="estado<%%RND1%%>"><%%COMBOTEXT(estado)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group compras-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group compras-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="compras-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=compras-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'compras',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'compras-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

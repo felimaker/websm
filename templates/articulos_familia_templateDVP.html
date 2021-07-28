@@ -1,0 +1,86 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group articulos_familia-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Codigo -->
+		<div class="form-group articulos_familia-codigo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Codigo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(codigo)%%></div>
+			</div>
+		</div>
+		<!-- Field: Familia -->
+		<div class="form-group articulos_familia-familia" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Familia</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(familia)%%></div>
+			</div>
+		</div>
+		<!-- Field: Proveedor -->
+		<div class="form-group articulos_familia-proveedor" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Proveedor</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(proveedor)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="articulos_familia-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=articulos_familia-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'articulos_familia',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'articulos_familia-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

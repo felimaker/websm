@@ -1,0 +1,9 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the tipo_formatos_init() hook (in hooks/tipo_formatos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="tipo_formatos-tipo_formato-<%%VALUE(id)%%>" class="tipo_formatos-tipo_formato"><%%SELECT%%><%%VALUE(tipo_formato)%%><%%ENDSELECT%%></td>
+		<td id="tipo_formatos-descripcion-<%%VALUE(id)%%>" class="tipo_formatos-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>

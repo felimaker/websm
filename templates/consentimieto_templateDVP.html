@@ -1,0 +1,64 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: Nombre -->
+		<div class="form-group consentimieto-id_perfil" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_perfil-readonly<%%RND1%%>"><%%COMBOTEXT(id_perfil)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Identificacion -->
+		<div class="form-group consentimieto-identificacion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Identificacion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="identificacion<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Acepto y estoy deacuerdo con la Pol&#237;tica de tratamiento de datos -->
+		<div class="form-group consentimieto-acepto" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Acepto y estoy deacuerdo con la Pol&#237;tica de tratamiento de datos</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><input type="checkbox" name="acepto" id="acepto" value="1" <%%CHECKED(acepto)%%> readonly></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group consentimieto-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group consentimieto-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

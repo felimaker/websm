@@ -1,0 +1,79 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group tipo_iden-id_iden" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id_iden)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tipo de identificacion -->
+		<div class="form-group tipo_iden-tipo_iden" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo de identificacion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tipo_iden)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tipo iden abre -->
+		<div class="form-group tipo_iden-tipo_iden_abre" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo iden abre</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(tipo_iden_abre)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="tipo_iden-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=tipo_iden-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'tipo_iden',
+				SelectedID: '<%%VALUE(id_iden)%%>',
+				Operation: 'show-children-printable'
+			},
+			'tipo_iden-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

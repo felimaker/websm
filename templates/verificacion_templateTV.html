@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the verificacion_init() hook (in hooks/verificacion.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="verificacion-codigo-<%%VALUE(id)%%>" class="verificacion-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-tipo_dispo-<%%VALUE(id)%%>" class="verificacion-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-serial-<%%VALUE(id)%%>" class="verificacion-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-ubicacion-<%%VALUE(id)%%>" class="verificacion-ubicacion"><%%SELECT%%><%%VALUE(ubicacion)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-abreviado-<%%VALUE(id)%%>" class="verificacion-abreviado"><%%SELECT%%><%%VALUE(abreviado)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-verificacion-<%%VALUE(id)%%>" class="verificacion-verificacion"><%%SELECT%%><%%VALUE(verificacion)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-comentario-<%%VALUE(id)%%>" class="verificacion-comentario"><%%SELECT%%><%%VALUE(comentario)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-fecha_verifi-<%%VALUE(id)%%>" class="verificacion-fecha_verifi"><%%SELECT%%><%%VALUE(fecha_verifi)%%><%%ENDSELECT%%></td>
+		<td id="verificacion-verifi_por-<%%VALUE(id)%%>" class="verificacion-verifi_por"><%%SELECT%%><%%VALUE(verifi_por)%%><%%ENDSELECT%%></td>

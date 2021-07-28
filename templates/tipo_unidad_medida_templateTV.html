@@ -1,0 +1,9 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the tipo_unidad_medida_init() hook (in hooks/tipo_unidad_medida.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="tipo_unidad_medida-unidad-<%%VALUE(id)%%>" class="tipo_unidad_medida-unidad"><%%SELECT%%><%%VALUE(unidad)%%><%%ENDSELECT%%></td>
+		<td id="tipo_unidad_medida-nota-<%%VALUE(id)%%>" class="tipo_unidad_medida-nota"><%%SELECT%%><%%VALUE(nota)%%><%%ENDSELECT%%></td>

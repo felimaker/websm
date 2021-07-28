@@ -1,0 +1,174 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group mobiliario-id_mobiliario" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id_mobiliario)%%></div>
+			</div>
+		</div>
+		<!-- Field: Codigo -->
+		<div class="form-group mobiliario-codigo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Codigo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(codigo)%%></div>
+			</div>
+		</div>
+		<!-- Field: Nombre -->
+		<div class="form-group mobiliario-nombre" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(nombre)%%></div>
+			</div>
+		</div>
+		<!-- Field: Grupo -->
+		<div class="form-group mobiliario-grupo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Grupo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="grupo<%%RND1%%>"><%%COMBOTEXT(grupo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo de mobiliario -->
+		<div class="form-group mobiliario-tipo_mobiliario" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo de mobiliario</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_mobiliario<%%RND1%%>"><%%COMBOTEXT(tipo_mobiliario)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Descripcion -->
+		<div class="form-group mobiliario-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Descripcion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(descripcion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de ingreso -->
+		<div class="form-group mobiliario-fecha_ingreso" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de ingreso</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fecha_ingreso)%%></div>
+			</div>
+		</div>
+		<!-- Field: Accesorios -->
+		<div class="form-group mobiliario-accesorios" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Accesorios</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(accesorios)%%></div>
+			</div>
+		</div>
+		<!-- Field: Foto -->
+		<div class="form-group mobiliario-foto" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Foto</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><script>
+				var fotoSrc1<%%RND1%%>='<%%BASE_UPLOAD_PATH%%><%%VALUE(foto)%%>';
+				var fotoSrc2<%%RND1%%>='thumbnail.php?t=mobiliario&f=foto&i=<%%VALUE(foto)%%>&v=dv'
+			</script>
+			<a href="#" onclick="$('fotoImg<%%RND1%%>').src=($('fotoImg<%%RND1%%>').src.search(/thumbnail\.php/) != -1 && fotoSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? fotoSrc1<%%RND1%%> : fotoSrc2<%%RND1%%>); return false;"><img id="fotoImg<%%RND1%%>" src="thumbnail.php?t=mobiliario&f=foto&i=<%%VALUE(foto)%%>&v=dv" class="img-thumbnail"></a></div>
+			</div>
+		</div>
+		<!-- Field: Unidad -->
+		<div class="form-group mobiliario-unidad" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Unidad</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="unidad<%%RND1%%>"><%%COMBOTEXT(unidad)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Abreviado -->
+		<div class="form-group mobiliario-uni_abreviado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Abreviado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="uni_abreviado<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group mobiliario-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group mobiliario-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group mobiliario-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado por -->
+		<div class="form-group mobiliario-editado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Id compra -->
+		<div class="form-group mobiliario-id_compra" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Id compra</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id_compra)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="mobiliario-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=mobiliario-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'mobiliario',
+				SelectedID: '<%%VALUE(id_mobiliario)%%>',
+				Operation: 'show-children-printable'
+			},
+			'mobiliario-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

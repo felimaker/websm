@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the observaciones_init() hook (in hooks/observaciones.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="observaciones-estado_observacion-<%%VALUE(id)%%>" class="observaciones-estado_observacion"><%%SELECT%%><%%VALUE(estado_observacion)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-estado-<%%VALUE(id)%%>" class="observaciones-estado"><%%SELECT%%><%%VALUE(estado)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-codigo-<%%VALUE(id)%%>" class="observaciones-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-tipo_dispo-<%%VALUE(id)%%>" class="observaciones-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-serial-<%%VALUE(id)%%>" class="observaciones-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-unidad-<%%VALUE(id)%%>" class="observaciones-unidad"><%%SELECT%%><%%VALUE(unidad)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-observacion-<%%VALUE(id)%%>" class="observaciones-observacion"><%%SELECT%%><%%VALUE(observacion)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-creado-<%%VALUE(id)%%>" class="observaciones-creado"><%%SELECT%%><%%VALUE(creado)%%><%%ENDSELECT%%></td>
+		<td id="observaciones-creado_por-<%%VALUE(id)%%>" class="observaciones-creado_por"><%%SELECT%%><%%VALUE(creado_por)%%><%%ENDSELECT%%></td>

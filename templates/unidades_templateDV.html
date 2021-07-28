@@ -1,0 +1,359 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/unidades-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="unidades_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="unidades_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="dispositivos_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>" id="dispositivos_link"><i class="glyphicon glyphicon-list-alt"></i> Dispositivos Biomedicos</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="dispositivos_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>" id="xs_dispositivos_link"><i class="glyphicon glyphicon-list-alt"></i> Dispositivos Biomedicos</a>
+			<input type="hidden" id="dispositivos_hclink" value="dispositivos_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="mobiliario_view.php?filterer_unidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>" id="mobiliario_link"><i class="glyphicon glyphicon-list-alt"></i> Mobiliario</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="mobiliario_view.php?filterer_unidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>" id="xs_mobiliario_link"><i class="glyphicon glyphicon-list-alt"></i> Mobiliario</a>
+			<input type="hidden" id="mobiliario_hclink" value="mobiliario_view.php?filterer_unidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="mantenimientos_hclink" value="mantenimientos_view.php?filterer_unidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="verificacion_hclink" value="verificacion_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="movi_envio_hclink" value="movi_envio_view.php?filterer_origen=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="movi_recepcion_hclink" value="movi_recepcion_view.php?filterer_destino=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="observaciones_hclink" value="observaciones_view.php?filterer_unidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="acceso_remoto_hclink" value="acceso_remoto_view.php?filterer_unidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="programa_mtto_hclink" value="programa_mtto_view.php?filterer_unidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="genera_documentos_hclink" value="genera_documentos_view.php?filterer_entidad=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="verificacion_articulos_hclink" value="verificacion_articulos_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="movi_envio_articulo_hclink" value="movi_envio_articulo_view.php?filterer_origen=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="movi_recepcion_articulos_hclink" value="movi_recepcion_articulos_view.php?filterer_destino=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="ubicacion_articulo_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>" id="ubicacion_articulo_link"><i class="glyphicon glyphicon-list-alt"></i> Ubicacion articulo</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="ubicacion_articulo_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>" id="xs_ubicacion_articulo_link"><i class="glyphicon glyphicon-list-alt"></i> Ubicacion articulo</a>
+			<input type="hidden" id="ubicacion_articulo_hclink" value="ubicacion_articulo_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="ubicacion_mobiliario_hclink" value="ubicacion_mobiliario_view.php?filterer_ubicacion=<%%URLVALUE(id_unidades)%%>&<%%EMBEDDED%%>">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="unidades_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group unidades-id_unidades">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id_unidades">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id_unidades"><%%VALUE(id_unidades)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Nombre de la unidad -->
+				<div class="form-group unidades-nombre">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="nombre">Nombre de la unidad<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="nombre" id="nombre" value="<%%VALUE(nombre)%%>" required><div class="text-danger vspacer-md" id="nombre-uniqueness-note" style="display: none;"><%%TRANSLATION(unique field error)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Abreviado -->
+				<div class="form-group unidades-abreviado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="abreviado">Abreviado<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="abreviado" id="abreviado" value="<%%VALUE(abreviado)%%>" required><div class="text-danger vspacer-md" id="abreviado-uniqueness-note" style="display: none;"><%%TRANSLATION(unique field error)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Ciudad -->
+				<div class="form-group unidades-ciudad">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="ciudad" data-parent_link="view_parent_modal">Ciudad</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(ciudad)%%><%%PLINK(ciudad)%%><%%ADDNEW(ciudades)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Telefono -->
+				<div class="form-group unidades-telefono">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="telefono">Telefono<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="telefono" id="telefono" value="<%%VALUE(telefono)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Direccion -->
+				<div class="form-group unidades-direccion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="direccion">Direccion<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input type="text" class="form-control" name="direccion" id="direccion" value="<%%VALUE(direccion)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Ubicacion -->
+				<div class="form-group unidades-ubicacion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="ubicacion">Ubicacion <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#ubicacion-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="ubicacion-description"><div class="alert alert-info bspacer-xs">Detalles de la ubicacion, consultorio, piso, referencia</div></span>
+						<input maxlength="60" type="text" class="form-control" name="ubicacion" id="ubicacion" value="<%%VALUE(ubicacion)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Prestador -->
+				<div class="form-group unidades-prestador">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="prestador" data-parent_link="view_parent_modal">Prestador</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(prestador)%%><%%PLINK(prestador)%%><%%ADDNEW(prestador)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Logo -->
+				<div class="form-group unidades-logo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Logo <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#logo-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="logo-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 800 KB.<br>Allowed file types: jpg, jpeg, gif, png</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="pull-left"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(logo)%%>" data-lightbox="unidades_dv"><img src="thumbnail.php?i=<%%VALUE(logo)%%>&t=unidades&f=logo&v=dv" class="img-thumbnail" id="logo-image"></a></div>
+							<div class="pull-right well upload-toolbox">
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<%%UPLOADFILE(logo)%%>
+								<%%REMOVEFILE(logo)%%>
+								<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+								<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<script>/* disable links to empty images */ $j(function() { var e_logo = '<%%VALUE(logo)%%>'; if(e_logo == '' || e_logo == '&nbsp;' || e_logo == 'blank.gif') { $j('#logo-link').hide(); $j('#logo-image').parents('a').attr('href', '').on('click', function(e) { e.preventDefault(); }); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Costo de Dispositivos -->
+				<div class="form-group unidades-dispositivos_costo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Costo de Dispositivos <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#dispositivos_costo-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="dispositivos_costo-description"><div class="alert alert-info bspacer-xs">Costo de los dispositivos de la unidad</div></span>
+						<div class="form-control-static" id="dispositivos_costo"><%%VALUE(dispositivos_costo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Costo de Mobiliario -->
+				<div class="form-group unidades-mobiliario_costo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Costo de Mobiliario <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#mobiliario_costo-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="mobiliario_costo-description"><div class="alert alert-info bspacer-xs">Costo del mobiliario de la unidad</div></span>
+						<div class="form-control-static" id="mobiliario_costo"><%%VALUE(mobiliario_costo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Costo total -->
+				<div class="form-group unidades-costo_total">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Costo total</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="costo_total"><%%VALUE(costo_total)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="unidades_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="unidades-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#unidades_dv_container-loading').addClass('hidden');
+			$j('#unidades_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('unidades', 'nombre');
+
+			$j('form').eq(0).change(function() {
+				if($j(this).data('already_changed')) return;
+				if($j('#deselect').length) $j('#deselect').removeClass('btn-default').addClass('btn-warning').get(0).lastChild.data = " <%%TRANSLATION(Cancel)%%>";
+				$j(this).data('already_changed', true);
+			});
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'unidades',
+						SelectedID: '<%%VALUE(id_unidades)%%>',
+						Operation: 'show-children'
+					},
+					'unidades-children'
+				);
+			}
+
+			if(true /* !embedded_mode */) {
+				/* add a horizontal spacer to [add new parent] buttons that don't have a spacered element before them */
+				$j('.add_new_parent').prev(':not(.hspacer-md)').next().addClass('hspacer-md');
+
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'unidades',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			enforce_uniqueness('unidades', 'nombre');
+			enforce_uniqueness('unidades', 'abreviado');
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=unidades&id=<%%URLVALUE(id_unidades)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=unidades&id=<%%URLVALUE(id_unidades)%%>');
+					}
+				);
+			}
+
+			/* warn user if 'add new' clicked while unsaved changes exist */
+			$j('#addNew').click(function() {
+				if($j('#deselect.btn-warning').length) {
+					return confirm('<%%TRANSLATION(discard changes confirm)%%>');
+				}
+			});
+
+		});
+	</script>

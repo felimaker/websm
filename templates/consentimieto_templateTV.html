@@ -1,0 +1,10 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the consentimieto_init() hook (in hooks/consentimieto.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="consentimieto-id_perfil-<%%VALUE(id)%%>" class="consentimieto-id_perfil"><%%SELECT%%><%%VALUE(id_perfil)%%><%%ENDSELECT%%></td>
+		<td id="consentimieto-identificacion-<%%VALUE(id)%%>" class="consentimieto-identificacion"><%%SELECT%%><%%VALUE(identificacion)%%><%%ENDSELECT%%></td>
+		<td id="consentimieto-acepto-<%%VALUE(id)%%>" class="consentimieto-acepto"><%%SELECT%%><%%VALUE(acepto)%%><%%ENDSELECT%%></td>

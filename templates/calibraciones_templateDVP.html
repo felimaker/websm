@@ -1,0 +1,134 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group calibraciones-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Codigo -->
+		<div class="form-group calibraciones-codigo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Codigo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="codigo<%%RND1%%>"><%%COMBOTEXT(codigo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Serial -->
+		<div class="form-group calibraciones-serial" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Serial</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="serial<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo de calibracion -->
+		<div class="form-group calibraciones-tipo_calibracion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo de calibracion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_calibracion<%%RND1%%>"><%%COMBOTEXT(tipo_calibracion)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: No documento -->
+		<div class="form-group calibraciones-no_documento" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No documento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(no_documento)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de calibracion -->
+		<div class="form-group calibraciones-fecha_calibra" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de calibracion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fecha_calibra)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fecha Expiracion -->
+		<div class="form-group calibraciones-fecha_expiracion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha Expiracion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fecha_expiracion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Empresa -->
+		<div class="form-group calibraciones-empresa" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Empresa</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="empresa<%%RND1%%>"><%%COMBOTEXT(empresa)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Telefono -->
+		<div class="form-group calibraciones-telefono" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Telefono</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="telefono<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Documento -->
+		<div class="form-group calibraciones-documento" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Documento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="documento-link" href="link.php?t=calibraciones&f=documento&i=<%%VALUE(id)%%>" target="_blank"><%%VALUE(documento)%%></a><script>jQuery(function() { var e_documento = '<%%VALUE(documento)%%>'; if(e_documento == '' || e_documento == '&nbsp;' || e_documento == 'blank.gif') jQuery('#documento-link').hide(); });</script></div>
+			</div>
+		</div>
+		<!-- Field: Descripcion -->
+		<div class="form-group calibraciones-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Descripcion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(descripcion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group calibraciones-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group calibraciones-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group calibraciones-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado por -->
+		<div class="form-group calibraciones-editado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

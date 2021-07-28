@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the docu_modelo_init() hook (in hooks/docu_modelo.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="docu_modelo-tipo_dispo-<%%VALUE(id)%%>" class="docu_modelo-tipo_dispo"><%%VALUE(tipo_dispo)%%></td>
+		<td id="docu_modelo-marca-<%%VALUE(id)%%>" class="docu_modelo-marca"><%%VALUE(marca)%%></td>
+		<td id="docu_modelo-modelo-<%%VALUE(id)%%>" class="docu_modelo-modelo"><%%VALUE(modelo)%%></td>
+		<td id="docu_modelo-tipo_documento-<%%VALUE(id)%%>" class="docu_modelo-tipo_documento"><%%VALUE(tipo_documento)%%></td>
+		<td id="docu_modelo-enlace-<%%VALUE(id)%%>" class="docu_modelo-enlace"><a href="link.php?t=docu_modelo&f=enlace&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(enlace)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-globe text-info"></i></a></td>
+		<td id="docu_modelo-descripcion-<%%VALUE(id)%%>" class="docu_modelo-descripcion"><%%VALUE(descripcion)%%></td>
+		<script>$j(function() {
+			var e_enlace = '<%%VALUE(enlace)%%>'; if(e_enlace == '' || e_enlace == '&nbsp;') $j(/*<*/ '#docu_modelo-enlace-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

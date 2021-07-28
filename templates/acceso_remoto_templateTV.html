@@ -1,0 +1,15 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the acceso_remoto_init() hook (in hooks/acceso_remoto.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="acceso_remoto-unidad-<%%VALUE(id)%%>" class="acceso_remoto-unidad"><%%SELECT%%><%%VALUE(unidad)%%><%%ENDSELECT%%></td>
+		<td id="acceso_remoto-ciudad-<%%VALUE(id)%%>" class="acceso_remoto-ciudad"><%%SELECT%%><%%VALUE(ciudad)%%><%%ENDSELECT%%></td>
+		<td id="acceso_remoto-servicio-<%%VALUE(id)%%>" class="acceso_remoto-servicio"><%%SELECT%%><%%VALUE(servicio)%%><%%ENDSELECT%%></td>
+		<td id="acceso_remoto-anydesk-<%%VALUE(id)%%>" class="acceso_remoto-anydesk"><%%SELECT%%><%%VALUE(anydesk)%%><%%ENDSELECT%%></td>
+		<td id="acceso_remoto-acceso-<%%VALUE(id)%%>" class="acceso_remoto-acceso"><%%SELECT%%><%%VALUE(acceso)%%><%%ENDSELECT%%></td>
+		<td id="acceso_remoto-codigo_equipo-<%%VALUE(id)%%>" class="acceso_remoto-codigo_equipo"><%%SELECT%%><%%VALUE(codigo_equipo)%%><%%ENDSELECT%%></td>
+		<td id="acceso_remoto-ultima_verifica-<%%VALUE(id)%%>" class="acceso_remoto-ultima_verifica"><%%SELECT%%><%%VALUE(ultima_verifica)%%><%%ENDSELECT%%></td>
+		<td id="acceso_remoto-editado_por-<%%VALUE(id)%%>" class="acceso_remoto-editado_por"><%%SELECT%%><%%VALUE(editado_por)%%><%%ENDSELECT%%></td>

@@ -1,0 +1,12 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the accesorios_init() hook (in hooks/accesorios.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="accesorios-codigo_accesorio-<%%VALUE(id)%%>" class="accesorios-codigo_accesorio"><%%SELECT%%><%%VALUE(codigo_accesorio)%%><%%ENDSELECT%%></td>
+		<td id="accesorios-tipo_accesorio-<%%VALUE(id)%%>" class="accesorios-tipo_accesorio"><%%SELECT%%><%%VALUE(tipo_accesorio)%%><%%ENDSELECT%%></td>
+		<td id="accesorios-nombre_accesorio-<%%VALUE(id)%%>" class="accesorios-nombre_accesorio"><%%SELECT%%><%%VALUE(nombre_accesorio)%%><%%ENDSELECT%%></td>
+		<td id="accesorios-descripcion-<%%VALUE(id)%%>" class="accesorios-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>
+		<td id="accesorios-id_dispo-<%%VALUE(id)%%>" class="accesorios-id_dispo"><%%SELECT%%><%%VALUE(id_dispo)%%><%%ENDSELECT%%></td>

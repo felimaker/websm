@@ -1,0 +1,23 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the mantenimientos_init() hook (in hooks/mantenimientos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="mantenimientos-codigo-<%%VALUE(id_mtto)%%>" class="mantenimientos-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-serial-<%%VALUE(id_mtto)%%>" class="mantenimientos-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-tipo_dispo-<%%VALUE(id_mtto)%%>" class="mantenimientos-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-fecha_mtto-<%%VALUE(id_mtto)%%>" class="mantenimientos-fecha_mtto"><%%SELECT%%><%%VALUE(fecha_mtto)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-tipo_mtto-<%%VALUE(id_mtto)%%>" class="mantenimientos-tipo_mtto"><%%SELECT%%><%%VALUE(tipo_mtto)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-responsable-<%%VALUE(id_mtto)%%>" class="mantenimientos-responsable"><%%SELECT%%><%%VALUE(responsable)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-documento-<%%VALUE(id_mtto)%%>" class="mantenimientos-documento"><a href="link.php?t=mantenimientos&f=documento&i=<%%VALUE(id_mtto)%%>" target="_blank" title="<%%VALUE(documento)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-picture text-info"></i></a></td>
+		<td id="mantenimientos-documento_drive-<%%VALUE(id_mtto)%%>" class="mantenimientos-documento_drive"><a href="link.php?t=mantenimientos&f=documento_drive&i=<%%VALUE(id_mtto)%%>" target="_blank" title="<%%VALUE(documento_drive)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-globe text-info"></i></a></td>
+		<td id="mantenimientos-unidad-<%%VALUE(id_mtto)%%>" class="mantenimientos-unidad"><%%SELECT%%><%%VALUE(unidad)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-estado_final-<%%VALUE(id_mtto)%%>" class="mantenimientos-estado_final"><%%SELECT%%><%%VALUE(estado_final)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-creado-<%%VALUE(id_mtto)%%>" class="mantenimientos-creado"><%%SELECT%%><%%VALUE(creado)%%><%%ENDSELECT%%></td>
+		<td id="mantenimientos-editado-<%%VALUE(id_mtto)%%>" class="mantenimientos-editado"><%%SELECT%%><%%VALUE(editado)%%><%%ENDSELECT%%></td>
+		<script>$j(function() {
+			var e_documento = '<%%VALUE(documento)%%>'; if(e_documento == '' || e_documento == '&nbsp;') $j(/*<*/ '#mantenimientos-documento-<%%VALUE(id_mtto)%%>' /*>*/).html('');
+			var e_documento_drive = '<%%VALUE(documento_drive)%%>'; if(e_documento_drive == '' || e_documento_drive == '&nbsp;') $j(/*<*/ '#mantenimientos-documento_drive-<%%VALUE(id_mtto)%%>' /*>*/).html('');
+		});</script>

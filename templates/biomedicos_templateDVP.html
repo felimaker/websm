@@ -1,0 +1,100 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group biomedicos-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Id contacto -->
+		<div class="form-group biomedicos-id_contacto" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Id contacto</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_contacto<%%RND1%%>"><%%COMBOTEXT(id_contacto)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Nombre -->
+		<div class="form-group biomedicos-nombre" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="nombre<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: No. Registro invima -->
+		<div class="form-group biomedicos-registro_invima" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No. Registro invima</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(registro_invima)%%></div>
+			</div>
+		</div>
+		<!-- Field: Nota -->
+		<div class="form-group biomedicos-nota" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nota</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(nota)%%></div>
+			</div>
+		</div>
+		<!-- Field: Firma -->
+		<div class="form-group biomedicos-firma" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Firma</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(firma)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="biomedicos-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=biomedicos-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'biomedicos',
+				SelectedID: '<%%VALUE(id)%%>',
+				Operation: 'show-children-printable'
+			},
+			'biomedicos-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

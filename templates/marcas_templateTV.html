@@ -1,0 +1,9 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the marcas_init() hook (in hooks/marcas.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="marcas-marca-<%%VALUE(id_marca)%%>" class="marcas-marca"><%%SELECT%%><%%VALUE(marca)%%><%%ENDSELECT%%></td>
+		<td id="marcas-descripcion-<%%VALUE(id_marca)%%>" class="marcas-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>

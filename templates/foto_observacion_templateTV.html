@@ -1,0 +1,10 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the foto_observacion_init() hook (in hooks/foto_observacion.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="foto_observacion-id_observacion-<%%VALUE(id)%%>" class="foto_observacion-id_observacion"><%%SELECT%%><%%VALUE(id_observacion)%%><%%ENDSELECT%%></td>
+		<td id="foto_observacion-foto-<%%VALUE(id)%%>" class="foto_observacion-foto"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(foto)%%>" data-lightbox="foto_observacion-foto"><img src="thumbnail.php?i=<%%VALUE(foto)%%>&t=foto_observacion&f=foto&v=tv" class="img-thumbnail"></a></td>
+		<td id="foto_observacion-descripcion-<%%VALUE(id)%%>" class="foto_observacion-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>

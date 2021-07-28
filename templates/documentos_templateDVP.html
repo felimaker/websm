@@ -1,0 +1,106 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group documentos-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Codigo -->
+		<div class="form-group documentos-dispo_codigo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Codigo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="dispo_codigo<%%RND1%%>"><%%COMBOTEXT(dispo_codigo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Serial -->
+		<div class="form-group documentos-dispo_serial" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Serial</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="dispo_serial<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo de documento -->
+		<div class="form-group documentos-tipo_docu" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo de documento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_docu<%%RND1%%>"><%%COMBOTEXT(tipo_docu)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Enlace -->
+		<div class="form-group documentos-enlace" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Enlace</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="enlace-link" href="link.php?t=documentos&f=enlace&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-globe" title="<%%VALUE(enlace)%%>"></i></a><script>jQuery(function() { var e_enlace = '<%%VALUE(enlace)%%>'; if(e_enlace == '' || e_enlace == '&nbsp;' || e_enlace == 'blank.gif') jQuery('#enlace-link').hide(); });</script></div>
+			</div>
+		</div>
+		<!-- Field: Descripcion -->
+		<div class="form-group documentos-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Descripcion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(descripcion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de registro -->
+		<div class="form-group documentos-fecha_carga" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de registro</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(fecha_carga)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group documentos-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group documentos-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group documentos-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado por -->
+		<div class="form-group documentos-editado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

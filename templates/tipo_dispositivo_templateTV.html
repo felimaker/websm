@@ -1,0 +1,11 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the tipo_dispositivo_init() hook (in hooks/tipo_dispositivo.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="tipo_dispositivo-tipo_dispositivo-<%%VALUE(id_tipodispo)%%>" class="tipo_dispositivo-tipo_dispositivo"><%%SELECT%%><%%VALUE(tipo_dispositivo)%%><%%ENDSELECT%%></td>
+		<td id="tipo_dispositivo-grupo_dispo-<%%VALUE(id_tipodispo)%%>" class="tipo_dispositivo-grupo_dispo"><%%SELECT%%><%%VALUE(grupo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="tipo_dispositivo-prefijo-<%%VALUE(id_tipodispo)%%>" class="tipo_dispositivo-prefijo"><%%SELECT%%><%%VALUE(prefijo)%%><%%ENDSELECT%%></td>
+		<td id="tipo_dispositivo-descripcion-<%%VALUE(id_tipodispo)%%>" class="tipo_dispositivo-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>

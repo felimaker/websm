@@ -1,0 +1,240 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/foto_observacion-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="foto_observacion_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="foto_observacion_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="foto_observacion_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group foto_observacion-id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Id observacion -->
+				<div class="form-group foto_observacion-id_observacion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" data-parent_link="view_parent_modal">Id observacion</label>
+					<div class="col-lg-9">
+						<div class="form-control-static">
+							<span id="id_observacion-readonly"><%%COMBOTEXT(id_observacion)%%></span>
+							<%%PLINK(id_observacion)%%>
+						</div>
+					</div>
+				</div>
+
+				<!-- Field: Foto -->
+				<div class="form-group foto_observacion-foto">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Foto<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#foto-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="foto-description"><div class="alert alert-info bspacer-xs">Por favor agregue una sola foto por registro.<br>Maximum file size allowed: 1100 KB.<br>Allowed file types: jpg, jpeg, gif, png</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="pull-left"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(foto)%%>" data-lightbox="foto_observacion_dv"><img src="thumbnail.php?i=<%%VALUE(foto)%%>&t=foto_observacion&f=foto&v=dv" class="img-thumbnail" id="foto-image"></a></div>
+							<div class="pull-right well upload-toolbox">
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<%%UPLOADFILE(foto)%%>
+								<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+								<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<script>/* disable links to empty images */ $j(function() { var e_foto = '<%%VALUE(foto)%%>'; if(e_foto == '' || e_foto == '&nbsp;' || e_foto == 'blank.gif') { $j('#foto-link').hide(); $j('#foto-image').parents('a').attr('href', '').on('click', function(e) { e.preventDefault(); }); } });</script>
+					</div>
+				</div>
+
+				<!-- Field: Descripcion -->
+				<div class="form-group foto_observacion-descripcion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="descripcion">Descripcion<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#descripcion-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="descripcion-description"><div class="alert alert-info bspacer-xs">Descripcion de la foto</div></span>
+						<textarea class="form-control" name="descripcion" id="descripcion" rows=" 5"><%%VALUE(descripcion)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Creado -->
+				<div class="form-group foto_observacion-creado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado"><%%VALUE(creado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado por -->
+				<div class="form-group foto_observacion-creado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado_por"><%%VALUE(creado_por)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="foto_observacion_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#foto_observacion_dv_container-loading').addClass('hidden');
+			$j('#foto_observacion_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('foto_observacion', 'foto');
+
+			$j('form').eq(0).change(function() {
+				if($j(this).data('already_changed')) return;
+				if($j('#deselect').length) $j('#deselect').removeClass('btn-default').addClass('btn-warning').get(0).lastChild.data = " <%%TRANSLATION(Cancel)%%>";
+				$j(this).data('already_changed', true);
+			});
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				/* add a horizontal spacer to [add new parent] buttons that don't have a spacered element before them */
+				$j('.add_new_parent').prev(':not(.hspacer-md)').next().addClass('hspacer-md');
+
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'foto_observacion',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=foto_observacion&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=foto_observacion&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+
+			/* warn user if 'add new' clicked while unsaved changes exist */
+			$j('#addNew').click(function() {
+				if($j('#deselect.btn-warning').length) {
+					return confirm('<%%TRANSLATION(discard changes confirm)%%>');
+				}
+			});
+
+		});
+	</script>

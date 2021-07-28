@@ -1,0 +1,120 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group cronograma_mtto-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tipo dispo -->
+		<div class="form-group cronograma_mtto-id_programa" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo dispo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_programa-readonly<%%RND1%%>"><%%COMBOTEXT(id_programa)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Ano -->
+		<div class="form-group cronograma_mtto-ano" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ano</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="ano<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: codigo del dispositivo -->
+		<div class="form-group cronograma_mtto-codigo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">codigo del dispositivo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="codigo<%%RND1%%>"><%%COMBOTEXT(codigo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo de dispositivo -->
+		<div class="form-group cronograma_mtto-tipo_dispo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo de dispositivo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_dispo<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Marca -->
+		<div class="form-group cronograma_mtto-marca" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Marca</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="marca<%%RND1%%>"><%%COMBOTEXT(marca)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Modelo -->
+		<div class="form-group cronograma_mtto-modelo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Modelo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="modelo<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Periodicidad -->
+		<div class="form-group cronograma_mtto-periodicidad" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Periodicidad</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="periodicidad<%%RND1%%>"><%%COMBOTEXT(periodicidad)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Meses -->
+		<div class="form-group cronograma_mtto-meses" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Meses</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(meses)%%></div>
+			</div>
+		</div>
+		<!-- Field: Biomedico -->
+		<div class="form-group cronograma_mtto-biomedico" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Biomedico</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(biomedico)%%></div>
+			</div>
+		</div>
+		<!-- Field: Actividades -->
+		<div class="form-group cronograma_mtto-actividades" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Actividades</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(actividades)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group cronograma_mtto-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group cronograma_mtto-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

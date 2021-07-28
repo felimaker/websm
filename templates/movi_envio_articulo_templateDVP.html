@@ -1,0 +1,127 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group movi_envio_articulo-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fecha envio -->
+		<div class="form-group movi_envio_articulo-fecha_envio" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha envio</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fecha_envio)%%></div>
+			</div>
+		</div>
+		<!-- Field: Origen -->
+		<div class="form-group movi_envio_articulo-origen" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Origen</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="origen<%%RND1%%>"><%%COMBOTEXT(origen)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Ubicacion -->
+		<div class="form-group movi_envio_articulo-ubicacion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ubicacion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="ubicacion<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Lugar de destino -->
+		<div class="form-group movi_envio_articulo-destino" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Lugar de destino</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(destino)%%></div>
+			</div>
+		</div>
+		<!-- Field: Direccion de el destino -->
+		<div class="form-group movi_envio_articulo-d_direccion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Direccion de el destino</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(d_direccion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Ciudad destino -->
+		<div class="form-group movi_envio_articulo-ciudad" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ciudad destino</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="ciudad<%%RND1%%>"><%%COMBOTEXT(ciudad)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Responsable de envio -->
+		<div class="form-group movi_envio_articulo-nombre" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Responsable de envio</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="nombre<%%RND1%%>"><%%COMBOTEXT(nombre)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Telefono -->
+		<div class="form-group movi_envio_articulo-telefono" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Telefono</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="telefono<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Detalles del envio -->
+		<div class="form-group movi_envio_articulo-detalles" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Detalles del envio</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(detalles)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group movi_envio_articulo-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group movi_envio_articulo-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group movi_envio_articulo-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado por -->
+		<div class="form-group movi_envio_articulo-editado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

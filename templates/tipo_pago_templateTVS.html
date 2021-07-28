@@ -1,0 +1,9 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the tipo_pago_init() hook (in hooks/tipo_pago.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="tipo_pago-tipo_pago-<%%VALUE(id)%%>" class="tipo_pago-tipo_pago"><%%VALUE(tipo_pago)%%></td>
+		<td id="tipo_pago-descripcion-<%%VALUE(id)%%>" class="tipo_pago-descripcion"><%%VALUE(descripcion)%%></td>

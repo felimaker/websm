@@ -1,0 +1,13 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the perfil_familia_init() hook (in hooks/perfil_familia.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="perfil_familia-id_perfil-<%%VALUE(id)%%>" class="perfil_familia-id_perfil"><%%SELECT%%><%%VALUE(id_perfil)%%><%%ENDSELECT%%></td>
+		<td id="perfil_familia-identificacion-<%%VALUE(id)%%>" class="perfil_familia-identificacion"><%%SELECT%%><%%VALUE(identificacion)%%><%%ENDSELECT%%></td>
+		<td id="perfil_familia-parentesco-<%%VALUE(id)%%>" class="perfil_familia-parentesco"><%%SELECT%%><%%VALUE(parentesco)%%><%%ENDSELECT%%></td>
+		<td id="perfil_familia-nombre-<%%VALUE(id)%%>" class="perfil_familia-nombre"><%%SELECT%%><%%VALUE(nombre)%%><%%ENDSELECT%%></td>
+		<td id="perfil_familia-telefono-<%%VALUE(id)%%>" class="perfil_familia-telefono"><%%SELECT%%><%%VALUE(telefono)%%><%%ENDSELECT%%></td>
+		<td id="perfil_familia-direccion-<%%VALUE(id)%%>" class="perfil_familia-direccion"><%%SELECT%%><%%VALUE(direccion)%%><%%ENDSELECT%%></td>

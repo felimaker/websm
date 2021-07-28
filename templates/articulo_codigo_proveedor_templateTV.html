@@ -1,0 +1,10 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the articulo_codigo_proveedor_init() hook (in hooks/articulo_codigo_proveedor.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="articulo_codigo_proveedor-familia-<%%VALUE(id)%%>" class="articulo_codigo_proveedor-familia"><%%SELECT%%><%%VALUE(familia)%%><%%ENDSELECT%%></td>
+		<td id="articulo_codigo_proveedor-codigo-<%%VALUE(id)%%>" class="articulo_codigo_proveedor-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="articulo_codigo_proveedor-proveedor-<%%VALUE(id)%%>" class="articulo_codigo_proveedor-proveedor"><%%SELECT%%><%%VALUE(proveedor)%%><%%ENDSELECT%%></td>

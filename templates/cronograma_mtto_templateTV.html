@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the cronograma_mtto_init() hook (in hooks/cronograma_mtto.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="cronograma_mtto-ano-<%%VALUE(id)%%>" class="cronograma_mtto-ano"><%%SELECT%%><%%VALUE(ano)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-codigo-<%%VALUE(id)%%>" class="cronograma_mtto-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-tipo_dispo-<%%VALUE(id)%%>" class="cronograma_mtto-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-marca-<%%VALUE(id)%%>" class="cronograma_mtto-marca"><%%SELECT%%><%%VALUE(marca)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-modelo-<%%VALUE(id)%%>" class="cronograma_mtto-modelo"><%%SELECT%%><%%VALUE(modelo)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-periodicidad-<%%VALUE(id)%%>" class="cronograma_mtto-periodicidad"><%%SELECT%%><%%VALUE(periodicidad)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-meses-<%%VALUE(id)%%>" class="cronograma_mtto-meses"><%%SELECT%%><%%VALUE(meses)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-biomedico-<%%VALUE(id)%%>" class="cronograma_mtto-biomedico"><%%SELECT%%><%%VALUE(biomedico)%%><%%ENDSELECT%%></td>
+		<td id="cronograma_mtto-actividades-<%%VALUE(id)%%>" class="cronograma_mtto-actividades"><%%SELECT%%><%%VALUE(actividades)%%><%%ENDSELECT%%></td>

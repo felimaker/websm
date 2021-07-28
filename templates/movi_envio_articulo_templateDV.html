@@ -1,0 +1,303 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/movi_envio_articulo-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="movi_envio_articulo_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="movi_envio_articulo_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="movi_envio_articulo_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group movi_envio_articulo-id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Fecha envio -->
+				<div class="form-group movi_envio_articulo-fecha_envio">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="fecha_envio-dd">Fecha envio<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(fecha_envio)%%>
+					</div>
+				</div>
+
+				<!-- Field: Origen -->
+				<div class="form-group movi_envio_articulo-origen">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="origen" data-parent_link="view_parent_modal">Origen <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#origen-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="origen-description"><div class="alert alert-info bspacer-xs">Ubicacion actual de el dispositivo</div></span>
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(origen)%%><%%PLINK(origen)%%><%%ADDNEW(unidades)%%><span id="origenLoading"></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Ubicacion -->
+				<div class="form-group movi_envio_articulo-ubicacion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Ubicacion</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="ubicacion"></div>
+					</div>
+				</div>
+
+				<!-- Field: Lugar de destino -->
+				<div class="form-group movi_envio_articulo-destino">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="destino">Lugar de destino<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#destino-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="destino-description"><div class="alert alert-info bspacer-xs">Nombre o referencia de el destino</div></span>
+						<input maxlength="100" type="text" class="form-control" name="destino" id="destino" value="<%%VALUE(destino)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Direccion de el destino -->
+				<div class="form-group movi_envio_articulo-d_direccion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="d_direccion">Direccion de el destino</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="d_direccion" id="d_direccion" rows=" 5"><%%VALUE(d_direccion)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Ciudad destino -->
+				<div class="form-group movi_envio_articulo-ciudad">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="ciudad" data-parent_link="view_parent_modal">Ciudad destino<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(ciudad)%%><%%PLINK(ciudad)%%><%%ADDNEW(ciudades)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Responsable de envio -->
+				<div class="form-group movi_envio_articulo-nombre">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="nombre" data-parent_link="view_parent_modal">Responsable de envio<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#nombre-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="nombre-description"><div class="alert alert-info bspacer-xs">Nombre de la persona responsable del envio</div></span>
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(nombre)%%><%%PLINK(nombre)%%><%%ADDNEW(contactos)%%><span id="nombreLoading"></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Telefono -->
+				<div class="form-group movi_envio_articulo-telefono">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Telefono <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#telefono-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="telefono-description"><div class="alert alert-info bspacer-xs">Telefono del responsable de envio</div></span>
+						<div class="form-control-static" id="telefono"></div>
+					</div>
+				</div>
+
+				<!-- Field: Detalles del envio -->
+				<div class="form-group movi_envio_articulo-detalles">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="detalles">Detalles del envio <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#detalles-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="detalles-description"><div class="alert alert-info bspacer-xs">Relaciona los detalles del envio, metodo y caracteristicas.</div></span>
+						<textarea class="form-control" name="detalles" id="detalles" rows=" 5"><%%VALUE(detalles)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Creado -->
+				<div class="form-group movi_envio_articulo-creado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado"><%%VALUE(creado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado por -->
+				<div class="form-group movi_envio_articulo-creado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado_por"><%%VALUE(creado_por)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Editado -->
+				<div class="form-group movi_envio_articulo-editado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Editado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="editado"><%%VALUE(editado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Editado por -->
+				<div class="form-group movi_envio_articulo-editado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Editado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="editado_por"><%%VALUE(editado_por)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="movi_envio_articulo_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<input type="hidden" name="id_movi" value="<%%VALUE(id_movi)%%>">
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#movi_envio_articulo_dv_container-loading').addClass('hidden');
+			$j('#movi_envio_articulo_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('movi_envio_articulo', 'fecha_envio');
+
+			$j('form').eq(0).change(function() {
+				if($j(this).data('already_changed')) return;
+				if($j('#deselect').length) $j('#deselect').removeClass('btn-default').addClass('btn-warning').get(0).lastChild.data = " <%%TRANSLATION(Cancel)%%>";
+				$j(this).data('already_changed', true);
+			});
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+
+			if(true /* !embedded_mode */) {
+				/* add a horizontal spacer to [add new parent] buttons that don't have a spacered element before them */
+				$j('.add_new_parent').prev(':not(.hspacer-md)').next().addClass('hspacer-md');
+
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'movi_envio_articulo',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=movi_envio_articulo&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=movi_envio_articulo&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+
+			/* warn user if 'add new' clicked while unsaved changes exist */
+			$j('#addNew').click(function() {
+				if($j('#deselect.btn-warning').length) {
+					return confirm('<%%TRANSLATION(discard changes confirm)%%>');
+				}
+			});
+
+		});
+	</script>

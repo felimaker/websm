@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the movi_envio_articulo_init() hook (in hooks/movi_envio_articulo.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="movi_envio_articulo-fecha_envio-<%%VALUE(id)%%>" class="movi_envio_articulo-fecha_envio"><%%SELECT%%><%%VALUE(fecha_envio)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-origen-<%%VALUE(id)%%>" class="movi_envio_articulo-origen"><%%SELECT%%><%%VALUE(origen)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-ubicacion-<%%VALUE(id)%%>" class="movi_envio_articulo-ubicacion"><%%SELECT%%><%%VALUE(ubicacion)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-destino-<%%VALUE(id)%%>" class="movi_envio_articulo-destino"><%%SELECT%%><%%VALUE(destino)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-d_direccion-<%%VALUE(id)%%>" class="movi_envio_articulo-d_direccion"><%%SELECT%%><%%VALUE(d_direccion)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-ciudad-<%%VALUE(id)%%>" class="movi_envio_articulo-ciudad"><%%SELECT%%><%%VALUE(ciudad)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-nombre-<%%VALUE(id)%%>" class="movi_envio_articulo-nombre"><%%SELECT%%><%%VALUE(nombre)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-telefono-<%%VALUE(id)%%>" class="movi_envio_articulo-telefono"><%%SELECT%%><%%VALUE(telefono)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-detalles-<%%VALUE(id)%%>" class="movi_envio_articulo-detalles"><%%SELECT%%><%%VALUE(detalles)%%><%%ENDSELECT%%></td>
+		<td id="movi_envio_articulo-creado-<%%VALUE(id)%%>" class="movi_envio_articulo-creado"><%%SELECT%%><%%VALUE(creado)%%><%%ENDSELECT%%></td>

@@ -1,0 +1,146 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group unidades-id_unidades" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id_unidades)%%></div>
+			</div>
+		</div>
+		<!-- Field: Nombre de la unidad -->
+		<div class="form-group unidades-nombre" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre de la unidad</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(nombre)%%></div>
+			</div>
+		</div>
+		<!-- Field: Abreviado -->
+		<div class="form-group unidades-abreviado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Abreviado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(abreviado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Ciudad -->
+		<div class="form-group unidades-ciudad" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ciudad</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="ciudad<%%RND1%%>"><%%COMBOTEXT(ciudad)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Telefono -->
+		<div class="form-group unidades-telefono" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Telefono</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(telefono)%%></div>
+			</div>
+		</div>
+		<!-- Field: Direccion -->
+		<div class="form-group unidades-direccion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Direccion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(direccion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Ubicacion -->
+		<div class="form-group unidades-ubicacion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ubicacion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(ubicacion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Prestador -->
+		<div class="form-group unidades-prestador" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Prestador</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="prestador<%%RND1%%>"><%%COMBOTEXT(prestador)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Logo -->
+		<div class="form-group unidades-logo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Logo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><script>
+				var logoSrc1<%%RND1%%>='<%%BASE_UPLOAD_PATH%%><%%VALUE(logo)%%>';
+				var logoSrc2<%%RND1%%>='thumbnail.php?t=unidades&f=logo&i=<%%VALUE(logo)%%>&v=dv'
+			</script>
+			<a href="#" onclick="$('logoImg<%%RND1%%>').src=($('logoImg<%%RND1%%>').src.search(/thumbnail\.php/) != -1 && logoSrc1<%%RND1%%> != '<%%BASE_UPLOAD_PATH%%>' ? logoSrc1<%%RND1%%> : logoSrc2<%%RND1%%>); return false;"><img id="logoImg<%%RND1%%>" src="thumbnail.php?t=unidades&f=logo&i=<%%VALUE(logo)%%>&v=dv" class="img-thumbnail"></a></div>
+			</div>
+		</div>
+		<!-- Field: Costo de Dispositivos -->
+		<div class="form-group unidades-dispositivos_costo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Costo de Dispositivos</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(dispositivos_costo)%%></div>
+			</div>
+		</div>
+		<!-- Field: Costo de Mobiliario -->
+		<div class="form-group unidades-mobiliario_costo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Costo de Mobiliario</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(mobiliario_costo)%%></div>
+			</div>
+		</div>
+		<!-- Field: Costo total -->
+		<div class="form-group unidades-costo_total" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Costo total</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(costo_total)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="unidades-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=unidades-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'unidades',
+				SelectedID: '<%%VALUE(id_unidades)%%>',
+				Operation: 'show-children-printable'
+			},
+			'unidades-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

@@ -1,0 +1,11 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the prestador_init() hook (in hooks/prestador.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="prestador-nombre-<%%VALUE(id)%%>" class="prestador-nombre"><%%SELECT%%><%%VALUE(nombre)%%><%%ENDSELECT%%></td>
+		<td id="prestador-razon_social-<%%VALUE(id)%%>" class="prestador-razon_social"><%%SELECT%%><%%VALUE(razon_social)%%><%%ENDSELECT%%></td>
+		<td id="prestador-nit-<%%VALUE(id)%%>" class="prestador-nit"><%%SELECT%%><%%VALUE(nit)%%><%%ENDSELECT%%></td>
+		<td id="prestador-descripcion-<%%VALUE(id)%%>" class="prestador-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>

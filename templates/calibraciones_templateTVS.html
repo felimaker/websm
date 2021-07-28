@@ -1,0 +1,20 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the calibraciones_init() hook (in hooks/calibraciones.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="calibraciones-codigo-<%%VALUE(id)%%>" class="calibraciones-codigo"><%%VALUE(codigo)%%></td>
+		<td id="calibraciones-serial-<%%VALUE(id)%%>" class="calibraciones-serial"><%%VALUE(serial)%%></td>
+		<td id="calibraciones-tipo_calibracion-<%%VALUE(id)%%>" class="calibraciones-tipo_calibracion"><%%VALUE(tipo_calibracion)%%></td>
+		<td id="calibraciones-no_documento-<%%VALUE(id)%%>" class="calibraciones-no_documento"><%%VALUE(no_documento)%%></td>
+		<td id="calibraciones-fecha_calibra-<%%VALUE(id)%%>" class="calibraciones-fecha_calibra"><%%VALUE(fecha_calibra)%%></td>
+		<td id="calibraciones-fecha_expiracion-<%%VALUE(id)%%>" class="calibraciones-fecha_expiracion"><%%VALUE(fecha_expiracion)%%></td>
+		<td id="calibraciones-empresa-<%%VALUE(id)%%>" class="calibraciones-empresa"><%%VALUE(empresa)%%></td>
+		<td id="calibraciones-telefono-<%%VALUE(id)%%>" class="calibraciones-telefono"><%%VALUE(telefono)%%></td>
+		<td id="calibraciones-documento-<%%VALUE(id)%%>" class="calibraciones-documento"><a href="link.php?t=calibraciones&f=documento&i=<%%VALUE(id)%%>" target="_blank"><%%VALUE(documento)%%></a></td>
+		<td id="calibraciones-descripcion-<%%VALUE(id)%%>" class="calibraciones-descripcion"><%%VALUE(descripcion)%%></td>
+		<script>$j(function() {
+			var e_documento = '<%%VALUE(documento)%%>'; if(e_documento == '' || e_documento == '&nbsp;') $j(/*<*/ '#calibraciones-documento-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

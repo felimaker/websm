@@ -1,0 +1,92 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group perfil_familia-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Usuario -->
+		<div class="form-group perfil_familia-id_perfil" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Usuario</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_perfil-readonly<%%RND1%%>"><%%COMBOTEXT(id_perfil)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Identificacion -->
+		<div class="form-group perfil_familia-identificacion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Identificacion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="identificacion<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Parentesco -->
+		<div class="form-group perfil_familia-parentesco" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Parentesco</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="parentesco<%%RND1%%>"><%%COMBOTEXT(parentesco)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Nombre -->
+		<div class="form-group perfil_familia-nombre" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(nombre)%%></div>
+			</div>
+		</div>
+		<!-- Field: Telefono -->
+		<div class="form-group perfil_familia-telefono" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Telefono</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(telefono)%%></div>
+			</div>
+		</div>
+		<!-- Field: Direccion -->
+		<div class="form-group perfil_familia-direccion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Direccion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(direccion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group perfil_familia-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group perfil_familia-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

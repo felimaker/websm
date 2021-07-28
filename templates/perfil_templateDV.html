@@ -1,0 +1,411 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/perfil-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="perfil_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="perfil_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="consentimieto_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="consentimieto_link"><i class="glyphicon glyphicon-list-alt"></i> Consentimieto</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="consentimieto_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_consentimieto_link"><i class="glyphicon glyphicon-list-alt"></i> Consentimieto</a>
+			<input type="hidden" id="consentimieto_hclink" value="consentimieto_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="perfil_familia_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="perfil_familia_link"><i class="glyphicon glyphicon-list-alt"></i> Familia</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="perfil_familia_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_perfil_familia_link"><i class="glyphicon glyphicon-list-alt"></i> Familia</a>
+			<input type="hidden" id="perfil_familia_hclink" value="perfil_familia_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="perfil_soportes_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="perfil_soportes_link"><i class="glyphicon glyphicon-list-alt"></i> Soportes Perfil</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="perfil_soportes_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_perfil_soportes_link"><i class="glyphicon glyphicon-list-alt"></i> Soportes Perfil</a>
+			<input type="hidden" id="perfil_soportes_hclink" value="perfil_soportes_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="seguridad_social_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="seguridad_social_link"><i class="glyphicon glyphicon-list-alt"></i> Soportes SS</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="seguridad_social_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_seguridad_social_link"><i class="glyphicon glyphicon-list-alt"></i> Soportes SS</a>
+			<input type="hidden" id="seguridad_social_hclink" value="seguridad_social_view.php?filterer_id_perfil=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="perfil_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group perfil-id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Usuario -->
+				<div class="form-group perfil-usuario">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Usuario</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="usuario"><%%VALUE(usuario)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Nombre -->
+				<div class="form-group perfil-nombre">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="nombre">Nombre<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="nombre" id="nombre" value="<%%VALUE(nombre)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Apellidos -->
+				<div class="form-group perfil-apellidos">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="apellidos">Apellidos<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="apellidos" id="apellidos" value="<%%VALUE(apellidos)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Tipo id -->
+				<div class="form-group perfil-tipo_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tipo_id" data-parent_link="view_parent_modal">Tipo id<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(tipo_id)%%><%%PLINK(tipo_id)%%><%%ADDNEW(tipo_iden)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Numero id -->
+				<div class="form-group perfil-numero_id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="numero_id">Numero id<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="numero_id" id="numero_id" value="<%%VALUE(numero_id)%%>" required><div class="text-danger vspacer-md" id="numero_id-uniqueness-note" style="display: none;"><%%TRANSLATION(unique field error)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Email -->
+				<div class="form-group perfil-dato2">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Email <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#dato2-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="dato2-description"><div class="alert alert-info bspacer-xs">Email registrado</div></span>
+						<div class="form-control-static" id="dato2"><%%VALUE(dato2)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Fecha nacimiento -->
+				<div class="form-group perfil-fecha_nacimiento">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="fecha_nacimiento-dd">Fecha nacimiento<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<%%COMBO(fecha_nacimiento)%%>
+					</div>
+				</div>
+
+				<!-- Field: Telefono -->
+				<div class="form-group perfil-telefono">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="telefono">Telefono<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="telefono" id="telefono" value="<%%VALUE(telefono)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Celular -->
+				<div class="form-group perfil-celular">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="celular">Celular<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="celular" id="celular" value="<%%VALUE(celular)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Rh -->
+				<div class="form-group perfil-rh">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="rh" data-parent_link="view_parent_modal">Rh</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(rh)%%><%%PLINK(rh)%%><%%ADDNEW(tipo_rh)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Foto perfil -->
+				<div class="form-group perfil-foto_perfil">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Foto perfil <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#foto_perfil-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="foto_perfil-description"><div class="alert alert-info bspacer-xs">Maximum file size allowed: 1800 KB.<br>Allowed file types: jpg, jpeg, gif, png</div></span>
+						<div class="form-control-static well well-sm">
+							<div class="pull-left"><img src="thumbnail.php?i=<%%VALUE(foto_perfil)%%>&t=perfil&f=foto_perfil&v=dv" class="img-thumbnail" id="foto_perfil-image"></div>
+							<div class="pull-right well upload-toolbox">
+								<div class="hidden-md hidden-lg vspacer-lg"></div>
+								<%%UPLOADFILE(foto_perfil)%%>
+								<%%REMOVEFILE(foto_perfil)%%>
+								<div class="text-bold text-danger file-type-error hidden"><%%TRANSLATION(invalid file type)%%></div>
+								<div class="text-bold text-danger file-size-error hidden"><%%TRANSLATION(file too large)%%></div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						
+					</div>
+				</div>
+
+				<!-- Field: Estado civil -->
+				<div class="form-group perfil-estado_civil">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="estado_civil">Estado civil</label>
+					<div class="col-lg-9">
+						<%%COMBO(estado_civil)%%>
+					</div>
+				</div>
+
+				<!-- Field: Direccion -->
+				<div class="form-group perfil-direccion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="direccion">Direccion</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="direccion" id="direccion" rows=" 5"><%%VALUE(direccion)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: % Optimo -->
+				<div class="form-group perfil-optimo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="optimo">% Optimo <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#optimo-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="optimo-description"><div class="alert alert-info bspacer-xs">% de informacion llenada</div></span>
+						<input maxlength="40" type="text" class="form-control" name="optimo" id="optimo" value="<%%VALUE(optimo)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Creado -->
+				<div class="form-group perfil-creado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado"><%%VALUE(creado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado por -->
+				<div class="form-group perfil-creado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado_por"><%%VALUE(creado_por)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Grupo -->
+				<div class="form-group perfil-grupo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Grupo</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="grupo"><%%VALUE(grupo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Estado -->
+				<div class="form-group perfil-estado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="estado">Estado</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="estado" id="estado" value="<%%VALUE(estado)%%>">
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="perfil_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="perfil-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#perfil_dv_container-loading').addClass('hidden');
+			$j('#perfil_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('perfil', 'nombre');
+
+			$j('form').eq(0).change(function() {
+				if($j(this).data('already_changed')) return;
+				if($j('#deselect').length) $j('#deselect').removeClass('btn-default').addClass('btn-warning').get(0).lastChild.data = " <%%TRANSLATION(Cancel)%%>";
+				$j(this).data('already_changed', true);
+			});
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'perfil',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'perfil-children'
+				);
+			}
+
+			if(true /* !embedded_mode */) {
+				/* add a horizontal spacer to [add new parent] buttons that don't have a spacered element before them */
+				$j('.add_new_parent').prev(':not(.hspacer-md)').next().addClass('hspacer-md');
+
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'perfil',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			enforce_uniqueness('perfil', 'numero_id');
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=perfil&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=perfil&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+
+			/* warn user if 'add new' clicked while unsaved changes exist */
+			$j('#addNew').click(function() {
+				if($j('#deselect.btn-warning').length) {
+					return confirm('<%%TRANSLATION(discard changes confirm)%%>');
+				}
+			});
+
+		});
+	</script>

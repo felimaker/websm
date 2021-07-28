@@ -1,0 +1,113 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group dispo_fuera-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Img -->
+		<div class="form-group dispo_fuera-img" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Img</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="img<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Dispositivo -->
+		<div class="form-group dispo_fuera-codigo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Dispositivo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="codigo<%%RND1%%>"><%%COMBOTEXT(codigo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Serial -->
+		<div class="form-group dispo_fuera-serial" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Serial</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="serial<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Ubicacion final -->
+		<div class="form-group dispo_fuera-ubicacion_final" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Ubicacion final</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="ubicacion_final<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo fuera servicio -->
+		<div class="form-group dispo_fuera-tipo_fuera_servicio" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo fuera servicio</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_fuera_servicio<%%RND1%%>"><%%COMBOTEXT(tipo_fuera_servicio)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de reporte -->
+		<div class="form-group dispo_fuera-fecha_reporte" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de reporte</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fecha_reporte)%%></div>
+			</div>
+		</div>
+		<!-- Field: Descripcion -->
+		<div class="form-group dispo_fuera-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Descripcion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(descripcion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group dispo_fuera-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group dispo_fuera-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group dispo_fuera-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Edtado por -->
+		<div class="form-group dispo_fuera-edtado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Edtado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(edtado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

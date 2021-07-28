@@ -1,0 +1,10 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the marca_presetacion_init() hook (in hooks/marca_presetacion.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="marca_presetacion-marca-<%%VALUE(id)%%>" class="marca_presetacion-marca"><%%VALUE(marca)%%></td>
+		<td id="marca_presetacion-unidad_medida-<%%VALUE(id)%%>" class="marca_presetacion-unidad_medida"><%%VALUE(unidad_medida)%%></td>
+		<td id="marca_presetacion-presentacion-<%%VALUE(id)%%>" class="marca_presetacion-presentacion"><%%VALUE(presentacion)%%></td>

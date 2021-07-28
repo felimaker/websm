@@ -1,0 +1,13 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the cantidad_articulos_init() hook (in hooks/cantidad_articulos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="cantidad_articulos-nombre_articulo-<%%VALUE(id)%%>" class="cantidad_articulos-nombre_articulo"><%%SELECT%%><%%VALUE(nombre_articulo)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_articulos-presentacion-<%%VALUE(id)%%>" class="cantidad_articulos-presentacion"><%%SELECT%%><%%VALUE(presentacion)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_articulos-descripcion-<%%VALUE(id)%%>" class="cantidad_articulos-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_articulos-serial-<%%VALUE(id)%%>" class="cantidad_articulos-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_articulos-cantidad-<%%VALUE(id)%%>" class="cantidad_articulos-cantidad text-right"><%%SELECT%%><%%VALUE(cantidad)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_articulos-estado-<%%VALUE(id)%%>" class="cantidad_articulos-estado"><%%SELECT%%><%%VALUE(estado)%%><%%ENDSELECT%%></td>

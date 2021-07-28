@@ -1,0 +1,12 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the accesorio_dispo_relacion_init() hook (in hooks/accesorio_dispo_relacion.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="accesorio_dispo_relacion-id_dispo-<%%VALUE(id)%%>" class="accesorio_dispo_relacion-id_dispo"><%%SELECT%%><%%VALUE(id_dispo)%%><%%ENDSELECT%%></td>
+		<td id="accesorio_dispo_relacion-id_accesorio-<%%VALUE(id)%%>" class="accesorio_dispo_relacion-id_accesorio"><%%SELECT%%><%%VALUE(id_accesorio)%%><%%ENDSELECT%%></td>
+		<td id="accesorio_dispo_relacion-tipo_dispo-<%%VALUE(id)%%>" class="accesorio_dispo_relacion-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="accesorio_dispo_relacion-serial-<%%VALUE(id)%%>" class="accesorio_dispo_relacion-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="accesorio_dispo_relacion-marca_modelo-<%%VALUE(id)%%>" class="accesorio_dispo_relacion-marca_modelo"><%%SELECT%%><%%VALUE(marca_modelo)%%><%%ENDSELECT%%></td>

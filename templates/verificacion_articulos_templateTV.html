@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the verificacion_articulos_init() hook (in hooks/verificacion_articulos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="verificacion_articulos-codigo-<%%VALUE(id)%%>" class="verificacion_articulos-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-tipo_dispo-<%%VALUE(id)%%>" class="verificacion_articulos-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-nombre-<%%VALUE(id)%%>" class="verificacion_articulos-nombre"><%%SELECT%%><%%VALUE(nombre)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-serial-<%%VALUE(id)%%>" class="verificacion_articulos-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-ubicacion-<%%VALUE(id)%%>" class="verificacion_articulos-ubicacion"><%%SELECT%%><%%VALUE(ubicacion)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-abreviado-<%%VALUE(id)%%>" class="verificacion_articulos-abreviado"><%%SELECT%%><%%VALUE(abreviado)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-verificacion-<%%VALUE(id)%%>" class="verificacion_articulos-verificacion"><%%SELECT%%><%%VALUE(verificacion)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-comentario-<%%VALUE(id)%%>" class="verificacion_articulos-comentario"><%%SELECT%%><%%VALUE(comentario)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-fecha_verifi-<%%VALUE(id)%%>" class="verificacion_articulos-fecha_verifi"><%%SELECT%%><%%VALUE(fecha_verifi)%%><%%ENDSELECT%%></td>
+		<td id="verificacion_articulos-verifi_por-<%%VALUE(id)%%>" class="verificacion_articulos-verifi_por"><%%SELECT%%><%%VALUE(verifi_por)%%><%%ENDSELECT%%></td>

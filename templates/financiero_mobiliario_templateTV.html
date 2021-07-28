@@ -1,0 +1,14 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the financiero_mobiliario_init() hook (in hooks/financiero_mobiliario.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="financiero_mobiliario-id_dispo-<%%VALUE(id)%%>" class="financiero_mobiliario-id_dispo"><%%SELECT%%><%%VALUE(id_dispo)%%><%%ENDSELECT%%></td>
+		<td id="financiero_mobiliario-precio-<%%VALUE(id)%%>" class="financiero_mobiliario-precio"><%%SELECT%%><%%VALUE(precio)%%><%%ENDSELECT%%></td>
+		<td id="financiero_mobiliario-unidad-<%%VALUE(id)%%>" class="financiero_mobiliario-unidad"><%%SELECT%%><%%VALUE(unidad)%%><%%ENDSELECT%%></td>
+		<td id="financiero_mobiliario-enlace-<%%VALUE(id)%%>" class="financiero_mobiliario-enlace"><a href="link.php?t=financiero_mobiliario&f=enlace&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(enlace)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-globe text-info"></i></a></td>
+		<script>$j(function() {
+			var e_enlace = '<%%VALUE(enlace)%%>'; if(e_enlace == '' || e_enlace == '&nbsp;') $j(/*<*/ '#financiero_mobiliario-enlace-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

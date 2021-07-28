@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the hojadevida_init() hook (in hooks/hojadevida.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="hojadevida-dispo_codigo-<%%VALUE(id)%%>" class="hojadevida-dispo_codigo"><%%VALUE(dispo_codigo)%%></td>
+		<td id="hojadevida-dispo_serial-<%%VALUE(id)%%>" class="hojadevida-dispo_serial"><%%VALUE(dispo_serial)%%></td>
+		<td id="hojadevida-hardware-<%%VALUE(id)%%>" class="hojadevida-hardware"><%%VALUE(hardware)%%></td>
+		<td id="hojadevida-software-<%%VALUE(id)%%>" class="hojadevida-software"><%%VALUE(software)%%></td>
+		<td id="hojadevida-carga-<%%VALUE(id)%%>" class="hojadevida-carga"><a href="link.php?t=hojadevida&f=carga&i=<%%VALUE(id)%%>" target="_blank" title="<%%VALUE(carga)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-picture text-info"></i></a></td>
+		<td id="hojadevida-creado-<%%VALUE(id)%%>" class="hojadevida-creado"><%%VALUE(creado)%%></td>
+		<td id="hojadevida-editado-<%%VALUE(id)%%>" class="hojadevida-editado"><%%VALUE(editado)%%></td>
+		<script>$j(function() {
+			var e_carga = '<%%VALUE(carga)%%>'; if(e_carga == '' || e_carga == '&nbsp;') $j(/*<*/ '#hojadevida-carga-<%%VALUE(id)%%>' /*>*/).html('');
+		});</script>

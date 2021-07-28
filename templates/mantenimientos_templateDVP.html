@@ -1,0 +1,184 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group mantenimientos-id_mtto" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id_mtto)%%></div>
+			</div>
+		</div>
+		<!-- Field: Codigo -->
+		<div class="form-group mantenimientos-codigo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Codigo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="codigo<%%RND1%%>"><%%COMBOTEXT(codigo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Serial -->
+		<div class="form-group mantenimientos-serial" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Serial</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="serial<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo dispo -->
+		<div class="form-group mantenimientos-tipo_dispo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo dispo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_dispo<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de mantenimiento -->
+		<div class="form-group mantenimientos-fecha_mtto" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de mantenimiento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%COMBOTEXT(fecha_mtto)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tipo de mantenimiento -->
+		<div class="form-group mantenimientos-tipo_mtto" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo de mantenimiento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_mtto<%%RND1%%>"><%%COMBOTEXT(tipo_mtto)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Responsable -->
+		<div class="form-group mantenimientos-responsable" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Responsable</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="responsable<%%RND1%%>"><%%COMBOTEXT(responsable)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: identificacion -->
+		<div class="form-group mantenimientos-id_responsable" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">identificacion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_responsable<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Documento -->
+		<div class="form-group mantenimientos-documento" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Documento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="documento-link" href="link.php?t=mantenimientos&f=documento&i=<%%VALUE(id_mtto)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-picture" title="<%%VALUE(documento)%%>"></i></a><script>jQuery(function() { var e_documento = '<%%VALUE(documento)%%>'; if(e_documento == '' || e_documento == '&nbsp;' || e_documento == 'blank.gif') jQuery('#documento-link').hide(); });</script></div>
+			</div>
+		</div>
+		<!-- Field: Documento en Drive -->
+		<div class="form-group mantenimientos-documento_drive" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Documento en Drive</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="documento_drive-link" href="link.php?t=mantenimientos&f=documento_drive&i=<%%VALUE(id_mtto)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-globe" title="<%%VALUE(documento_drive)%%>"></i></a><script>jQuery(function() { var e_documento_drive = '<%%VALUE(documento_drive)%%>'; if(e_documento_drive == '' || e_documento_drive == '&nbsp;' || e_documento_drive == 'blank.gif') jQuery('#documento_drive-link').hide(); });</script></div>
+			</div>
+		</div>
+		<!-- Field: Unidad -->
+		<div class="form-group mantenimientos-unidad" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Unidad</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="unidad<%%RND1%%>"><%%COMBOTEXT(unidad)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Unidad Ciudad -->
+		<div class="form-group mantenimientos-unidad_abreviado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Unidad Ciudad</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="unidad_abreviado<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Descripcion del Mtto -->
+		<div class="form-group mantenimientos-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Descripcion del Mtto</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(descripcion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Estado final -->
+		<div class="form-group mantenimientos-estado_final" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Estado final</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="estado_final<%%RND1%%>"><%%COMBOTEXT(estado_final)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group mantenimientos-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado por -->
+		<div class="form-group mantenimientos-editado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group mantenimientos-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group mantenimientos-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="mantenimientos-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=mantenimientos-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'mantenimientos',
+				SelectedID: '<%%VALUE(id_mtto)%%>',
+				Operation: 'show-children-printable'
+			},
+			'mantenimientos-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the compra_dispo_init() hook (in hooks/compra_dispo.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="compra_dispo-foto-<%%VALUE(id)%%>" class="compra_dispo-foto"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(foto)%%>" data-lightbox="compra_dispo-foto"><img src="thumbnail.php?i=<%%VALUE(foto)%%>&t=marca_modelo&f=img&v=tv" class="img-thumbnail"></a></td>
+		<td id="compra_dispo-nombre-<%%VALUE(id)%%>" class="compra_dispo-nombre"><%%VALUE(nombre)%%></td>
+		<td id="compra_dispo-serial-<%%VALUE(id)%%>" class="compra_dispo-serial"><%%VALUE(serial)%%></td>
+		<td id="compra_dispo-tipo_dispositivo-<%%VALUE(id)%%>" class="compra_dispo-tipo_dispositivo"><%%VALUE(tipo_dispositivo)%%></td>
+		<td id="compra_dispo-marca-<%%VALUE(id)%%>" class="compra_dispo-marca"><%%VALUE(marca)%%></td>
+		<td id="compra_dispo-modelo-<%%VALUE(id)%%>" class="compra_dispo-modelo"><%%VALUE(modelo)%%></td>
+		<td id="compra_dispo-caracteristicas-<%%VALUE(id)%%>" class="compra_dispo-caracteristicas"><%%VALUE(caracteristicas)%%></td>
+		<td id="compra_dispo-estado-<%%VALUE(id)%%>" class="compra_dispo-estado"><%%VALUE(estado)%%></td>
+		<td id="compra_dispo-riesgo-<%%VALUE(id)%%>" class="compra_dispo-riesgo"><%%VALUE(riesgo)%%></td>

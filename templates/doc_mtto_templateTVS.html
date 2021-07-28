@@ -1,0 +1,16 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the doc_mtto_init() hook (in hooks/doc_mtto.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="doc_mtto-doc-<%%VALUE(id_doc)%%>" class="doc_mtto-doc"><a href="link.php?t=doc_mtto&f=doc&i=<%%VALUE(id_doc)%%>" target="_blank" title="<%%VALUE(doc)%%>" class="btn btn-default"><i class="glyphicon glyphicon-lg glyphicon-globe text-info"></i></a></td>
+		<td id="doc_mtto-tipo_mtto-<%%VALUE(id_doc)%%>" class="doc_mtto-tipo_mtto"><%%VALUE(tipo_mtto)%%></td>
+		<td id="doc_mtto-mtto-<%%VALUE(id_doc)%%>" class="doc_mtto-mtto"><%%VALUE(mtto)%%></td>
+		<td id="doc_mtto-observaciones-<%%VALUE(id_doc)%%>" class="doc_mtto-observaciones"><%%VALUE(observaciones)%%></td>
+		<td id="doc_mtto-nombre_biomedico-<%%VALUE(id_doc)%%>" class="doc_mtto-nombre_biomedico"><%%VALUE(nombre_biomedico)%%></td>
+		<td id="doc_mtto-creado-<%%VALUE(id_doc)%%>" class="doc_mtto-creado"><%%VALUE(creado)%%></td>
+		<script>$j(function() {
+			var e_doc = '<%%VALUE(doc)%%>'; if(e_doc == '' || e_doc == '&nbsp;') $j(/*<*/ '#doc_mtto-doc-<%%VALUE(id_doc)%%>' /*>*/).html('');
+		});</script>

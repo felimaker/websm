@@ -1,0 +1,341 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/compra_dispo-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="compra_dispo_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="compra_dispo_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="dispositivos_view.php?filterer_id_compra_ingreso=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="dispositivos_link"><i class="glyphicon glyphicon-list-alt"></i> Dispositivos Biomedicos</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="dispositivos_view.php?filterer_id_compra_ingreso=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_dispositivos_link"><i class="glyphicon glyphicon-list-alt"></i> Dispositivos Biomedicos</a>
+			<input type="hidden" id="dispositivos_hclink" value="dispositivos_view.php?filterer_id_compra_ingreso=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="cantidad_dispomedico_hclink" value="cantidad_dispomedico_view.php?filterer_nombre_dispo=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="precio_dispo_medico_view.php?filterer_dispo_medico=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="precio_dispo_medico_link"><i class="glyphicon glyphicon-list-alt"></i> Precio dispo medico</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="precio_dispo_medico_view.php?filterer_dispo_medico=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_precio_dispo_medico_link"><i class="glyphicon glyphicon-list-alt"></i> Precio dispo medico</a>
+			<input type="hidden" id="precio_dispo_medico_hclink" value="precio_dispo_medico_view.php?filterer_dispo_medico=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="compra_dispo_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group compra_dispo-id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Foto -->
+				<div class="form-group compra_dispo-foto">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Foto</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="foto"></div>
+					</div>
+				</div>
+
+				<!-- Field: Nombre -->
+				<div class="form-group compra_dispo-nombre">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Nombre</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="nombre"><%%VALUE(nombre)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Serial -->
+				<div class="form-group compra_dispo-serial">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="serial">Serial<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#serial-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="serial-description"><div class="alert alert-info bspacer-xs">Numero de serie del dispositivo</div></span>
+						<input maxlength="40" type="text" class="form-control" name="serial" id="serial" value="<%%VALUE(serial)%%>" required><div class="text-danger vspacer-md" id="serial-uniqueness-note" style="display: none;"><%%TRANSLATION(unique field error)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Nombre del equipo -->
+				<div class="form-group compra_dispo-tipo_dispositivo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tipo_dispositivo" data-parent_link="view_parent_modal">Nombre del equipo<span class="text-danger"><%%TRANSLATION(*)%%></span> <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#tipo_dispositivo-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="tipo_dispositivo-description"><div class="alert alert-info bspacer-xs">Tipo de dispositivo</div></span>
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(tipo_dispositivo)%%><%%PLINK(tipo_dispositivo)%%><%%ADDNEW(tipo_dispositivo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Marca -->
+				<div class="form-group compra_dispo-marca">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="marca" data-parent_link="view_parent_new_window">Marca<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(marca)%%><%%PLINK(marca)%%><%%ADDNEW(marcas)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Modelo -->
+				<div class="form-group compra_dispo-modelo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="modelo" data-parent_link="view_parent_new_window">Modelo<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(modelo)%%><%%PLINK(modelo)%%><%%ADDNEW(marca_modelo)%%><span id="modeloLoading"></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Caracteristicas -->
+				<div class="form-group compra_dispo-caracteristicas">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="caracteristicas">Caracteristicas</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="caracteristicas" id="caracteristicas" value="<%%VALUE(caracteristicas)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Estado -->
+				<div class="form-group compra_dispo-estado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="estado" data-parent_link="view_parent_modal">Estado<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(estado)%%><%%PLINK(estado)%%><%%ADDNEW(tipo_estado_dispo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Riesgo -->
+				<div class="form-group compra_dispo-riesgo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="riesgo" data-parent_link="view_parent_modal">Riesgo</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(riesgo)%%><%%PLINK(riesgo)%%><%%ADDNEW(tipo_clasifica_riesgo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Precio -->
+				<div class="form-group compra_dispo-precio">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Precio <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#precio-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="precio-description"><div class="alert alert-info bspacer-xs">Precio de compra</div></span>
+						<div class="form-control-static" id="precio"><%%VALUE(precio)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado -->
+				<div class="form-group compra_dispo-creado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado"><%%VALUE(creado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado por -->
+				<div class="form-group compra_dispo-creado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado_por"><%%VALUE(creado_por)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="compra_dispo_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="compra_dispo-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			$j('#compra_dispo_dv_container-loading').addClass('hidden');
+			$j('#compra_dispo_dv_container').removeClass('hidden');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('compra_dispo', 'serial');
+
+			$j('form').eq(0).change(function() {
+				if($j(this).data('already_changed')) return;
+				if($j('#deselect').length) $j('#deselect').removeClass('btn-default').addClass('btn-warning').get(0).lastChild.data = " <%%TRANSLATION(Cancel)%%>";
+				$j(this).data('already_changed', true);
+			});
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'compra_dispo',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'compra_dispo-children'
+				);
+			}
+
+			if(true /* !embedded_mode */) {
+				/* add a horizontal spacer to [add new parent] buttons that don't have a spacered element before them */
+				$j('.add_new_parent').prev(':not(.hspacer-md)').next().addClass('hspacer-md');
+
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'compra_dispo',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+			enforce_uniqueness('compra_dispo', 'serial');
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=compra_dispo&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=compra_dispo&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+
+			/* warn user if 'add new' clicked while unsaved changes exist */
+			$j('#addNew').click(function() {
+				if($j('#deselect.btn-warning').length) {
+					return confirm('<%%TRANSLATION(discard changes confirm)%%>');
+				}
+			});
+
+		});
+	</script>

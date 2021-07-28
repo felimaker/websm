@@ -1,0 +1,10 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the tipo_razon_social_init() hook (in hooks/tipo_razon_social.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="tipo_razon_social-razon_social-<%%VALUE(id)%%>" class="tipo_razon_social-razon_social"><%%SELECT%%><%%VALUE(razon_social)%%><%%ENDSELECT%%></td>
+		<td id="tipo_razon_social-nit-<%%VALUE(id)%%>" class="tipo_razon_social-nit"><%%SELECT%%><%%VALUE(nit)%%><%%ENDSELECT%%></td>
+		<td id="tipo_razon_social-descripcion-<%%VALUE(id)%%>" class="tipo_razon_social-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>

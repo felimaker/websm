@@ -1,0 +1,78 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group formatos-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tipo formato -->
+		<div class="form-group formatos-tipo_formato" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo formato</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_formato<%%RND1%%>"><%%COMBOTEXT(tipo_formato)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo de dispositivo -->
+		<div class="form-group formatos-tipo_dispositivo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo de dispositivo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_dispositivo<%%RND1%%>"><%%COMBOTEXT(tipo_dispositivo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Nombre formato -->
+		<div class="form-group formatos-nombre_formato" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre formato</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(nombre_formato)%%></div>
+			</div>
+		</div>
+		<!-- Field: Formato -->
+		<div class="form-group formatos-formato" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Formato</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="formato-link" href="link.php?t=formatos&f=formato&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-globe" title="<%%VALUE(formato)%%>"></i></a><script>jQuery(function() { var e_formato = '<%%VALUE(formato)%%>'; if(e_formato == '' || e_formato == '&nbsp;' || e_formato == 'blank.gif') jQuery('#formato-link').hide(); });</script></div>
+			</div>
+		</div>
+		<!-- Field: Uso -->
+		<div class="form-group formatos-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Uso</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(descripcion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group formatos-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

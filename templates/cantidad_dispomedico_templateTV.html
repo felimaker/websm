@@ -1,0 +1,13 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the cantidad_dispomedico_init() hook (in hooks/cantidad_dispomedico.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="cantidad_dispomedico-nombre_dispo-<%%VALUE(id)%%>" class="cantidad_dispomedico-nombre_dispo"><%%SELECT%%><%%VALUE(nombre_dispo)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_dispomedico-serial-<%%VALUE(id)%%>" class="cantidad_dispomedico-serial"><%%SELECT%%><%%VALUE(serial)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_dispomedico-marca_modelo-<%%VALUE(id)%%>" class="cantidad_dispomedico-marca_modelo"><%%SELECT%%><%%VALUE(marca_modelo)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_dispomedico-descripcion-<%%VALUE(id)%%>" class="cantidad_dispomedico-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_dispomedico-uso-<%%VALUE(id)%%>" class="cantidad_dispomedico-uso"><%%SELECT%%><%%VALUE(uso)%%><%%ENDSELECT%%></td>
+		<td id="cantidad_dispomedico-estado-<%%VALUE(id)%%>" class="cantidad_dispomedico-estado"><%%SELECT%%><%%VALUE(estado)%%><%%ENDSELECT%%></td>

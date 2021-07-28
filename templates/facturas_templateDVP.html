@@ -1,0 +1,113 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group facturas-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Id dispo -->
+		<div class="form-group facturas-id_dispo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Id dispo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_dispo-readonly<%%RND1%%>"><%%COMBOTEXT(id_dispo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: No. Factura -->
+		<div class="form-group facturas-no_factura" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">No. Factura</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(no_factura)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de factura -->
+		<div class="form-group facturas-fecha_factura" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de factura</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(fecha_factura)%%></div>
+			</div>
+		</div>
+		<!-- Field: Proveedor -->
+		<div class="form-group facturas-proveedor" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Proveedor</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="proveedor<%%RND1%%>"><%%COMBOTEXT(proveedor)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Identificacion -->
+		<div class="form-group facturas-identificacion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Identificacion</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="identificacion<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Enlace doc -->
+		<div class="form-group facturas-enlace_doc" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Enlace doc</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="enlace_doc-link" href="link.php?t=facturas&f=enlace_doc&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-globe" title="<%%VALUE(enlace_doc)%%>"></i></a><script>jQuery(function() { var e_enlace_doc = '<%%VALUE(enlace_doc)%%>'; if(e_enlace_doc == '' || e_enlace_doc == '&nbsp;' || e_enlace_doc == 'blank.gif') jQuery('#enlace_doc-link').hide(); });</script></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group facturas-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group facturas-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group facturas-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado por -->
+		<div class="form-group facturas-editado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Id compras -->
+		<div class="form-group facturas-id_compras" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Id compras</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_compras<%%RND1%%>"><%%COMBOTEXT(id_compras)%%></span></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

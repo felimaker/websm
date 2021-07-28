@@ -1,0 +1,135 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group movimientos-id_movi" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id_movi)%%></div>
+			</div>
+		</div>
+		<!-- Field: Tipo -->
+		<div class="form-group movimientos-tipo_dispo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_dispo<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Codigo -->
+		<div class="form-group movimientos-codigo_dispo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Codigo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="codigo_dispo<%%RND1%%>"><%%COMBOTEXT(codigo_dispo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Serial -->
+		<div class="form-group movimientos-serial_dispo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Serial</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="serial_dispo<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Estado -->
+		<div class="form-group movimientos-estado_movi" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Estado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="estado_movi-readonly<%%RND1%%>"><%%COMBOTEXT(estado_movi)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Origen -->
+		<div class="form-group movimientos-origen" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Origen</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(origen)%%></div>
+			</div>
+		</div>
+		<!-- Field: Destino -->
+		<div class="form-group movimientos-destino" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Destino</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(destino)%%></div>
+			</div>
+		</div>
+		<!-- Field: Fecha de verificaci&#243;n -->
+		<div class="form-group movimientos-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Fecha de verificaci&#243;n</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group movimientos-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado -->
+		<div class="form-group movimientos-editado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Editado por -->
+		<div class="form-group movimientos-editado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Editado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(editado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>
+<!-- child records -->
+<div class="panel-body">
+	<div id="movimientos-children"></div>
+</div>
+
+<script>
+	$j(function() {
+		/* prevent loading child records in multiple DVP */
+		if($j('[id=movimientos-children]').length > 1) return;
+
+		post(
+			'parent-children.php', {
+				ParentTable: 'movimientos',
+				SelectedID: '<%%VALUE(id_movi)%%>',
+				Operation: 'show-children-printable'
+			},
+			'movimientos-children',
+			'disable-element',
+			'loading-element',
+			apply_persisting_children
+		);
+
+		$j('form').on('click', '#children-tabs button[data-target]', function() {
+			$j(this).toggleClass('active');
+			persist_expanded_child($j(this).attr('id'));
+		});
+	})
+</script>
+

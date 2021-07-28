@@ -1,0 +1,78 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group seguridad_social-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Usuario -->
+		<div class="form-group seguridad_social-id_perfil" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Usuario</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_perfil-readonly<%%RND1%%>"><%%COMBOTEXT(id_perfil)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Tipo documento -->
+		<div class="form-group seguridad_social-tipo_documento" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Tipo documento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="tipo_documento<%%RND1%%>"><%%COMBOTEXT(tipo_documento)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Docuemento -->
+		<div class="form-group seguridad_social-docuemento" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Docuemento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><a id="docuemento-link" href="link.php?t=seguridad_social&f=docuemento&i=<%%VALUE(id)%%>" target="_blank"><i class="glyphicon glyphicon-lg glyphicon-picture" title="<%%VALUE(docuemento)%%>"></i></a><script>jQuery(function() { var e_docuemento = '<%%VALUE(docuemento)%%>'; if(e_docuemento == '' || e_docuemento == '&nbsp;' || e_docuemento == 'blank.gif') jQuery('#docuemento-link').hide(); });</script></div>
+			</div>
+		</div>
+		<!-- Field: Nombre documento -->
+		<div class="form-group seguridad_social-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre documento</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(descripcion)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group seguridad_social-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group seguridad_social-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

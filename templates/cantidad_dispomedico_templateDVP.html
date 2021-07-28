@@ -1,0 +1,99 @@
+<!-- Edit this file to change the layout of the detail view print preview page -->
+
+
+<div class="panel-heading"><h3 class="panel-title">
+	<strong><%%DETAIL_VIEW_TITLE%%></strong>
+	<div class="hidden-print pull-right">
+		<div class="btn-group">
+			<button type="button" id="print" onclick="window.print();" title="<%%TRANSLATION(Print)%%>" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> <%%TRANSLATION(Print)%%></button>
+			<button type="submit" id="back" title="<%%TRANSLATION(Cancel Printing)%%>" class="btn btn-default"><i class="glyphicon glyphicon-remove-circle"></i> <%%TRANSLATION(Cancel Printing)%%></button>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</h3></div>
+
+<div class="panel-body">
+	<fieldset class="form-horizontal">
+		<!-- Field: ID -->
+		<div class="form-group cantidad_dispomedico-id" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">ID</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(id)%%></div>
+			</div>
+		</div>
+		<!-- Field: Nombre del dispositivo -->
+		<div class="form-group cantidad_dispomedico-nombre_dispo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Nombre del dispositivo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="nombre_dispo<%%RND1%%>"><%%COMBOTEXT(nombre_dispo)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Serial -->
+		<div class="form-group cantidad_dispomedico-serial" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Serial</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="serial<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Marca y Modelo -->
+		<div class="form-group cantidad_dispomedico-marca_modelo" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Marca y Modelo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="marca_modelo<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Descripcion del dispositivo -->
+		<div class="form-group cantidad_dispomedico-descripcion" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Descripcion del dispositivo</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="descripcion<%%RND1%%>"></span></div>
+			</div>
+		</div>
+		<!-- Field: Uso -->
+		<div class="form-group cantidad_dispomedico-uso" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Uso</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(uso)%%></div>
+			</div>
+		</div>
+		<!-- Field: Estado -->
+		<div class="form-group cantidad_dispomedico-estado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Estado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="estado<%%RND1%%>"><%%COMBOTEXT(estado)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Id compra -->
+		<div class="form-group cantidad_dispomedico-id_compra" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Id compra</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><span id="id_compra-readonly<%%RND1%%>"><%%COMBOTEXT(id_compra)%%></span></div>
+			</div>
+		</div>
+		<!-- Field: Creado -->
+		<div class="form-group cantidad_dispomedico-creado" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado)%%></div>
+			</div>
+		</div>
+		<!-- Field: Creado por -->
+		<div class="form-group cantidad_dispomedico-creado_por" style="border-bottom: dotted 1px #DDD;">
+			<label class="col-xs-3 control-label">Creado por</label>
+			<div class="col-xs-9">
+				<div class="form-control-static"><%%VALUE(creado_por)%%></div>
+			</div>
+		</div>
+	</fieldset>
+</div>
+<script>
+	$j(function() {
+		// render read-only checkboxes in DVP
+		$j('form input[type=checkbox]:not(.hidden):checked')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-check"></i>');
+		$j('form input[type=checkbox]:not(.hidden):not(:checked)')
+			.addClass('hidden')
+			.after('<i class="glyphicon glyphicon-unchecked"></i>')
+	})
+</script>

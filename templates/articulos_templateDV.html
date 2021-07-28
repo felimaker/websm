@@ -1,0 +1,380 @@
+<!-- To change the layout of the detail view form, we recommend using JS code in hooks/articulos-dv.js rather than editing this file -->
+
+<div id="detail-view"></div>
+<div class="panel-heading"><h3 class="panel-title"><strong><%%DETAIL_VIEW_TITLE%%></strong></h3></div>
+
+<div id="articulos_dv_container-loading" class="text-center text-info text-bold vspacer-lg"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+
+<div class="panel-body hidden" id="articulos_dv_container">
+	<!-- child links -->
+	<div class="row vspacer-md">
+		<div class="col-xs-12 children-links">
+			<a class="hidden-xs btn btn-default btn-lg pull-right hidden hspacer-sm vspacer-sm" href="cantidad_articulos_view.php?filterer_nombre_articulo=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="cantidad_articulos_link"><i class="glyphicon glyphicon-list-alt"></i> Articulos Nuevos</a>
+			<a class="visible-xs btn btn-default btn-lg btn-block hidden vspacer-sm" href="cantidad_articulos_view.php?filterer_nombre_articulo=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>" id="xs_cantidad_articulos_link"><i class="glyphicon glyphicon-list-alt"></i> Articulos Nuevos</a>
+			<input type="hidden" id="cantidad_articulos_hclink" value="cantidad_articulos_view.php?filterer_nombre_articulo=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="verificacion_articulos_hclink" value="verificacion_articulos_view.php?filterer_codigo=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="movimientos_articulos_hclink" value="movimientos_articulos_view.php?filterer_nombre=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<input type="hidden" id="ubicacion_articulo_hclink" value="ubicacion_articulo_view.php?filterer_id_articulo=<%%URLVALUE(id)%%>&<%%EMBEDDED%%>">
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<hr class="hidden-xs hidden-sm">
+
+	<div class="row">
+		<!-- form inputs -->
+		<div class="col-md-8 col-lg-10" id="articulos_dv_form">
+			<fieldset class="form-horizontal">
+
+				<!-- Field: ID -->
+				<div class="form-group articulos-id">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="id">ID</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="id"><%%VALUE(id)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Nombre -->
+				<div class="form-group articulos-nombre_unico">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Nombre</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="nombre_unico"><%%VALUE(nombre_unico)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Tipo de articulo -->
+				<div class="form-group articulos-tipo_dispo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="tipo_dispo" data-parent_link="view_parent_modal">Tipo de articulo</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(tipo_dispo)%%><%%PLINK(tipo_dispo)%%><%%ADDNEW(tipo_dispositivo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Marca -->
+				<div class="form-group articulos-marca">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="marca" data-parent_link="view_parent_modal">Marca</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(marca)%%><%%PLINK(marca)%%><%%ADDNEW(marcas)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Modelo -->
+				<div class="form-group articulos-modelo">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="modelo" data-parent_link="view_parent_modal">Modelo</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(modelo)%%><%%PLINK(modelo)%%><%%ADDNEW(marca_modelo)%%><span id="modeloLoading"></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Presentacion -->
+				<div class="form-group articulos-presentacion">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="presentacion" data-parent_link="view_parent_modal">Presentacion</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(presentacion)%%><%%PLINK(presentacion)%%><%%ADDNEW(marca_presetacion)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Serial -->
+				<div class="form-group articulos-serial">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="serial">Serial</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="serial" id="serial" value="<%%VALUE(serial)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Referencia -->
+				<div class="form-group articulos-referencia">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="referencia">Referencia</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="referencia" id="referencia" value="<%%VALUE(referencia)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Familia -->
+				<div class="form-group articulos-familia">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="familia" data-parent_link="view_parent_modal">Familia</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(familia)%%><%%PLINK(familia)%%><%%ADDNEW(articulos_familia)%%><span id="familiaLoading"></span></div>
+					</div>
+				</div>
+
+				<!-- Field: Codigo proveedor -->
+				<div class="form-group articulos-codigo_proveedor">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Codigo proveedor</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="codigo_proveedor"></div>
+					</div>
+				</div>
+
+				<!-- Field: Caracteristicas -->
+				<div class="form-group articulos-caracteristicas">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="caracteristicas">Caracteristicas</label>
+					<div class="col-lg-9">
+						<textarea class="form-control" name="caracteristicas" id="caracteristicas" rows=" 5"><%%VALUE(caracteristicas)%%></textarea>
+					</div>
+				</div>
+
+				<!-- Field: Nota -->
+				<div class="form-group articulos-nota">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="nota">Nota <i class="glyphicon glyphicon-info-sign text-info" data-toggle="collapse" data-target="#nota-description"></i></label>
+					<div class="col-lg-9">
+						<span class="help-block bspacer-xs collapse" id="nota-description"><div class="alert alert-info bspacer-xs">Anotaciones</div></span>
+						<input maxlength="40" type="text" class="form-control" name="nota" id="nota" value="<%%VALUE(nota)%%>">
+					</div>
+				</div>
+
+				<!-- Field: Imagen -->
+				<div class="form-group articulos-imagen">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Imagen</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="imagen"></div>
+					</div>
+				</div>
+
+				<!-- Field: Estado -->
+				<div class="form-group articulos-estado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="estado" data-parent_link="view_parent_modal">Estado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(estado)%%><%%PLINK(estado)%%><%%ADDNEW(tipo_estado_dispo)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado -->
+				<div class="form-group articulos-creado">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado"><%%VALUE(creado)%%></div>
+					</div>
+				</div>
+
+				<!-- Field: Creado por -->
+				<div class="form-group articulos-creado_por">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3">Creado por</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" id="creado_por"><%%VALUE(creado_por)%%></div>
+					</div>
+				</div>
+
+			</fieldset>
+		</div>
+
+		<!-- DV action buttons -->
+		<hr class="hidden-md hidden-lg">
+		<div class="col-md-4 col-lg-2" id="articulos_dv_action_buttons">
+			<div class="btn-toolbar">
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%UPDATE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%DESELECT_BUTTON%%>
+					<%%DVPRINT_BUTTON%%>
+					<%%DELETE_BUTTON%%>
+				</div><p></p>
+				<div class="btn-group-vertical btn-group-lg" style="width: 100%;">
+					<%%INSERT_BUTTON%%>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- child records -->
+	<hr>
+	<div class="row">
+		<div class="col-lg-10 col-lg-offset-1">
+			<div id="articulos-children" class="children-tabs">
+				<div class="text-center"><i class="glyphicon glyphicon-refresh loop-rotate"></i> <%%TRANSLATION(Loading ...)%%></div>
+			</div>
+		</div>
+	</div>
+
+</div><!-- /div class="panel-body" -->
+	<script>
+		$j(function() {
+			var add_new_mode = (!$j('input[name=SelectedID]').val());
+			var embedded_mode = ($j('input[name=Embedded]').val() == 1);
+
+			/* auto-close embedded page? */
+			var autoclose_mode = ($j('input[name=AutoClose]').val() == 1);
+			var record_added_ok = (location.search.split('record-added-ok=').length == 2);
+			var record_updated_ok = (location.search.split('record-updated-ok=').length == 2);
+			if((record_added_ok || record_updated_ok) && embedded_mode && autoclose_mode) {
+				setTimeout(AppGini.closeParentModal, 2000);
+			}
+
+
+			/* enable DV action buttons to float on scrolling down the form */
+			enable_dvab_floating();
+
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.articulos-tipo_dispo')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0;
+					},
+					action: function() {
+						$j('#articulos_dv_container-loading').addClass('hidden');
+						$j('#articulos_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('articulos', 'tipo_dispo');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#articulos_dv_container-loading').addClass('hidden');
+				$j('#articulos_dv_container').removeClass('hidden');
+			}
+
+			$j('form').eq(0).change(function() {
+				if($j(this).data('already_changed')) return;
+				if($j('#deselect').length) $j('#deselect').removeClass('btn-default').addClass('btn-warning').get(0).lastChild.data = " <%%TRANSLATION(Cancel)%%>";
+				$j(this).data('already_changed', true);
+			});
+
+			$j('a[href="<%%BASE_UPLOAD_PATH%%>"]').click(function() { return false; });
+
+			if(embedded_mode) {
+				/* hide links to children tables in embedded mode */
+				$j('.detail_view a[id$=_link]').remove();
+
+				/* append embedded mode to all links */
+				var append_embedded = function() {
+					$j('a[href]:not([href^="#"]):not([href^="javascript"]):not([href$="Embedded=1"]):not([href*="link.php?t="]):not([href^="mailto:"])').each(
+						function() {
+							$j(this).attr('href', $j(this).attr('href') + '&Embedded=1');
+						}
+					);
+				}
+				setTimeout(append_embedded, 500);
+				setTimeout(append_embedded, 1500);
+				setTimeout(append_embedded, 2500);
+				setTimeout(append_embedded, 3500);
+			}
+
+			/* when no record is selected ('add new' mode) */
+			if(add_new_mode) {
+				/* hide links to children tables */
+				$j('.detail_view a[id$=_link]').remove();
+			} else {
+				post(
+					'parent-children.php', {
+						ParentTable: 'articulos',
+						SelectedID: '<%%VALUE(id)%%>',
+						Operation: 'show-children'
+					},
+					'articulos-children'
+				);
+			}
+
+			if(true /* !embedded_mode */) {
+				/* add a horizontal spacer to [add new parent] buttons that don't have a spacered element before them */
+				$j('.add_new_parent').prev(':not(.hspacer-md)').next().addClass('hspacer-md');
+
+				$j('.add_new_parent').click(function() {
+					var pt = $j(this).attr('id').replace(/_add_new$/, '');
+					modal_window({
+						url: pt + '_view.php?addNew_x=1&Embedded=1',
+						close: function() {
+							var field_id = $j('#' + pt + '_add_new').prevAll('input:hidden').eq(0).attr('id');
+							$j('#' + field_id + '-container').select2('focus').select2('focus');
+
+							/* if a new parent was added, select it */
+							var new_id = localStorage.getItem(pt + '_last_added_id');
+							if(new_id === null) return;
+
+							localStorage.removeItem(pt + '_last_added_id');
+							AppGini.lookupText({
+								id: new_id,
+								table: 'articulos',
+								field: field_id,
+								callback: function(data) {
+									$j('#' + field_id + '-container').select2('data', data, true);
+								}
+							});
+						},
+						size: 'full',
+						title: $j(this).attr('title')
+					});
+				});
+			}
+
+			AppGini.hideViewParentLinks();
+
+			$j('form').on('click', '.view_parent', function() {
+				var pt = $j(this).attr('id').replace(/_view_parent$/, '');
+				if($j(this).prevAll('input:hidden').length) {
+					var parent_id = $j(this).prevAll('input:hidden').eq(0).val();
+				} else {
+					var parent_id = $j(this).prevAll().children('input:hidden').eq(0).val();
+				}
+
+				/* handle radio lookups */
+				if($j(this).prevAll('[type=radio]').length) {
+					parent_id = $j(this).prevAll('[type=radio]').eq(0).val();
+				}
+
+				if(parent_id != '{empty_value}' && parent_id != undefined && parent_id != '') {
+					var parent_link = $j(this).parents('.form-group').children('label').data('parent_link');
+					switch(parent_link) {
+						case 'view_parent_hidden':
+							break;
+						case 'view_parent_modal':
+							modal_window({
+								url: pt + '_view.php?Embedded=1&SelectedID=' + encodeURIComponent(parent_id),
+								close: function() {
+									var field_id = $j('#' + pt + '_view_parent').prevAll('input:hidden').eq(0).attr('id');
+									$j('#' + field_id + '-container').select2('focus').select2('focus');
+								},
+								size: 'full',
+								title: $j(this).attr('title')
+							});
+							break;
+						case 'view_parent_same_window':
+							window.location = pt + '_view.php?Embedded=' + (embedded_mode ? '1' : '') + '&SelectedID=' + encodeURIComponent(parent_id);
+							break;
+						case 'view_parent_new_window':
+							window.open(pt + '_view.php?SelectedID=' + encodeURIComponent(parent_id));
+							break;
+					}
+
+				}
+			});
+
+
+			/* load admin tools for admin user */
+			if(!add_new_mode) {
+				$j('body').append('<div id="admin-tools-appendix"></div>');
+				$j('#admin-tools-appendix').load(
+					'ajax_admin_tools.php?table=articulos&id=<%%URLVALUE(id)%%>',
+					function(resp) {
+						if(!resp.length) return;
+						$j.ajax('ajax_admin_tools.php?action=get_admin_tools_js&table=articulos&id=<%%URLVALUE(id)%%>');
+					}
+				);
+			}
+
+			/* warn user if 'add new' clicked while unsaved changes exist */
+			$j('#addNew').click(function() {
+				if($j('#deselect.btn-warning').length) {
+					return confirm('<%%TRANSLATION(discard changes confirm)%%>');
+				}
+			});
+
+		});
+	</script>

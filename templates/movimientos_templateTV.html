@@ -1,0 +1,14 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the movimientos_init() hook (in hooks/movimientos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="movimientos-tipo_dispo-<%%VALUE(id_movi)%%>" class="movimientos-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="movimientos-codigo_dispo-<%%VALUE(id_movi)%%>" class="movimientos-codigo_dispo"><%%SELECT%%><%%VALUE(codigo_dispo)%%><%%ENDSELECT%%></td>
+		<td id="movimientos-estado_movi-<%%VALUE(id_movi)%%>" class="movimientos-estado_movi"><%%SELECT%%><%%VALUE(estado_movi)%%><%%ENDSELECT%%></td>
+		<td id="movimientos-origen-<%%VALUE(id_movi)%%>" class="movimientos-origen"><%%SELECT%%><%%VALUE(origen)%%><%%ENDSELECT%%></td>
+		<td id="movimientos-destino-<%%VALUE(id_movi)%%>" class="movimientos-destino"><%%SELECT%%><%%VALUE(destino)%%><%%ENDSELECT%%></td>
+		<td id="movimientos-creado-<%%VALUE(id_movi)%%>" class="movimientos-creado"><%%SELECT%%><%%VALUE(creado)%%><%%ENDSELECT%%></td>
+		<td id="movimientos-creado_por-<%%VALUE(id_movi)%%>" class="movimientos-creado_por"><%%SELECT%%><%%VALUE(creado_por)%%><%%ENDSELECT%%></td>
