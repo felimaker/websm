@@ -139,7 +139,7 @@
 	 * An associative array where the keys are field names and the values are the field data values to be inserted into the new record.
 	 * Note: if a field is set as read-only or hidden in detail view, it can't be modified through $data. You should use a direct SQL statement instead.
 	 * For this table, the array items are: 
-	 *     $data['tipo_dispo'], $data['nombre'], $data['serial'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario']
+	 *     $data['codigo'], $data['tipo_dispo'], $data['serial'], $data['nombre'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario']
 	 * $data array is passed by reference so that modifications to it apply to the insert query.
 	 * 
 	 * @param $memberInfo
@@ -164,7 +164,7 @@
 	 * @param $data
 	 * An associative array where the keys are field names and the values are the field data values that were inserted into the new record.
 	 * For this table, the array items are: 
-	 *     $data['codigo'], $data['tipo_dispo'], $data['nombre'], $data['serial'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario'], $data['fecha_verifi'], $data['verifi_por']
+	 *     $data['codigo'], $data['tipo_dispo'], $data['serial'], $data['nombre'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario'], $data['fecha_verifi'], $data['verifi_por']
 	 * Also includes the item $data['selectedID'] which stores the value of the primary key for the new record.
 	 * 
 	 * @param $memberInfo
@@ -191,7 +191,7 @@
 	 * An associative array where the keys are field names and the values are the field data values.
 	 * Note: if a field is set as read-only or hidden in detail view, it can't be modified through $data. You should use a direct SQL statement instead.
 	 * For this table, the array items are: 
-	 *     $data['id'], $data['tipo_dispo'], $data['nombre'], $data['serial'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario']
+	 *     $data['id'], $data['codigo'], $data['tipo_dispo'], $data['serial'], $data['nombre'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario']
 	 * Also includes the item $data['selectedID'] which stores the value of the primary key for the record to be updated.
 	 * $data array is passed by reference so that modifications to it apply to the update query.
 	 * 
@@ -217,7 +217,7 @@
 	 * @param $data
 	 * An associative array where the keys are field names and the values are the field data values.
 	 * For this table, the array items are: 
-	 *     $data['id'], $data['codigo'], $data['tipo_dispo'], $data['nombre'], $data['serial'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario'], $data['fecha_verifi'], $data['verifi_por']
+	 *     $data['id'], $data['codigo'], $data['tipo_dispo'], $data['serial'], $data['nombre'], $data['ubicacion'], $data['abreviado'], $data['verificacion'], $data['comentario'], $data['fecha_verifi'], $data['verifi_por']
 	 * Also includes the item $data['selectedID'] which stores the value of the primary key for the record.
 	 * 
 	 * @param $memberInfo

@@ -3,7 +3,7 @@
 	/**
 	 * @file
 	 * This file contains hook functions that get called when data operations are performed on 'cantidad_articulos' table. 
-	 * For example, when a new record is added, when a record is edited, when a record is deleted, … etc.
+	 * For example, when a new record is added, when a record is edited, when a record is deleted, ï¿½ etc.
 	*/
 
 	/**
@@ -139,7 +139,7 @@
 	 * An associative array where the keys are field names and the values are the field data values to be inserted into the new record.
 	 * Note: if a field is set as read-only or hidden in detail view, it can't be modified through $data. You should use a direct SQL statement instead.
 	 * For this table, the array items are: 
-	 *     $data['nombre_articulo'], $data['presentacion'], $data['descripcion'], $data['serial'], $data['cantidad'], $data['estado'], $data['tipo_compra']
+	 *     $data['nombre_articulo'], $data['descripcion'], $data['cantidad'], $data['id_compra']
 	 * $data array is passed by reference so that modifications to it apply to the insert query.
 	 * 
 	 * @param $memberInfo
@@ -155,6 +155,14 @@
 
 	function cantidad_articulos_before_insert(&$data, $memberInfo, &$args) {
 
+		if ($data['tipo_estado'] = 'Salida') {
+			$data['total'] = 2;
+		} else {
+			$data['total'] = 4;
+		}
+
+		
+
 		return TRUE;
 	}
 
@@ -164,7 +172,7 @@
 	 * @param $data
 	 * An associative array where the keys are field names and the values are the field data values that were inserted into the new record.
 	 * For this table, the array items are: 
-	 *     $data['nombre_articulo'], $data['presentacion'], $data['descripcion'], $data['serial'], $data['cantidad'], $data['estado'], $data['id_compras'], $data['creado'], $data['tipo_compra'], $data['creado_por']
+	 *     $data['nombre_articulo'], $data['descripcion'], $data['cantidad'], $data['creado'], $data['id_compra']
 	 * Also includes the item $data['selectedID'] which stores the value of the primary key for the new record.
 	 * 
 	 * @param $memberInfo
@@ -181,6 +189,8 @@
 
 	function cantidad_articulos_after_insert($data, $memberInfo, &$args) {
 
+		// $data['total'] = $data['precio_unidad'] * $data['cantidad'];
+
 		return TRUE;
 	}
 
@@ -191,7 +201,7 @@
 	 * An associative array where the keys are field names and the values are the field data values.
 	 * Note: if a field is set as read-only or hidden in detail view, it can't be modified through $data. You should use a direct SQL statement instead.
 	 * For this table, the array items are: 
-	 *     $data['id'], $data['nombre_articulo'], $data['presentacion'], $data['descripcion'], $data['serial'], $data['cantidad'], $data['estado'], $data['tipo_compra']
+	 *     $data['id'], $data['nombre_articulo'], $data['descripcion'], $data['cantidad'], $data['id_compra']
 	 * Also includes the item $data['selectedID'] which stores the value of the primary key for the record to be updated.
 	 * $data array is passed by reference so that modifications to it apply to the update query.
 	 * 
@@ -208,6 +218,8 @@
 
 	function cantidad_articulos_before_update(&$data, $memberInfo, &$args) {
 
+		// $data['total'] = $data['precio_unidad'] * $data['cantidad'];
+
 		return TRUE;
 	}
 
@@ -217,7 +229,7 @@
 	 * @param $data
 	 * An associative array where the keys are field names and the values are the field data values.
 	 * For this table, the array items are: 
-	 *     $data['id'], $data['nombre_articulo'], $data['presentacion'], $data['descripcion'], $data['serial'], $data['cantidad'], $data['estado'], $data['id_compras'], $data['creado'], $data['tipo_compra'], $data['creado_por']
+	 *     $data['id'], $data['nombre_articulo'], $data['descripcion'], $data['cantidad'], $data['creado'], $data['id_compra']
 	 * Also includes the item $data['selectedID'] which stores the value of the primary key for the record.
 	 * 
 	 * @param $memberInfo
@@ -296,7 +308,7 @@
 	 * 
 	 * @param $html
 	 * (passed by reference) the HTML code of the form ready to be displayed. This could be useful for manipulating 
-	 * the code before displaying it using regular expressions, … etc.
+	 * the code before displaying it using regular expressions, ï¿½ etc.
 	 * 
 	 * @param $args
 	 * An empty array that is passed by reference. It's currently not used but is reserved for future uses.
