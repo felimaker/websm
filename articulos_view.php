@@ -20,6 +20,7 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`articulos`.`id`" => "id",
+		"`articulos`.`codigo`" => "codigo",
 		"`articulos`.`nombre_unico`" => "nombre_unico",
 		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`), '') /* Tipo de articulo */" => "tipo_dispo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
@@ -40,25 +41,27 @@
 	$x->SortFields = [
 		1 => '`articulos`.`id`',
 		2 => 2,
-		3 => '`tipo_dispositivo1`.`tipo_dispositivo`',
-		4 => '`marcas1`.`marca`',
-		5 => '`marca_modelo1`.`modelo`',
-		6 => 6,
+		3 => 3,
+		4 => '`tipo_dispositivo1`.`tipo_dispositivo`',
+		5 => '`marcas1`.`marca`',
+		6 => '`marca_modelo1`.`modelo`',
 		7 => 7,
 		8 => 8,
 		9 => 9,
 		10 => 10,
 		11 => 11,
 		12 => 12,
-		13 => '`marca_modelo1`.`img`',
-		14 => '`tipo_estado_dispo1`.`estado_dispo`',
-		15 => '`articulos`.`creado`',
-		16 => 16,
+		13 => 13,
+		14 => '`marca_modelo1`.`img`',
+		15 => '`tipo_estado_dispo1`.`estado_dispo`',
+		16 => '`articulos`.`creado`',
+		17 => 17,
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`articulos`.`id`" => "id",
+		"`articulos`.`codigo`" => "codigo",
 		"`articulos`.`nombre_unico`" => "nombre_unico",
 		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`), '') /* Tipo de articulo */" => "tipo_dispo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
@@ -78,6 +81,7 @@
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`articulos`.`id`" => "ID",
+		"`articulos`.`codigo`" => "Codigo",
 		"`articulos`.`nombre_unico`" => "Nombre",
 		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`), '') /* Tipo de articulo */" => "Tipo de articulo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "Marca",
@@ -98,6 +102,7 @@
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`articulos`.`id`" => "id",
+		"`articulos`.`codigo`" => "codigo",
 		"`articulos`.`nombre_unico`" => "nombre_unico",
 		"IF(    CHAR_LENGTH(`tipo_dispositivo1`.`tipo_dispositivo`), CONCAT_WS('',   `tipo_dispositivo1`.`tipo_dispositivo`), '') /* Tipo de articulo */" => "tipo_dispo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
@@ -148,10 +153,10 @@
 	$x->DefaultSortField = '`articulos`.`creado`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Nombre', 'Tipo de articulo', 'Marca', 'Modelo', 'Presentacion', 'Referencia', 'Familia', 'Codigo proveedor', 'Caracteristicas', 'Nota', 'Imagen', 'Estado', ];
-	$x->ColFieldName = ['nombre_unico', 'tipo_dispo', 'marca', 'modelo', 'presentacion', 'referencia', 'familia', 'codigo_proveedor', 'caracteristicas', 'nota', 'imagen', 'estado', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Codigo', 'Nombre', 'Tipo de articulo', 'Referencia', 'Familia', 'Codigo proveedor', 'Imagen', 'Estado', ];
+	$x->ColFieldName = ['codigo', 'nombre_unico', 'tipo_dispo', 'referencia', 'familia', 'codigo_proveedor', 'imagen', 'estado', ];
+	$x->ColNumber  = [2, 3, 4, 9, 10, 11, 14, 15, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/articulos_templateTV.html';

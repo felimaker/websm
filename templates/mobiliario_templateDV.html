@@ -40,9 +40,9 @@
 				<!-- Field: Codigo -->
 				<div class="form-group mobiliario-codigo">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="codigo">Codigo</label>
+					<label class="control-label col-lg-3">Codigo</label>
 					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="codigo" id="codigo" value="<%%VALUE(codigo)%%>">
+						<div class="form-control-static" id="codigo"><%%VALUE(codigo)%%></div>
 					</div>
 				</div>
 
@@ -132,10 +132,10 @@
 					</div>
 				</div>
 
-				<!-- Field: Abreviado -->
+				<!-- Field: Ubicacion -->
 				<div class="form-group mobiliario-uni_abreviado">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3">Abreviado</label>
+					<label class="control-label col-lg-3">Ubicacion</label>
 					<div class="col-lg-9">
 						<div class="form-control-static" id="uni_abreviado"></div>
 					</div>
@@ -244,9 +244,25 @@
 			/* enable DV action buttons to float on scrolling down the form */
 			enable_dvab_floating();
 
-			$j('#mobiliario_dv_container-loading').addClass('hidden');
-			$j('#mobiliario_dv_container').removeClass('hidden');
-			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) AppGini.focusFormElement('mobiliario', 'codigo');
+			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
+				AppGini.once({
+					condition: function() {
+						return $j('.form-group.mobiliario-grupo')
+									.find('.nicEdit-main, .select2-container, input[type=radio]')
+									.length > 0;
+					},
+					action: function() {
+						$j('#mobiliario_dv_container-loading').addClass('hidden');
+						$j('#mobiliario_dv_container').removeClass('hidden');
+						AppGini.focusFormElement('mobiliario', 'grupo');
+					},
+					timeout:  5000,
+					doActionOnTimeout:  true
+				});
+			} else {
+				$j('#mobiliario_dv_container-loading').addClass('hidden');
+				$j('#mobiliario_dv_container').removeClass('hidden');
+			}
 
 			$j('form').eq(0).change(function() {
 				if($j(this).data('already_changed')) return;
