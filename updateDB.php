@@ -44,7 +44,7 @@
 			CREATE TABLE IF NOT EXISTS `mobiliario` ( 
 				`id_mobiliario` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				PRIMARY KEY (`id_mobiliario`),
-				`codigo` VARCHAR(40) NULL,
+				`codigo` VARCHAR(50) NULL,
 				`nombre` VARCHAR(40) NULL,
 				`grupo` INT UNSIGNED NULL,
 				`tipo_mobiliario` INT UNSIGNED NOT NULL,
@@ -1190,6 +1190,7 @@
 			CREATE TABLE IF NOT EXISTS `articulos` ( 
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				PRIMARY KEY (`id`),
+				`codigo` VARCHAR(50) NULL,
 				`nombre_unico` VARCHAR(40) NULL,
 				`tipo_dispo` INT UNSIGNED NULL,
 				`marca` INT UNSIGNED NULL,

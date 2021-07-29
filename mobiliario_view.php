@@ -29,7 +29,7 @@
 		"`mobiliario`.`accesorios`" => "accesorios",
 		"`mobiliario`.`foto`" => "foto",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "unidad",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Abreviado */" => "uni_abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "uni_abreviado",
 		"if(`mobiliario`.`creado`,date_format(`mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`mobiliario`.`creado_por`" => "creado_por",
 		"`mobiliario`.`editado`" => "editado",
@@ -68,7 +68,7 @@
 		"`mobiliario`.`accesorios`" => "accesorios",
 		"`mobiliario`.`foto`" => "foto",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "unidad",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Abreviado */" => "uni_abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "uni_abreviado",
 		"if(`mobiliario`.`creado`,date_format(`mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`mobiliario`.`creado_por`" => "creado_por",
 		"`mobiliario`.`editado`" => "editado",
@@ -86,7 +86,7 @@
 		"`mobiliario`.`fecha_ingreso`" => "Fecha de ingreso",
 		"`mobiliario`.`accesorios`" => "Accesorios",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "Unidad",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Abreviado */" => "Abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "Ubicacion",
 		"`mobiliario`.`creado`" => "Creado",
 		"`mobiliario`.`creado_por`" => "Creado por",
 		"`mobiliario`.`editado`" => "Editado",
@@ -105,7 +105,7 @@
 		"if(`mobiliario`.`fecha_ingreso`,date_format(`mobiliario`.`fecha_ingreso`,'%d/%m/%Y'),'')" => "fecha_ingreso",
 		"`mobiliario`.`accesorios`" => "accesorios",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "unidad",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Abreviado */" => "uni_abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "uni_abreviado",
 		"if(`mobiliario`.`creado`,date_format(`mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`mobiliario`.`creado_por`" => "creado_por",
 		"`mobiliario`.`editado`" => "editado",
@@ -146,10 +146,10 @@
 	$x->DefaultSortField = '`mobiliario`.`creado`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Codigo', 'Nombre', 'Grupo', 'Tipo de mobiliario', 'Descripcion', 'Fecha de ingreso', 'Accesorios', 'Foto', 'Unidad', 'Abreviado', ];
-	$x->ColFieldName = ['codigo', 'nombre', 'grupo', 'tipo_mobiliario', 'descripcion', 'fecha_ingreso', 'accesorios', 'foto', 'unidad', 'uni_abreviado', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Codigo', 'Nombre', 'Grupo', 'Descripcion', 'Fecha de ingreso', 'Foto', 'Ubicacion', ];
+	$x->ColFieldName = ['codigo', 'nombre', 'grupo', 'descripcion', 'fecha_ingreso', 'foto', 'uni_abreviado', ];
+	$x->ColNumber  = [2, 3, 4, 6, 7, 9, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mobiliario_templateTV.html';

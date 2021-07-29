@@ -123,10 +123,10 @@
 	$x->DefaultSortField = '`verificacion_articulos`.`fecha_verifi`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Codigo', 'Tipo de dispositivo', 'Nombre', 'Serial', 'Ubicacion', 'Abreviado', 'Verificado', 'Comentario', 'Fecha de verificado', 'Verificado por', ];
-	$x->ColFieldName = ['codigo', 'tipo_dispo', 'nombre', 'serial', 'ubicacion', 'abreviado', 'verificacion', 'comentario', 'fecha_verifi', 'verifi_por', ];
-	$x->ColNumber  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Tipo de dispositivo', 'Nombre', 'Serial', 'Ubicacion', 'Abreviado', 'Verificado', 'Comentario', 'Fecha de verificado', 'Verificado por', ];
+	$x->ColFieldName = ['tipo_dispo', 'nombre', 'serial', 'ubicacion', 'abreviado', 'verificacion', 'comentario', 'fecha_verifi', 'verifi_por', ];
+	$x->ColNumber  = [3, 4, 5, 6, 7, 8, 9, 10, 11, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/verificacion_articulos_templateTV.html';

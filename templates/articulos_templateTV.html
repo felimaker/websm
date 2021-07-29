@@ -5,15 +5,11 @@
 <!-- add the following to the articulos_init() hook (in hooks/articulos.php file) -->
 <!--     $options->ShowTableHeader = 0;     -->
 
+		<td id="articulos-codigo-<%%VALUE(id)%%>" class="articulos-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
 		<td id="articulos-nombre_unico-<%%VALUE(id)%%>" class="articulos-nombre_unico"><%%SELECT%%><%%VALUE(nombre_unico)%%><%%ENDSELECT%%></td>
 		<td id="articulos-tipo_dispo-<%%VALUE(id)%%>" class="articulos-tipo_dispo"><%%SELECT%%><%%VALUE(tipo_dispo)%%><%%ENDSELECT%%></td>
-		<td id="articulos-marca-<%%VALUE(id)%%>" class="articulos-marca"><%%SELECT%%><%%VALUE(marca)%%><%%ENDSELECT%%></td>
-		<td id="articulos-modelo-<%%VALUE(id)%%>" class="articulos-modelo"><%%SELECT%%><%%VALUE(modelo)%%><%%ENDSELECT%%></td>
-		<td id="articulos-presentacion-<%%VALUE(id)%%>" class="articulos-presentacion"><%%SELECT%%><%%VALUE(presentacion)%%><%%ENDSELECT%%></td>
 		<td id="articulos-referencia-<%%VALUE(id)%%>" class="articulos-referencia"><%%SELECT%%><%%VALUE(referencia)%%><%%ENDSELECT%%></td>
 		<td id="articulos-familia-<%%VALUE(id)%%>" class="articulos-familia"><%%SELECT%%><%%VALUE(familia)%%><%%ENDSELECT%%></td>
 		<td id="articulos-codigo_proveedor-<%%VALUE(id)%%>" class="articulos-codigo_proveedor"><%%SELECT%%><%%VALUE(codigo_proveedor)%%><%%ENDSELECT%%></td>
-		<td id="articulos-caracteristicas-<%%VALUE(id)%%>" class="articulos-caracteristicas"><%%SELECT%%><%%VALUE(caracteristicas)%%><%%ENDSELECT%%></td>
-		<td id="articulos-nota-<%%VALUE(id)%%>" class="articulos-nota"><%%SELECT%%><%%VALUE(nota)%%><%%ENDSELECT%%></td>
 		<td id="articulos-imagen-<%%VALUE(id)%%>" class="articulos-imagen"><a href="<%%BASE_UPLOAD_PATH%%><%%VALUE(imagen)%%>" data-lightbox="articulos-imagen"><img src="thumbnail.php?i=<%%VALUE(imagen)%%>&t=marca_modelo&f=img&v=tv" class="img-thumbnail"></a></td>
 		<td id="articulos-estado-<%%VALUE(id)%%>" class="articulos-estado"><%%SELECT%%><%%VALUE(estado)%%><%%ENDSELECT%%></td>

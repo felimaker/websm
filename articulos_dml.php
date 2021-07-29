@@ -979,6 +979,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(codigo)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(nombre_unico)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(tipo_dispo)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(marca)%%>', '', $templateCode);
@@ -998,6 +999,8 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(id)%%>', html_attr($row['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
+		$templateCode = str_replace('<%%VALUE(codigo)%%>', safe_html($urow['codigo']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(codigo)%%>', urlencode($urow['codigo']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(nombre_unico)%%>', safe_html($urow['nombre_unico']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(nombre_unico)%%>', urlencode($urow['nombre_unico']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(tipo_dispo)%%>', safe_html($urow['tipo_dispo']), $templateCode);
@@ -1040,6 +1043,8 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(codigo)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(codigo)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(nombre_unico)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(nombre_unico)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(tipo_dispo)%%>', '', $templateCode);
