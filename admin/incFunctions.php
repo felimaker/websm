@@ -111,7 +111,7 @@
 					'Description' => 'Dispositivos digitales biomedicos y accesorios dentro de la unidad<br><br>Ingrese el NUMERO del codigo sin prefijo segun corresponda<br><br>HOLTER (101 - 200)<br>ECOGRAFOS (201 - 229)<br>TERMOHIGROMETROS (230 - 250)<br>TRANSDUCTORES (251 - 300)<br>ECG (301 - 319)<br>BASCULAS (320 - 350)<br>CABLES (351 - 400)<br>DIGITALIZADORES (401 - 450)<br>DESFIBRILADORES (451 - 500)<br>BOMBAS DE INFUSION (501 - 525)<br>APIRADORES (526 - 549)<br>MAPAS (550 - 600)<br>COMPUTADORES (601 - 700)<br>BANDA TROTADORA (701 - 730)<br>TERMOMETROS (731 - 750)<br>STRESS TEST (751 - 780)<br>REGULADORES DE O2 (781 - 800)<br>DISPONIBLE (801 - 999)',
 					'tableIcon' => 'resources/table_icons/application_view_icons.png',
 					'group' => $tg[0],
-					'homepageShowCount' => 0
+					'homepageShowCount' => 1
 				),
 				'mobiliario' => array(
 					'Caption' => 'Mobiliario',
@@ -608,7 +608,7 @@
 					'Description' => 'Toda clase de articulos dispositivos y equipos que no son equipos biomedicos.',
 					'tableIcon' => 'resources/table_icons/monitor_add.png',
 					'group' => $tg[1],
-					'homepageShowCount' => 0
+					'homepageShowCount' => 1
 				),
 				'cofig' => array(
 					'Caption' => 'CONFIG',
