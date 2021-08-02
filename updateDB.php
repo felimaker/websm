@@ -1213,12 +1213,7 @@
 				`creado` DATETIME NULL,
 				`creado_por` VARCHAR(40) NULL
 			) CHARSET utf8",
-			$silent, [
-				"ALTER TABLE articulos ADD `field18` VARCHAR(40)",
-				"ALTER TABLE `articulos` CHANGE `field18` `ubicacion` VARCHAR(40) NULL ",
-				"ALTER TABLE articulos ADD `field19` VARCHAR(40)",
-				"ALTER TABLE `articulos` CHANGE `field19` `ubicacion_abreviado` VARCHAR(40) NULL ",
-			]
+			$silent
 		);
 		setupIndexes('articulos', ['tipo_dispo','marca','modelo','presentacion','familia','ubicacion','estado',]);
 
@@ -1239,13 +1234,15 @@
 			CREATE TABLE IF NOT EXISTS `marca_presetacion` ( 
 				`id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
 				PRIMARY KEY (`id`),
-				`marca` INT UNSIGNED NULL,
-				`unidad_medida` INT UNSIGNED NULL,
-				`presentacion` VARCHAR(40) NOT NULL
+				`modelo` INT UNSIGNED NULL,
+				`presentacion` VARCHAR(40) NOT NULL,
+				`unidad_medida` INT UNSIGNED NULL
 			) CHARSET utf8",
-			$silent
+			$silent, [
+				"ALTER TABLE `marca_presetacion` CHANGE `marca` `modelo` INT UNSIGNED NULL ",
+			]
 		);
-		setupIndexes('marca_presetacion', ['marca','unidad_medida',]);
+		setupIndexes('marca_presetacion', ['modelo','unidad_medida',]);
 
 		setupTable(
 			'tipo_document_grupo', " 
@@ -1434,11 +1431,7 @@
 				`creado` DATETIME NULL,
 				`creado_por` VARCHAR(40) NULL
 			) CHARSET utf8",
-			$silent, [
-				"ALTER TABLE ubicacion_articulo ADD `field6` VARCHAR(40)",
-				"ALTER TABLE `ubicacion_articulo` CHANGE `field6` `nota` VARCHAR(40) NULL ",
-				" ALTER TABLE `ubicacion_articulo` CHANGE `nota` `nota` TEXT NULL ",
-			]
+			$silent
 		);
 		setupIndexes('ubicacion_articulo', ['id_articulo','ubicacion',]);
 
@@ -1453,11 +1446,7 @@
 				`creado_por` VARCHAR(40) NULL,
 				`nota` TEXT NULL
 			) CHARSET utf8",
-			$silent, [
-				"ALTER TABLE ubicacion_mobiliario ADD `field6` VARCHAR(40)",
-				"ALTER TABLE `ubicacion_mobiliario` CHANGE `field6` `nota` VARCHAR(40) NULL ",
-				" ALTER TABLE `ubicacion_mobiliario` CHANGE `nota` `nota` TEXT NULL ",
-			]
+			$silent
 		);
 		setupIndexes('ubicacion_mobiliario', ['id_mobiliario','ubicacion',]);
 

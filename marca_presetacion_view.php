@@ -20,45 +20,45 @@
 	// Fields that can be displayed in the table view
 	$x->QueryFieldsTV = [
 		"`marca_presetacion`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
-		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad medida */" => "unidad_medida",
+		"IF(    CHAR_LENGTH(`marca_modelo1`.`modelo`), CONCAT_WS('',   `marca_modelo1`.`modelo`), '') /* Modelo */" => "modelo",
 		"`marca_presetacion`.`presentacion`" => "presentacion",
+		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad de medida */" => "unidad_medida",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
 		1 => '`marca_presetacion`.`id`',
-		2 => '`marcas1`.`marca`',
-		3 => '`tipo_unidad_medida1`.`unidad`',
-		4 => 4,
+		2 => '`marca_modelo1`.`modelo`',
+		3 => 3,
+		4 => '`tipo_unidad_medida1`.`unidad`',
 	];
 
 	// Fields that can be displayed in the csv file
 	$x->QueryFieldsCSV = [
 		"`marca_presetacion`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
-		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad medida */" => "unidad_medida",
+		"IF(    CHAR_LENGTH(`marca_modelo1`.`modelo`), CONCAT_WS('',   `marca_modelo1`.`modelo`), '') /* Modelo */" => "modelo",
 		"`marca_presetacion`.`presentacion`" => "presentacion",
+		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad de medida */" => "unidad_medida",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
 		"`marca_presetacion`.`id`" => "ID",
-		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "Marca",
-		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad medida */" => "Unidad medida",
+		"IF(    CHAR_LENGTH(`marca_modelo1`.`modelo`), CONCAT_WS('',   `marca_modelo1`.`modelo`), '') /* Modelo */" => "Modelo",
 		"`marca_presetacion`.`presentacion`" => "Presentacion",
+		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad de medida */" => "Unidad de medida",
 	];
 
 	// Fields that can be quick searched
 	$x->QueryFieldsQS = [
 		"`marca_presetacion`.`id`" => "id",
-		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
-		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad medida */" => "unidad_medida",
+		"IF(    CHAR_LENGTH(`marca_modelo1`.`modelo`), CONCAT_WS('',   `marca_modelo1`.`modelo`), '') /* Modelo */" => "modelo",
 		"`marca_presetacion`.`presentacion`" => "presentacion",
+		"IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS('',   `tipo_unidad_medida1`.`unidad`), '') /* Unidad de medida */" => "unidad_medida",
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['marca' => 'Marca', 'unidad_medida' => 'Unidad medida', ];
+	$x->filterers = ['modelo' => 'Modelo', 'unidad_medida' => 'Unidad de medida', ];
 
-	$x->QueryFrom = "`marca_presetacion` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`marca_presetacion`.`marca` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion`.`unidad_medida` ";
+	$x->QueryFrom = "`marca_presetacion` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`marca_presetacion`.`modelo` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion`.`unidad_medida` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -82,13 +82,13 @@
 	$x->QuickSearchText = $Translation['quick search'];
 	$x->ScriptFileName = 'marca_presetacion_view.php';
 	$x->RedirectAfterInsert = 'marca_presetacion_view.php?SelectedID=#ID#';
-	$x->TableTitle = 'Marca presetacion';
+	$x->TableTitle = 'Modelo presetacion';
 	$x->TableIcon = 'resources/table_icons/cog_add.png';
 	$x->PrimaryKey = '`marca_presetacion`.`id`';
 
 	$x->ColWidth = [150, 150, 150, ];
-	$x->ColCaption = ['Marca', 'Unidad medida', 'Presentacion', ];
-	$x->ColFieldName = ['marca', 'unidad_medida', 'presentacion', ];
+	$x->ColCaption = ['Modelo', 'Presentacion', 'Unidad de medida', ];
+	$x->ColFieldName = ['modelo', 'presentacion', 'unidad_medida', ];
 	$x->ColNumber  = [2, 3, 4, ];
 
 	// template paths below are based on the app main directory

@@ -537,7 +537,7 @@
 			return $data;
 		},
 		'marca_presetacion' => function($data, $options = []) {
-			if(isset($data['marca'])) $data['marca'] = pkGivenLookupText($data['marca'], 'marca_presetacion', 'marca');
+			if(isset($data['modelo'])) $data['modelo'] = pkGivenLookupText($data['modelo'], 'marca_presetacion', 'modelo');
 			if(isset($data['unidad_medida'])) $data['unidad_medida'] = pkGivenLookupText($data['unidad_medida'], 'marca_presetacion', 'unidad_medida');
 
 			return $data;

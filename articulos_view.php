@@ -33,7 +33,7 @@
 		"`articulos`.`caracteristicas`" => "caracteristicas",
 		"`articulos`.`nota`" => "nota",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "ubicacion_abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "ubicacion_abreviado",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "estado",
 		"if(`articulos`.`creado`,date_format(`articulos`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
@@ -78,7 +78,7 @@
 		"`articulos`.`caracteristicas`" => "caracteristicas",
 		"`articulos`.`nota`" => "nota",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "ubicacion_abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "ubicacion_abreviado",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "estado",
 		"if(`articulos`.`creado`,date_format(`articulos`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
@@ -100,7 +100,7 @@
 		"`articulos`.`caracteristicas`" => "Caracteristicas",
 		"`articulos`.`nota`" => "Nota",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "Ubicacion",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "Ubicacion abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "Ubicacion.",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "Imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "Estado",
 		"`articulos`.`creado`" => "Creado",
@@ -123,7 +123,7 @@
 		"`articulos`.`caracteristicas`" => "caracteristicas",
 		"`articulos`.`nota`" => "nota",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
-		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "ubicacion_abreviado",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "ubicacion_abreviado",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "estado",
 		"if(`articulos`.`creado`,date_format(`articulos`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
@@ -163,10 +163,10 @@
 	$x->DefaultSortField = '`articulos`.`creado`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Codigo', 'Nombre', 'Tipo de articulo', 'Referencia', 'Familia', 'Codigo proveedor', 'Ubicacion', 'Ubicacion abreviado', 'Imagen', 'Estado', ];
-	$x->ColFieldName = ['codigo', 'nombre_unico', 'tipo_dispo', 'referencia', 'familia', 'codigo_proveedor', 'ubicacion', 'ubicacion_abreviado', 'imagen', 'estado', ];
-	$x->ColNumber  = [2, 3, 4, 9, 10, 11, 14, 15, 16, 17, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Codigo', 'Nombre', 'Tipo de articulo', 'Referencia', 'Familia', 'Codigo proveedor', 'Ubicacion.', 'Imagen', 'Estado', ];
+	$x->ColFieldName = ['codigo', 'nombre_unico', 'tipo_dispo', 'referencia', 'familia', 'codigo_proveedor', 'ubicacion_abreviado', 'imagen', 'estado', ];
+	$x->ColNumber  = [2, 3, 4, 9, 10, 11, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/articulos_templateTV.html';

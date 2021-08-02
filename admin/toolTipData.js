@@ -1326,22 +1326,22 @@ cofig_delete2Tip=["",spacer+"This option allows each member of the group to dele
 cofig_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'CONFIG' table."];
 
 // marca_presetacion table
-marca_presetacion_addTip=["",spacer+"This option allows all members of the group to add records to the 'Marca presetacion' table. A member who adds a record to the table becomes the 'owner' of that record."];
+marca_presetacion_addTip=["",spacer+"This option allows all members of the group to add records to the 'Modelo presetacion' table. A member who adds a record to the table becomes the 'owner' of that record."];
 
-marca_presetacion_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Marca presetacion' table."];
-marca_presetacion_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Marca presetacion' table."];
-marca_presetacion_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Marca presetacion' table."];
-marca_presetacion_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Marca presetacion' table."];
+marca_presetacion_view0Tip=["",spacer+"This option prohibits all members of the group from viewing any record in the 'Modelo presetacion' table."];
+marca_presetacion_view1Tip=["",spacer+"This option allows each member of the group to view only his own records in the 'Modelo presetacion' table."];
+marca_presetacion_view2Tip=["",spacer+"This option allows each member of the group to view any record owned by any member of the group in the 'Modelo presetacion' table."];
+marca_presetacion_view3Tip=["",spacer+"This option allows each member of the group to view all records in the 'Modelo presetacion' table."];
 
-marca_presetacion_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Marca presetacion' table."];
-marca_presetacion_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Marca presetacion' table."];
-marca_presetacion_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Marca presetacion' table."];
-marca_presetacion_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Marca presetacion' table, regardless of their owner."];
+marca_presetacion_edit0Tip=["",spacer+"This option prohibits all members of the group from modifying any record in the 'Modelo presetacion' table."];
+marca_presetacion_edit1Tip=["",spacer+"This option allows each member of the group to edit only his own records in the 'Modelo presetacion' table."];
+marca_presetacion_edit2Tip=["",spacer+"This option allows each member of the group to edit any record owned by any member of the group in the 'Modelo presetacion' table."];
+marca_presetacion_edit3Tip=["",spacer+"This option allows each member of the group to edit any records in the 'Modelo presetacion' table, regardless of their owner."];
 
-marca_presetacion_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Marca presetacion' table."];
-marca_presetacion_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Marca presetacion' table."];
-marca_presetacion_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Marca presetacion' table."];
-marca_presetacion_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Marca presetacion' table."];
+marca_presetacion_delete0Tip=["",spacer+"This option prohibits all members of the group from deleting any record in the 'Modelo presetacion' table."];
+marca_presetacion_delete1Tip=["",spacer+"This option allows each member of the group to delete only his own records in the 'Modelo presetacion' table."];
+marca_presetacion_delete2Tip=["",spacer+"This option allows each member of the group to delete any record owned by any member of the group in the 'Modelo presetacion' table."];
+marca_presetacion_delete3Tip=["",spacer+"This option allows each member of the group to delete any records in the 'Modelo presetacion' table."];
 
 // tipo_document_grupo table
 tipo_document_grupo_addTip=["",spacer+"This option allows all members of the group to add records to the 'Tipo grupo documento' table. A member who adds a record to the table becomes the 'owner' of that record."];

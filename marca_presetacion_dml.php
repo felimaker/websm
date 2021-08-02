@@ -13,9 +13,9 @@ function marca_presetacion_insert(&$error_message = '') {
 	if(!$arrPerm['insert']) return false;
 
 	$data = [
-		'marca' => Request::lookup('marca', ''),
-		'unidad_medida' => Request::lookup('unidad_medida', ''),
+		'modelo' => Request::lookup('modelo', ''),
 		'presentacion' => Request::val('presentacion', ''),
+		'unidad_medida' => Request::lookup('unidad_medida', ''),
 	];
 
 	if($data['presentacion'] === '') {
@@ -133,9 +133,9 @@ function marca_presetacion_update(&$selected_id, &$error_message = '') {
 	if(!check_record_permission('marca_presetacion', $selected_id, 'edit')) return false;
 
 	$data = [
-		'marca' => Request::lookup('marca', ''),
-		'unidad_medida' => Request::lookup('unidad_medida', ''),
+		'modelo' => Request::lookup('modelo', ''),
 		'presentacion' => Request::val('presentacion', ''),
+		'unidad_medida' => Request::lookup('unidad_medida', ''),
 	];
 
 	if($data['presentacion'] === '') {
@@ -214,15 +214,15 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 		$dvprint = true;
 	}
 
-	$filterer_marca = thisOr($_REQUEST['filterer_marca'], '');
+	$filterer_modelo = thisOr($_REQUEST['filterer_modelo'], '');
 	$filterer_unidad_medida = thisOr($_REQUEST['filterer_unidad_medida'], '');
 
 	// populate filterers, starting from children to grand-parents
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
-	// combobox: marca
-	$combo_marca = new DataCombo;
+	// combobox: modelo
+	$combo_modelo = new DataCombo;
 	// combobox: unidad_medida
 	$combo_unidad_medida = new DataCombo;
 
@@ -247,16 +247,16 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 		if(!($row = db_fetch_array($res))) {
 			return error_message($Translation['No records found'], 'marca_presetacion_view.php', false);
 		}
-		$combo_marca->SelectedData = $row['marca'];
+		$combo_modelo->SelectedData = $row['modelo'];
 		$combo_unidad_medida->SelectedData = $row['unidad_medida'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
-		$combo_marca->SelectedData = $filterer_marca;
+		$combo_modelo->SelectedData = $filterer_modelo;
 		$combo_unidad_medida->SelectedData = $filterer_unidad_medida;
 	}
-	$combo_marca->HTML = '<span id="marca-container' . $rnd1 . '"></span><input type="hidden" name="marca" id="marca' . $rnd1 . '" value="' . html_attr($combo_marca->SelectedData) . '">';
-	$combo_marca->MatchText = '<span id="marca-container-readonly' . $rnd1 . '"></span><input type="hidden" name="marca" id="marca' . $rnd1 . '" value="' . html_attr($combo_marca->SelectedData) . '">';
+	$combo_modelo->HTML = '<span id="modelo-container' . $rnd1 . '"></span><input type="hidden" name="modelo" id="modelo' . $rnd1 . '" value="' . html_attr($combo_modelo->SelectedData) . '">';
+	$combo_modelo->MatchText = '<span id="modelo-container-readonly' . $rnd1 . '"></span><input type="hidden" name="modelo" id="modelo' . $rnd1 . '" value="' . html_attr($combo_modelo->SelectedData) . '">';
 	$combo_unidad_medida->HTML = '<span id="unidad_medida-container' . $rnd1 . '"></span><input type="hidden" name="unidad_medida" id="unidad_medida' . $rnd1 . '" value="' . html_attr($combo_unidad_medida->SelectedData) . '">';
 	$combo_unidad_medida->MatchText = '<span id="unidad_medida-container-readonly' . $rnd1 . '"></span><input type="hidden" name="unidad_medida" id="unidad_medida' . $rnd1 . '" value="' . html_attr($combo_unidad_medida->SelectedData) . '">';
 
@@ -265,36 +265,36 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 
 	<script>
 		// initial lookup values
-		AppGini.current_marca__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['marca'] : htmlspecialchars($filterer_marca, ENT_QUOTES)); ?>"};
+		AppGini.current_modelo__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['modelo'] : htmlspecialchars($filterer_modelo, ENT_QUOTES)); ?>"};
 		AppGini.current_unidad_medida__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['unidad_medida'] : htmlspecialchars($filterer_unidad_medida, ENT_QUOTES)); ?>"};
 
 		jQuery(function() {
 			setTimeout(function() {
-				if(typeof(marca_reload__RAND__) == 'function') marca_reload__RAND__();
+				if(typeof(modelo_reload__RAND__) == 'function') modelo_reload__RAND__();
 				if(typeof(unidad_medida_reload__RAND__) == 'function') unidad_medida_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
-		function marca_reload__RAND__() {
+		function modelo_reload__RAND__() {
 		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint) { ?>
 
-			$j("#marca-container__RAND__").select2({
+			$j("#modelo-container__RAND__").select2({
 				/* initial default value */
 				initSelection: function(e, c) {
 					$j.ajax({
 						url: 'ajax_combo.php',
 						dataType: 'json',
-						data: { id: AppGini.current_marca__RAND__.value, t: 'marca_presetacion', f: 'marca' },
+						data: { id: AppGini.current_modelo__RAND__.value, t: 'marca_presetacion', f: 'modelo' },
 						success: function(resp) {
 							c({
 								id: resp.results[0].id,
 								text: resp.results[0].text
 							});
-							$j('[name="marca"]').val(resp.results[0].id);
-							$j('[id=marca-container-readonly__RAND__]').html('<span id="marca-match-text">' + resp.results[0].text + '</span>');
-							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marcas_view_parent]').hide(); } else { $j('.btn[id=marcas_view_parent]').show(); }
+							$j('[name="modelo"]').val(resp.results[0].id);
+							$j('[id=modelo-container-readonly__RAND__]').html('<span id="modelo-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marca_modelo_view_parent]').hide(); } else { $j('.btn[id=marca_modelo_view_parent]').show(); }
 
 
-							if(typeof(marca_update_autofills__RAND__) == 'function') marca_update_autofills__RAND__();
+							if(typeof(modelo_update_autofills__RAND__) == 'function') modelo_update_autofills__RAND__();
 						}
 					});
 				},
@@ -306,31 +306,31 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 					url: 'ajax_combo.php',
 					dataType: 'json',
 					cache: true,
-					data: function(term, page) { return { s: term, p: page, t: 'marca_presetacion', f: 'marca' }; },
+					data: function(term, page) { return { s: term, p: page, t: 'marca_presetacion', f: 'modelo' }; },
 					results: function(resp, page) { return resp; }
 				},
 				escapeMarkup: function(str) { return str; }
 			}).on('change', function(e) {
-				AppGini.current_marca__RAND__.value = e.added.id;
-				AppGini.current_marca__RAND__.text = e.added.text;
-				$j('[name="marca"]').val(e.added.id);
-				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marcas_view_parent]').hide(); } else { $j('.btn[id=marcas_view_parent]').show(); }
+				AppGini.current_modelo__RAND__.value = e.added.id;
+				AppGini.current_modelo__RAND__.text = e.added.text;
+				$j('[name="modelo"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marca_modelo_view_parent]').hide(); } else { $j('.btn[id=marca_modelo_view_parent]').show(); }
 
 
-				if(typeof(marca_update_autofills__RAND__) == 'function') marca_update_autofills__RAND__();
+				if(typeof(modelo_update_autofills__RAND__) == 'function') modelo_update_autofills__RAND__();
 			});
 
-			if(!$j("#marca-container__RAND__").length) {
+			if(!$j("#modelo-container__RAND__").length) {
 				$j.ajax({
 					url: 'ajax_combo.php',
 					dataType: 'json',
-					data: { id: AppGini.current_marca__RAND__.value, t: 'marca_presetacion', f: 'marca' },
+					data: { id: AppGini.current_modelo__RAND__.value, t: 'marca_presetacion', f: 'modelo' },
 					success: function(resp) {
-						$j('[name="marca"]').val(resp.results[0].id);
-						$j('[id=marca-container-readonly__RAND__]').html('<span id="marca-match-text">' + resp.results[0].text + '</span>');
-						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marcas_view_parent]').hide(); } else { $j('.btn[id=marcas_view_parent]').show(); }
+						$j('[name="modelo"]').val(resp.results[0].id);
+						$j('[id=modelo-container-readonly__RAND__]').html('<span id="modelo-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marca_modelo_view_parent]').hide(); } else { $j('.btn[id=marca_modelo_view_parent]').show(); }
 
-						if(typeof(marca_update_autofills__RAND__) == 'function') marca_update_autofills__RAND__();
+						if(typeof(modelo_update_autofills__RAND__) == 'function') modelo_update_autofills__RAND__();
 					}
 				});
 			}
@@ -340,12 +340,12 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 			$j.ajax({
 				url: 'ajax_combo.php',
 				dataType: 'json',
-				data: { id: AppGini.current_marca__RAND__.value, t: 'marca_presetacion', f: 'marca' },
+				data: { id: AppGini.current_modelo__RAND__.value, t: 'marca_presetacion', f: 'modelo' },
 				success: function(resp) {
-					$j('[id=marca-container__RAND__], [id=marca-container-readonly__RAND__]').html('<span id="marca-match-text">' + resp.results[0].text + '</span>');
-					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marcas_view_parent]').hide(); } else { $j('.btn[id=marcas_view_parent]').show(); }
+					$j('[id=modelo-container__RAND__], [id=modelo-container-readonly__RAND__]').html('<span id="modelo-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marca_modelo_view_parent]').hide(); } else { $j('.btn[id=marca_modelo_view_parent]').show(); }
 
-					if(typeof(marca_update_autofills__RAND__) == 'function') marca_update_autofills__RAND__();
+					if(typeof(modelo_update_autofills__RAND__) == 'function') modelo_update_autofills__RAND__();
 				}
 			});
 		<?php } ?>
@@ -487,11 +487,11 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 	// set records to read only if user can't insert new records and can't edit current record
 	if(($selected_id && !$AllowUpdate && !$AllowInsert) || (!$selected_id && !$AllowInsert)) {
 		$jsReadOnly = '';
-		$jsReadOnly .= "\tjQuery('#marca').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
-		$jsReadOnly .= "\tjQuery('#marca_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\tjQuery('#modelo').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#modelo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\tjQuery('#presentacion').replaceWith('<div class=\"form-control-static\" id=\"presentacion\">' + (jQuery('#presentacion').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#unidad_medida').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#unidad_medida_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
-		$jsReadOnly .= "\tjQuery('#presentacion').replaceWith('<div class=\"form-control-static\" id=\"presentacion\">' + (jQuery('#presentacion').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -501,15 +501,15 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 	}
 
 	// process combos
-	$templateCode = str_replace('<%%COMBO(marca)%%>', $combo_marca->HTML, $templateCode);
-	$templateCode = str_replace('<%%COMBOTEXT(marca)%%>', $combo_marca->MatchText, $templateCode);
-	$templateCode = str_replace('<%%URLCOMBOTEXT(marca)%%>', urlencode($combo_marca->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(modelo)%%>', $combo_modelo->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(modelo)%%>', $combo_modelo->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(modelo)%%>', urlencode($combo_modelo->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(unidad_medida)%%>', $combo_unidad_medida->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(unidad_medida)%%>', $combo_unidad_medida->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(unidad_medida)%%>', urlencode($combo_unidad_medida->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => array('parent table name', 'lookup field caption') */
-	$lookup_fields = array('marca' => array('marcas', 'Marca'), 'unidad_medida' => array('tipo_unidad_medida', 'Unidad medida'), );
+	$lookup_fields = array('modelo' => array('marca_modelo', 'Modelo'), 'unidad_medida' => array('tipo_unidad_medida', 'Unidad de medida'), );
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -526,33 +526,33 @@ function marca_presetacion_form($selected_id = '', $AllowUpdate = 1, $AllowInser
 
 	// process images
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(marca)%%>', '', $templateCode);
-	$templateCode = str_replace('<%%UPLOADFILE(unidad_medida)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(modelo)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(presentacion)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(unidad_medida)%%>', '', $templateCode);
 
 	// process values
 	if($selected_id) {
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(id)%%>', safe_html($urow['id']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(id)%%>', html_attr($row['id']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode($urow['id']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(marca)%%>', safe_html($urow['marca']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(marca)%%>', html_attr($row['marca']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(marca)%%>', urlencode($urow['marca']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(unidad_medida)%%>', safe_html($urow['unidad_medida']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(unidad_medida)%%>', html_attr($row['unidad_medida']), $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(unidad_medida)%%>', urlencode($urow['unidad_medida']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(modelo)%%>', safe_html($urow['modelo']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(modelo)%%>', html_attr($row['modelo']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(modelo)%%>', urlencode($urow['modelo']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(presentacion)%%>', safe_html($urow['presentacion']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(presentacion)%%>', html_attr($row['presentacion']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(presentacion)%%>', urlencode($urow['presentacion']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(unidad_medida)%%>', safe_html($urow['unidad_medida']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(unidad_medida)%%>', html_attr($row['unidad_medida']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(unidad_medida)%%>', urlencode($urow['unidad_medida']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(marca)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(marca)%%>', urlencode(''), $templateCode);
-		$templateCode = str_replace('<%%VALUE(unidad_medida)%%>', '', $templateCode);
-		$templateCode = str_replace('<%%URLVALUE(unidad_medida)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(modelo)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(modelo)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(presentacion)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(presentacion)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(unidad_medida)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(unidad_medida)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

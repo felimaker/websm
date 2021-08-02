@@ -55,6 +55,11 @@ function articulos_insert(&$error_message = '') {
 
 	$recID = db_insert_id(db_link());
 
+	// automatic ubicacion_abreviado if passed as filterer
+	if($_REQUEST['filterer_ubicacion_abreviado']) {
+		sql("UPDATE `articulos` SET `ubicacion_abreviado`='" . makeSafe($_REQUEST['filterer_ubicacion_abreviado']) . "' WHERE `id`='" . makeSafe($recID, false) . "'", $eo);
+	}
+
 	update_calc_fields('articulos', $recID, calculated_fields()['articulos']);
 
 	// hook: articulos_after_insert
@@ -306,7 +311,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	// populate filterers, starting from children to grand-parents
 	if($filterer_marca && !$filterer_tipo_dispo) $filterer_tipo_dispo = sqlValue("select  from marcas where id_marca='" . makeSafe($filterer_marca) . "'");
 	if($filterer_modelo && !$filterer_marca) $filterer_marca = sqlValue("select marca from marca_modelo where id_mmodelo='" . makeSafe($filterer_modelo) . "'");
-	if($filterer_presentacion && !$filterer_marca) $filterer_marca = sqlValue("select marca from marca_presetacion where id='" . makeSafe($filterer_presentacion) . "'");
+	if($filterer_presentacion && !$filterer_modelo) $filterer_modelo = sqlValue("select modelo from marca_presetacion where id='" . makeSafe($filterer_presentacion) . "'");
 
 	// unique random identifier
 	$rnd1 = ($dvprint ? rand(1000000, 9999999) : '');
@@ -316,7 +321,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$combo_marca = new DataCombo;
 	// combobox: modelo, filterable by: marca
 	$combo_modelo = new DataCombo;
-	// combobox: presentacion, filterable by: marca
+	// combobox: presentacion, filterable by: modelo
 	$combo_presentacion = new DataCombo;
 	// combobox: familia
 	$combo_familia = new DataCombo;
@@ -397,7 +402,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 				if(typeof(tipo_dispo_reload__RAND__) == 'function') tipo_dispo_reload__RAND__();
 				<?php echo (!$AllowUpdate || $dvprint ? 'if(typeof(marca_reload__RAND__) == \'function\') marca_reload__RAND__(AppGini.current_tipo_dispo__RAND__.value);' : ''); ?>
 				<?php echo (!$AllowUpdate || $dvprint ? 'if(typeof(modelo_reload__RAND__) == \'function\') modelo_reload__RAND__(AppGini.current_marca__RAND__.value);' : ''); ?>
-				<?php echo (!$AllowUpdate || $dvprint ? 'if(typeof(presentacion_reload__RAND__) == \'function\') presentacion_reload__RAND__(AppGini.current_marca__RAND__.value);' : ''); ?>
+				<?php echo (!$AllowUpdate || $dvprint ? 'if(typeof(presentacion_reload__RAND__) == \'function\') presentacion_reload__RAND__(AppGini.current_modelo__RAND__.value);' : ''); ?>
 				if(typeof(familia_reload__RAND__) == 'function') familia_reload__RAND__();
 				if(typeof(ubicacion_reload__RAND__) == 'function') ubicacion_reload__RAND__();
 				if(typeof(estado_reload__RAND__) == 'function') estado_reload__RAND__();
@@ -502,7 +507,6 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marcas_view_parent]').hide(); } else { $j('.btn[id=marcas_view_parent]').show(); }
 
 						if(typeof(modelo_reload__RAND__) == 'function') modelo_reload__RAND__(AppGini.current_marca__RAND__.value);
-						if(typeof(presentacion_reload__RAND__) == 'function') presentacion_reload__RAND__(AppGini.current_marca__RAND__.value);
 
 							if(typeof(marca_update_autofills__RAND__) == 'function') marca_update_autofills__RAND__();
 						}
@@ -527,7 +531,6 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marcas_view_parent]').hide(); } else { $j('.btn[id=marcas_view_parent]').show(); }
 
 						if(typeof(modelo_reload__RAND__) == 'function') modelo_reload__RAND__(AppGini.current_marca__RAND__.value);
-						if(typeof(presentacion_reload__RAND__) == 'function') presentacion_reload__RAND__(AppGini.current_marca__RAND__.value);
 
 				if(typeof(marca_update_autofills__RAND__) == 'function') marca_update_autofills__RAND__();
 			});
@@ -582,6 +585,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 							$j('[id=modelo-container-readonly__RAND__]').html('<span id="modelo-match-text">' + resp.results[0].text + '</span>');
 							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marca_modelo_view_parent]').hide(); } else { $j('.btn[id=marca_modelo_view_parent]').show(); }
 
+						if(typeof(presentacion_reload__RAND__) == 'function') presentacion_reload__RAND__(AppGini.current_modelo__RAND__.value);
 
 							if(typeof(modelo_update_autofills__RAND__) == 'function') modelo_update_autofills__RAND__();
 						}
@@ -605,6 +609,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 				$j('[name="modelo"]').val(e.added.id);
 				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=marca_modelo_view_parent]').hide(); } else { $j('.btn[id=marca_modelo_view_parent]').show(); }
 
+						if(typeof(presentacion_reload__RAND__) == 'function') presentacion_reload__RAND__(AppGini.current_modelo__RAND__.value);
 
 				if(typeof(modelo_update_autofills__RAND__) == 'function') modelo_update_autofills__RAND__();
 			});
@@ -640,7 +645,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		<?php } ?>
 
 		}
-		function presentacion_reload__RAND__(filterer_marca) {
+		function presentacion_reload__RAND__(filterer_modelo) {
 		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint) { ?>
 
 			$j("#presentacion-container__RAND__").select2({
@@ -649,7 +654,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 					$j.ajax({
 						url: 'ajax_combo.php',
 						dataType: 'json',
-						data: { filterer_marca: filterer_marca, id: AppGini.current_presentacion__RAND__.value, t: 'articulos', f: 'presentacion' },
+						data: { filterer_modelo: filterer_modelo, id: AppGini.current_presentacion__RAND__.value, t: 'articulos', f: 'presentacion' },
 						success: function(resp) {
 							c({
 								id: resp.results[0].id,
@@ -672,7 +677,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 					url: 'ajax_combo.php',
 					dataType: 'json',
 					cache: true,
-					data: function(term, page) { return { filterer_marca: filterer_marca, s: term, p: page, t: 'articulos', f: 'presentacion' }; },
+					data: function(term, page) { return { filterer_modelo: filterer_modelo, s: term, p: page, t: 'articulos', f: 'presentacion' }; },
 					results: function(resp, page) { return resp; }
 				},
 				escapeMarkup: function(str) { return str; }

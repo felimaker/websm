@@ -77,6 +77,11 @@ function mobiliario_insert(&$error_message = '') {
 		sql("UPDATE `mobiliario` SET `ubicacion_abreviado`='" . makeSafe($_REQUEST['filterer_ubicacion_abreviado']) . "' WHERE `id_mobiliario`='" . makeSafe($recID, false) . "'", $eo);
 	}
 
+	// automatic uni_abreviado if passed as filterer
+	if($_REQUEST['filterer_uni_abreviado']) {
+		sql("UPDATE `mobiliario` SET `uni_abreviado`='" . makeSafe($_REQUEST['filterer_uni_abreviado']) . "' WHERE `id_mobiliario`='" . makeSafe($recID, false) . "'", $eo);
+	}
+
 	update_calc_fields('mobiliario', $recID, calculated_fields()['mobiliario']);
 
 	// hook: mobiliario_after_insert

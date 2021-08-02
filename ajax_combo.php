@@ -1982,8 +1982,8 @@
 				'parent_table' => 'marca_presetacion',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(CHAR_LENGTH(`marca_presetacion`.`presentacion`) || CHAR_LENGTH(`marca_presetacion`.`unidad_medida`), CONCAT_WS(\'\', `marca_presetacion`.`presentacion`, \' \', IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS(\'\',   `tipo_unidad_medida1`.`unidad`), \'\')), \'\')',
-				'parent_from' => '`marca_presetacion` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`marca_presetacion`.`marca` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion`.`unidad_medida` ',
-				'filterers' => array('marca' => 'marca'),
+				'parent_from' => '`marca_presetacion` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`marca_presetacion`.`modelo` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion`.`unidad_medida` ',
+				'filterers' => array('modelo' => 'modelo'),
 				'custom_query' => '',
 				'inherit_permissions' => false,
 				'list_type' => 0,
@@ -2059,11 +2059,11 @@
 		'cofig' => array(
 		),
 		'marca_presetacion' => array(
-			'marca' => array(
-				'parent_table' => 'marcas',
-				'parent_pk_field' => 'id_marca',
-				'parent_caption' => '`marcas`.`marca`',
-				'parent_from' => '`marcas` ',
+			'modelo' => array(
+				'parent_table' => 'marca_modelo',
+				'parent_pk_field' => 'id_mmodelo',
+				'parent_caption' => '`marca_modelo`.`modelo`',
+				'parent_from' => '`marca_modelo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`marca_modelo`.`marca` ',
 				'filterers' => array(),
 				'custom_query' => '',
 				'inherit_permissions' => false,

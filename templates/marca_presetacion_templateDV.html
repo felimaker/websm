@@ -31,21 +31,12 @@
 					</div>
 				</div>
 
-				<!-- Field: Marca -->
-				<div class="form-group marca_presetacion-marca">
+				<!-- Field: Modelo -->
+				<div class="form-group marca_presetacion-modelo">
 					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="marca" data-parent_link="view_parent_modal">Marca</label>
+					<label class="control-label col-lg-3" for="modelo" data-parent_link="view_parent_modal">Modelo</label>
 					<div class="col-lg-9">
-						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(marca)%%><%%PLINK(marca)%%><%%ADDNEW(marcas)%%></div>
-					</div>
-				</div>
-
-				<!-- Field: Unidad medida -->
-				<div class="form-group marca_presetacion-unidad_medida">
-					<hr class="hidden-md hidden-lg">
-					<label class="control-label col-lg-3" for="unidad_medida" data-parent_link="view_parent_modal">Unidad medida</label>
-					<div class="col-lg-9">
-						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(unidad_medida)%%><%%PLINK(unidad_medida)%%><%%ADDNEW(tipo_unidad_medida)%%></div>
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(modelo)%%><%%PLINK(modelo)%%><%%ADDNEW(marca_modelo)%%></div>
 					</div>
 				</div>
 
@@ -55,6 +46,15 @@
 					<label class="control-label col-lg-3" for="presentacion">Presentacion<span class="text-danger"><%%TRANSLATION(*)%%></span></label>
 					<div class="col-lg-9">
 						<input maxlength="40" type="text" class="form-control" name="presentacion" id="presentacion" value="<%%VALUE(presentacion)%%>" required>
+					</div>
+				</div>
+
+				<!-- Field: Unidad de medida -->
+				<div class="form-group marca_presetacion-unidad_medida">
+					<hr class="hidden-md hidden-lg">
+					<label class="control-label col-lg-3" for="unidad_medida" data-parent_link="view_parent_modal">Unidad de medida</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(unidad_medida)%%><%%PLINK(unidad_medida)%%><%%ADDNEW(tipo_unidad_medida)%%></div>
 					</div>
 				</div>
 
@@ -112,14 +112,14 @@
 			if(!$j('.table_view').length || $j('[name=SelectedID]').val().length) {
 				AppGini.once({
 					condition: function() {
-						return $j('.form-group.marca_presetacion-marca')
+						return $j('.form-group.marca_presetacion-modelo')
 									.find('.nicEdit-main, .select2-container, input[type=radio]')
 									.length > 0;
 					},
 					action: function() {
 						$j('#marca_presetacion_dv_container-loading').addClass('hidden');
 						$j('#marca_presetacion_dv_container').removeClass('hidden');
-						AppGini.focusFormElement('marca_presetacion', 'marca');
+						AppGini.focusFormElement('marca_presetacion', 'modelo');
 					},
 					timeout:  5000,
 					doActionOnTimeout:  true

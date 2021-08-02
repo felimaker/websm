@@ -618,7 +618,7 @@
 					'homepageShowCount' => 0
 				),
 				'marca_presetacion' => array(
-					'Caption' => 'Marca presetacion',
+					'Caption' => 'Modelo presetacion',
 					'Description' => '',
 					'tableIcon' => 'resources/table_icons/cog_add.png',
 					'group' => $tg[1],
@@ -824,7 +824,7 @@
 				'compra_dispo' => 'Dispo Biomedicos Comprados',
 				'articulos' => 'Articulos',
 				'cofig' => 'CONFIG',
-				'marca_presetacion' => 'Marca presetacion',
+				'marca_presetacion' => 'Modelo presetacion',
 				'tipo_document_grupo' => 'Tipo grupo documento',
 				'tipo_pago' => 'Tipo pago',
 				'tipo_compra' => 'Tipo compra',
@@ -2399,9 +2399,9 @@
 				],
 				'marca_presetacion' => [
 					'id' => ['appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT"],
-					'marca' => ['appgini' => "INT UNSIGNED NULL"],
-					'unidad_medida' => ['appgini' => "INT UNSIGNED NULL"],
+					'modelo' => ['appgini' => "INT UNSIGNED NULL"],
 					'presentacion' => ['appgini' => "VARCHAR(40) NOT NULL"],
+					'unidad_medida' => ['appgini' => "INT UNSIGNED NULL"],
 				],
 				'tipo_document_grupo' => [
 					'id' => ['appgini' => "INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT"],
@@ -3808,7 +3808,7 @@
 				'tipo_estado_dispo' => ['estado'],
 			],
 			'marca_presetacion' => [
-				'marcas' => ['marca'],
+				'marca_modelo' => ['modelo'],
 				'tipo_unidad_medida' => ['unidad_medida'],
 			],
 			'articulo_codigo_proveedor' => [
@@ -4578,7 +4578,7 @@ WHERE `movi_recepcion`.`id_movi` = %ID%',
 				'tipo_dispo' => 'SELECT `tipo_dispositivo`.`id_tipodispo`, `tipo_dispositivo`.`tipo_dispositivo` FROM `tipo_dispositivo` LEFT JOIN `dispositivo_tipo_grupo` as dispositivo_tipo_grupo1 ON `dispositivo_tipo_grupo1`.`id`=`tipo_dispositivo`.`grupo_dispo` WHERE `tipo_dispositivo`.`grupo_dispo` = 1 ORDER BY 2',
 				'marca' => 'SELECT `marcas`.`id_marca`, `marcas`.`marca` FROM `marcas` ORDER BY 2',
 				'modelo' => 'SELECT `marca_modelo`.`id_mmodelo`, `marca_modelo`.`modelo` FROM `marca_modelo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`marca_modelo`.`marca` ORDER BY 2',
-				'presentacion' => 'SELECT `marca_presetacion`.`id`, IF(CHAR_LENGTH(`marca_presetacion`.`presentacion`) || CHAR_LENGTH(`marca_presetacion`.`unidad_medida`), CONCAT_WS(\'\', `marca_presetacion`.`presentacion`, \' \', IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS(\'\',   `tipo_unidad_medida1`.`unidad`), \'\')), \'\') FROM `marca_presetacion` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`marca_presetacion`.`marca` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion`.`unidad_medida` ORDER BY 2',
+				'presentacion' => 'SELECT `marca_presetacion`.`id`, IF(CHAR_LENGTH(`marca_presetacion`.`presentacion`) || CHAR_LENGTH(`marca_presetacion`.`unidad_medida`), CONCAT_WS(\'\', `marca_presetacion`.`presentacion`, \' \', IF(    CHAR_LENGTH(`tipo_unidad_medida1`.`unidad`), CONCAT_WS(\'\',   `tipo_unidad_medida1`.`unidad`), \'\')), \'\') FROM `marca_presetacion` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`marca_presetacion`.`modelo` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion`.`unidad_medida` ORDER BY 2',
 				'familia' => 'SELECT `articulos_familia`.`id`, IF(CHAR_LENGTH(`articulos_familia`.`familia`) || CHAR_LENGTH(`articulos_familia`.`familia`), CONCAT_WS(\'\', `articulos_familia`.`familia`, \'-\', `articulos_familia`.`familia`), \'\') FROM `articulos_familia` ORDER BY 2',
 				'codigo_proveedor' => 'SELECT `articulos_familia`.`id`, IF(CHAR_LENGTH(`articulos_familia`.`codigo`) || CHAR_LENGTH(`articulos_familia`.`proveedor`), CONCAT_WS(\'\', `articulos_familia`.`codigo`, \'-\', `articulos_familia`.`proveedor`), \'\') FROM `articulos_familia` ORDER BY 2',
 				'ubicacion' => 'SELECT `unidades`.`id_unidades`, `unidades`.`nombre` FROM `unidades` LEFT JOIN `ciudades` as ciudades1 ON `ciudades1`.`id_ciudad`=`unidades`.`ciudad` LEFT JOIN `prestador` as prestador1 ON `prestador1`.`id`=`unidades`.`prestador` ORDER BY 2',
@@ -4589,7 +4589,7 @@ WHERE `movi_recepcion`.`id_movi` = %ID%',
 			'cofig' => [
 			],
 			'marca_presetacion' => [
-				'marca' => 'SELECT `marcas`.`id_marca`, `marcas`.`marca` FROM `marcas` ORDER BY 2',
+				'modelo' => 'SELECT `marca_modelo`.`id_mmodelo`, `marca_modelo`.`modelo` FROM `marca_modelo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`marca_modelo`.`marca` ORDER BY 2',
 				'unidad_medida' => 'SELECT `tipo_unidad_medida`.`id`, `tipo_unidad_medida`.`unidad` FROM `tipo_unidad_medida` ORDER BY 2',
 			],
 			'tipo_document_grupo' => [

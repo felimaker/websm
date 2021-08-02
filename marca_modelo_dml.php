@@ -200,6 +200,25 @@ function marca_modelo_delete($selected_id, $AllowDeleteOfParents = false, $skipC
 		return $RetMsg;
 	}
 
+	// child table: marca_presetacion
+	$res = sql("SELECT `id_mmodelo` FROM `marca_modelo` WHERE `id_mmodelo`='{$selected_id}'", $eo);
+	$id_mmodelo = db_fetch_row($res);
+	$rires = sql("SELECT COUNT(1) FROM `marca_presetacion` WHERE `modelo`='" . makeSafe($id_mmodelo[0]) . "'", $eo);
+	$rirow = db_fetch_row($rires);
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace('<RelatedRecords>', $rirow[0], $RetMsg);
+		$RetMsg = str_replace('<TableName>', 'marca_presetacion', $RetMsg);
+		return $RetMsg;
+	} elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks) {
+		$RetMsg = $Translation['confirm delete'];
+		$RetMsg = str_replace('<RelatedRecords>', $rirow[0], $RetMsg);
+		$RetMsg = str_replace('<TableName>', 'marca_presetacion', $RetMsg);
+		$RetMsg = str_replace('<Delete>', '<input type="button" class="button" value="' . $Translation['yes'] . '" onClick="window.location = \'marca_modelo_view.php?SelectedID=' . urlencode($selected_id) . '&delete_x=1&confirmed=1\';">', $RetMsg);
+		$RetMsg = str_replace('<Cancel>', '<input type="button" class="button" value="' . $Translation[ 'no'] . '" onClick="window.location = \'marca_modelo_view.php?SelectedID=' . urlencode($selected_id) . '\';">', $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("DELETE FROM `marca_modelo` WHERE `id_mmodelo`='{$selected_id}'", $eo);
 
 	// hook: marca_modelo_after_delete

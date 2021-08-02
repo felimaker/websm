@@ -8,7 +8,7 @@
 
 		/* data for selected record, or defaults if none is selected */
 		var data = {
-			marca: <?php echo json_encode(array('id' => $rdata['marca'], 'value' => $rdata['marca'], 'text' => $jdata['marca'])); ?>,
+			modelo: <?php echo json_encode(array('id' => $rdata['modelo'], 'value' => $rdata['modelo'], 'text' => $jdata['modelo'])); ?>,
 			unidad_medida: <?php echo json_encode(array('id' => $rdata['unidad_medida'], 'value' => $rdata['unidad_medida'], 'text' => $jdata['unidad_medida'])); ?>
 		};
 
@@ -17,11 +17,11 @@
 		AppGini.cache[tn] = AppGini.cache[tn] || AppGini.ajaxCache();
 		var cache = AppGini.cache[tn];
 
-		/* saved value for marca */
+		/* saved value for modelo */
 		cache.addCheck(function(u, d) {
 			if(u != 'ajax_combo.php') return false;
-			if(d.t == tn && d.f == 'marca' && d.id == data.marca.id)
-				return { results: [ data.marca ], more: false, elapsed: 0.01 };
+			if(d.t == tn && d.f == 'modelo' && d.id == data.modelo.id)
+				return { results: [ data.modelo ], more: false, elapsed: 0.01 };
 			return false;
 		});
 
