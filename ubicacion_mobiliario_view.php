@@ -24,6 +24,7 @@
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "creado_por",
+		"`ubicacion_mobiliario`.`nota`" => "nota",
 	];
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = [
@@ -32,6 +33,7 @@
 		3 => 3,
 		4 => '`ubicacion_mobiliario`.`creado`',
 		5 => 5,
+		6 => 6,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -41,6 +43,7 @@
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "creado_por",
+		"`ubicacion_mobiliario`.`nota`" => "nota",
 	];
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = [
@@ -49,6 +52,7 @@
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "Ubicacion",
 		"`ubicacion_mobiliario`.`creado`" => "Creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "Creado por",
+		"`ubicacion_mobiliario`.`nota`" => "Nota",
 	];
 
 	// Fields that can be quick searched
@@ -58,6 +62,7 @@
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`) || CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`nombre`, ' ', `unidades1`.`abreviado`), '') /* Ubicacion */" => "ubicacion",
 		"if(`ubicacion_mobiliario`.`creado`,date_format(`ubicacion_mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_mobiliario`.`creado_por`" => "creado_por",
+		"`ubicacion_mobiliario`.`nota`" => "nota",
 	];
 
 	// Lookup fields that can be used as filterers
@@ -91,10 +96,10 @@
 	$x->TableIcon = 'table.gif';
 	$x->PrimaryKey = '`ubicacion_mobiliario`.`id`';
 
-	$x->ColWidth = [150, ];
-	$x->ColCaption = ['Ubicacion', ];
-	$x->ColFieldName = ['ubicacion', ];
-	$x->ColNumber  = [3, ];
+	$x->ColWidth = [150, 150, ];
+	$x->ColCaption = ['Ubicacion', 'Nota', ];
+	$x->ColFieldName = ['ubicacion', 'nota', ];
+	$x->ColNumber  = [3, 6, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/ubicacion_mobiliario_templateTV.html';

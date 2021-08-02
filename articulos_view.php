@@ -32,6 +32,8 @@
 		"IF(    CHAR_LENGTH(`articulos_familia1`.`codigo`) || CHAR_LENGTH(`articulos_familia1`.`proveedor`), CONCAT_WS('',   `articulos_familia1`.`codigo`, '-', `articulos_familia1`.`proveedor`), '') /* Codigo proveedor */" => "codigo_proveedor",
 		"`articulos`.`caracteristicas`" => "caracteristicas",
 		"`articulos`.`nota`" => "nota",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "ubicacion_abreviado",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "estado",
 		"if(`articulos`.`creado`,date_format(`articulos`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
@@ -52,10 +54,12 @@
 		11 => 11,
 		12 => 12,
 		13 => 13,
-		14 => '`marca_modelo1`.`img`',
-		15 => '`tipo_estado_dispo1`.`estado_dispo`',
-		16 => '`articulos`.`creado`',
-		17 => 17,
+		14 => '`unidades1`.`nombre`',
+		15 => '`unidades1`.`abreviado`',
+		16 => '`marca_modelo1`.`img`',
+		17 => '`tipo_estado_dispo1`.`estado_dispo`',
+		18 => '`articulos`.`creado`',
+		19 => 19,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -73,6 +77,8 @@
 		"IF(    CHAR_LENGTH(`articulos_familia1`.`codigo`) || CHAR_LENGTH(`articulos_familia1`.`proveedor`), CONCAT_WS('',   `articulos_familia1`.`codigo`, '-', `articulos_familia1`.`proveedor`), '') /* Codigo proveedor */" => "codigo_proveedor",
 		"`articulos`.`caracteristicas`" => "caracteristicas",
 		"`articulos`.`nota`" => "nota",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "ubicacion_abreviado",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "estado",
 		"if(`articulos`.`creado`,date_format(`articulos`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
@@ -93,6 +99,8 @@
 		"IF(    CHAR_LENGTH(`articulos_familia1`.`codigo`) || CHAR_LENGTH(`articulos_familia1`.`proveedor`), CONCAT_WS('',   `articulos_familia1`.`codigo`, '-', `articulos_familia1`.`proveedor`), '') /* Codigo proveedor */" => "Codigo proveedor",
 		"`articulos`.`caracteristicas`" => "Caracteristicas",
 		"`articulos`.`nota`" => "Nota",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "Ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "Ubicacion abreviado",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "Imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "Estado",
 		"`articulos`.`creado`" => "Creado",
@@ -114,6 +122,8 @@
 		"IF(    CHAR_LENGTH(`articulos_familia1`.`codigo`) || CHAR_LENGTH(`articulos_familia1`.`proveedor`), CONCAT_WS('',   `articulos_familia1`.`codigo`, '-', `articulos_familia1`.`proveedor`), '') /* Codigo proveedor */" => "codigo_proveedor",
 		"`articulos`.`caracteristicas`" => "caracteristicas",
 		"`articulos`.`nota`" => "nota",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion abreviado */" => "ubicacion_abreviado",
 		"IF(    CHAR_LENGTH(`marca_modelo1`.`img`), CONCAT_WS('',   `marca_modelo1`.`img`), '') /* Imagen */" => "imagen",
 		"IF(    CHAR_LENGTH(`tipo_estado_dispo1`.`estado_dispo`), CONCAT_WS('',   `tipo_estado_dispo1`.`estado_dispo`), '') /* Estado */" => "estado",
 		"if(`articulos`.`creado`,date_format(`articulos`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
@@ -121,9 +131,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['tipo_dispo' => 'Tipo de articulo', 'marca' => 'Marca', 'modelo' => 'Modelo', 'presentacion' => 'Presentacion', 'familia' => 'Familia', 'estado' => 'Estado', ];
+	$x->filterers = ['tipo_dispo' => 'Tipo de articulo', 'marca' => 'Marca', 'modelo' => 'Modelo', 'presentacion' => 'Presentacion', 'familia' => 'Familia', 'ubicacion' => 'Ubicacion', 'estado' => 'Estado', ];
 
-	$x->QueryFrom = "`articulos` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos`.`marca` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`articulos`.`modelo` LEFT JOIN `marca_presetacion` as marca_presetacion1 ON `marca_presetacion1`.`id`=`articulos`.`presentacion` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion1`.`unidad_medida` LEFT JOIN `articulos_familia` as articulos_familia1 ON `articulos_familia1`.`id`=`articulos`.`familia` LEFT JOIN `tipo_estado_dispo` as tipo_estado_dispo1 ON `tipo_estado_dispo1`.`id`=`articulos`.`estado` ";
+	$x->QueryFrom = "`articulos` LEFT JOIN `tipo_dispositivo` as tipo_dispositivo1 ON `tipo_dispositivo1`.`id_tipodispo`=`articulos`.`tipo_dispo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id_marca`=`articulos`.`marca` LEFT JOIN `marca_modelo` as marca_modelo1 ON `marca_modelo1`.`id_mmodelo`=`articulos`.`modelo` LEFT JOIN `marca_presetacion` as marca_presetacion1 ON `marca_presetacion1`.`id`=`articulos`.`presentacion` LEFT JOIN `tipo_unidad_medida` as tipo_unidad_medida1 ON `tipo_unidad_medida1`.`id`=`marca_presetacion1`.`unidad_medida` LEFT JOIN `articulos_familia` as articulos_familia1 ON `articulos_familia1`.`id`=`articulos`.`familia` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`articulos`.`ubicacion` LEFT JOIN `tipo_estado_dispo` as tipo_estado_dispo1 ON `tipo_estado_dispo1`.`id`=`articulos`.`estado` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -153,10 +163,10 @@
 	$x->DefaultSortField = '`articulos`.`creado`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Codigo', 'Nombre', 'Tipo de articulo', 'Referencia', 'Familia', 'Codigo proveedor', 'Imagen', 'Estado', ];
-	$x->ColFieldName = ['codigo', 'nombre_unico', 'tipo_dispo', 'referencia', 'familia', 'codigo_proveedor', 'imagen', 'estado', ];
-	$x->ColNumber  = [2, 3, 4, 9, 10, 11, 14, 15, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Codigo', 'Nombre', 'Tipo de articulo', 'Referencia', 'Familia', 'Codigo proveedor', 'Ubicacion', 'Ubicacion abreviado', 'Imagen', 'Estado', ];
+	$x->ColFieldName = ['codigo', 'nombre_unico', 'tipo_dispo', 'referencia', 'familia', 'codigo_proveedor', 'ubicacion', 'ubicacion_abreviado', 'imagen', 'estado', ];
+	$x->ColNumber  = [2, 3, 4, 9, 10, 11, 14, 15, 16, 17, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/articulos_templateTV.html';

@@ -26,6 +26,10 @@
 	*/
 
 	function ubicacion_articulo_init(&$options, $memberInfo, &$args) {
+		/* Inserted by Search Page Maker for AppGini on 2021-08-02 10:38:29 */
+		$options->FilterPage = 'hooks/ubicacion_articulo_filter.php';
+		/* End of Search Page Maker for AppGini code */
+
 
 		return TRUE;
 	}

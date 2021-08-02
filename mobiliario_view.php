@@ -26,9 +26,11 @@
 		"IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Tipo de mobiliario */" => "tipo_mobiliario",
 		"`mobiliario`.`descripcion`" => "descripcion",
 		"if(`mobiliario`.`fecha_ingreso`,date_format(`mobiliario`.`fecha_ingreso`,'%d/%m/%Y'),'')" => "fecha_ingreso",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "ubicacion_abreviado",
 		"`mobiliario`.`accesorios`" => "accesorios",
 		"`mobiliario`.`foto`" => "foto",
-		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "unidad",
+		"IF(    CHAR_LENGTH(`unidades2`.`nombre`), CONCAT_WS('',   `unidades2`.`nombre`), '') /* Unidad */" => "unidad",
 		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "uni_abreviado",
 		"if(`mobiliario`.`creado`,date_format(`mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`mobiliario`.`creado_por`" => "creado_por",
@@ -45,15 +47,17 @@
 		5 => '`tipo_mobiliario1`.`tipo_mobiliario`',
 		6 => 6,
 		7 => '`mobiliario`.`fecha_ingreso`',
-		8 => 8,
-		9 => 9,
-		10 => '`unidades1`.`nombre`',
-		11 => '`unidades1`.`abreviado`',
-		12 => '`mobiliario`.`creado`',
-		13 => 13,
-		14 => 14,
+		8 => '`unidades1`.`nombre`',
+		9 => '`unidades1`.`abreviado`',
+		10 => 10,
+		11 => 11,
+		12 => '`unidades2`.`nombre`',
+		13 => '`unidades1`.`abreviado`',
+		14 => '`mobiliario`.`creado`',
 		15 => 15,
 		16 => 16,
+		17 => 17,
+		18 => 18,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -65,9 +69,11 @@
 		"IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Tipo de mobiliario */" => "tipo_mobiliario",
 		"`mobiliario`.`descripcion`" => "descripcion",
 		"if(`mobiliario`.`fecha_ingreso`,date_format(`mobiliario`.`fecha_ingreso`,'%d/%m/%Y'),'')" => "fecha_ingreso",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "ubicacion_abreviado",
 		"`mobiliario`.`accesorios`" => "accesorios",
 		"`mobiliario`.`foto`" => "foto",
-		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "unidad",
+		"IF(    CHAR_LENGTH(`unidades2`.`nombre`), CONCAT_WS('',   `unidades2`.`nombre`), '') /* Unidad */" => "unidad",
 		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "uni_abreviado",
 		"if(`mobiliario`.`creado`,date_format(`mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`mobiliario`.`creado_por`" => "creado_por",
@@ -84,8 +90,10 @@
 		"IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Tipo de mobiliario */" => "Tipo de mobiliario",
 		"`mobiliario`.`descripcion`" => "Descripcion",
 		"`mobiliario`.`fecha_ingreso`" => "Fecha de ingreso",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "Ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "Ubicacion.",
 		"`mobiliario`.`accesorios`" => "Accesorios",
-		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "Unidad",
+		"IF(    CHAR_LENGTH(`unidades2`.`nombre`), CONCAT_WS('',   `unidades2`.`nombre`), '') /* Unidad */" => "Unidad",
 		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "Ubicacion",
 		"`mobiliario`.`creado`" => "Creado",
 		"`mobiliario`.`creado_por`" => "Creado por",
@@ -103,8 +111,10 @@
 		"IF(    CHAR_LENGTH(`tipo_mobiliario1`.`tipo_mobiliario`), CONCAT_WS('',   `tipo_mobiliario1`.`tipo_mobiliario`), '') /* Tipo de mobiliario */" => "tipo_mobiliario",
 		"`mobiliario`.`descripcion`" => "descripcion",
 		"if(`mobiliario`.`fecha_ingreso`,date_format(`mobiliario`.`fecha_ingreso`,'%d/%m/%Y'),'')" => "fecha_ingreso",
+		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion. */" => "ubicacion_abreviado",
 		"`mobiliario`.`accesorios`" => "accesorios",
-		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Unidad */" => "unidad",
+		"IF(    CHAR_LENGTH(`unidades2`.`nombre`), CONCAT_WS('',   `unidades2`.`nombre`), '') /* Unidad */" => "unidad",
 		"IF(    CHAR_LENGTH(`unidades1`.`abreviado`), CONCAT_WS('',   `unidades1`.`abreviado`), '') /* Ubicacion */" => "uni_abreviado",
 		"if(`mobiliario`.`creado`,date_format(`mobiliario`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`mobiliario`.`creado_por`" => "creado_por",
@@ -114,9 +124,9 @@
 	];
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = ['grupo' => 'Grupo', 'tipo_mobiliario' => 'Tipo de mobiliario', 'unidad' => 'Unidad', ];
+	$x->filterers = ['grupo' => 'Grupo', 'tipo_mobiliario' => 'Tipo de mobiliario', 'ubicacion' => 'Ubicacion', 'unidad' => 'Unidad', ];
 
-	$x->QueryFrom = "`mobiliario` LEFT JOIN `tipo_grupo_mobilia` as tipo_grupo_mobilia1 ON `tipo_grupo_mobilia1`.`id_gru_mo`=`mobiliario`.`grupo` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`mobiliario`.`unidad` ";
+	$x->QueryFrom = "`mobiliario` LEFT JOIN `tipo_grupo_mobilia` as tipo_grupo_mobilia1 ON `tipo_grupo_mobilia1`.`id_gru_mo`=`mobiliario`.`grupo` LEFT JOIN `tipo_mobiliario` as tipo_mobiliario1 ON `tipo_mobiliario1`.`id`=`mobiliario`.`tipo_mobiliario` LEFT JOIN `unidades` as unidades1 ON `unidades1`.`id_unidades`=`mobiliario`.`ubicacion` LEFT JOIN `unidades` as unidades2 ON `unidades2`.`id_unidades`=`mobiliario`.`unidad` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -146,10 +156,10 @@
 	$x->DefaultSortField = '`mobiliario`.`creado`';
 	$x->DefaultSortDirection = 'desc';
 
-	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, ];
-	$x->ColCaption = ['Codigo', 'Nombre', 'Grupo', 'Descripcion', 'Fecha de ingreso', 'Foto', 'Ubicacion', ];
-	$x->ColFieldName = ['codigo', 'nombre', 'grupo', 'descripcion', 'fecha_ingreso', 'foto', 'uni_abreviado', ];
-	$x->ColNumber  = [2, 3, 4, 6, 7, 9, 11, ];
+	$x->ColWidth = [150, 150, 150, 150, 150, 150, 150, 150, ];
+	$x->ColCaption = ['Codigo', 'Nombre', 'Grupo', 'Descripcion', 'Fecha de ingreso', 'Ubicacion.', 'Foto', 'Ubicacion', ];
+	$x->ColFieldName = ['codigo', 'nombre', 'grupo', 'descripcion', 'fecha_ingreso', 'ubicacion_abreviado', 'foto', 'uni_abreviado', ];
+	$x->ColNumber  = [2, 3, 4, 6, 7, 9, 11, 13, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/mobiliario_templateTV.html';

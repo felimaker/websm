@@ -22,6 +22,7 @@
 		"`ubicacion_articulo`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"`ubicacion_articulo`.`nota`" => "nota",
 		"if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_articulo`.`creado_por`" => "creado_por",
 	];
@@ -30,8 +31,9 @@
 		1 => '`ubicacion_articulo`.`id`',
 		2 => 2,
 		3 => '`unidades1`.`nombre`',
-		4 => '`ubicacion_articulo`.`creado`',
-		5 => 5,
+		4 => 4,
+		5 => '`ubicacion_articulo`.`creado`',
+		6 => 6,
 	];
 
 	// Fields that can be displayed in the csv file
@@ -39,6 +41,7 @@
 		"`ubicacion_articulo`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"`ubicacion_articulo`.`nota`" => "nota",
 		"if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_articulo`.`creado_por`" => "creado_por",
 	];
@@ -47,6 +50,7 @@
 		"`ubicacion_articulo`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "Articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "Ubicacion",
+		"`ubicacion_articulo`.`nota`" => "Nota",
 		"`ubicacion_articulo`.`creado`" => "Creado",
 		"`ubicacion_articulo`.`creado_por`" => "Creado por",
 	];
@@ -56,6 +60,7 @@
 		"`ubicacion_articulo`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`articulos1`.`nombre_unico`) || CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `articulos1`.`nombre_unico`, ' ', `marcas1`.`marca`), '') /* Articulo */" => "id_articulo",
 		"IF(    CHAR_LENGTH(`unidades1`.`nombre`), CONCAT_WS('',   `unidades1`.`nombre`), '') /* Ubicacion */" => "ubicacion",
+		"`ubicacion_articulo`.`nota`" => "nota",
 		"if(`ubicacion_articulo`.`creado`,date_format(`ubicacion_articulo`.`creado`,'%d/%m/%Y %h:%i %p'),'')" => "creado",
 		"`ubicacion_articulo`.`creado_por`" => "creado_por",
 	];
@@ -91,10 +96,10 @@
 	$x->TableIcon = 'resources/table_icons/building.png';
 	$x->PrimaryKey = '`ubicacion_articulo`.`id`';
 
-	$x->ColWidth = [150, 150, 150, ];
-	$x->ColCaption = ['Articulo', 'Ubicacion', 'Creado', ];
-	$x->ColFieldName = ['id_articulo', 'ubicacion', 'creado', ];
-	$x->ColNumber  = [2, 3, 4, ];
+	$x->ColWidth = [150, 150, 150, 150, ];
+	$x->ColCaption = ['Articulo', 'Ubicacion', 'Nota', 'Creado', ];
+	$x->ColFieldName = ['id_articulo', 'ubicacion', 'nota', 'creado', ];
+	$x->ColNumber  = [2, 3, 4, 5, ];
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/ubicacion_articulo_templateTV.html';

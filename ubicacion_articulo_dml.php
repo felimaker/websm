@@ -15,6 +15,7 @@ function ubicacion_articulo_insert(&$error_message = '') {
 	$data = [
 		'id_articulo' => Request::lookup('id_articulo', ''),
 		'ubicacion' => Request::lookup('ubicacion', ''),
+		'nota' => br2nl(Request::val('nota', '')),
 		'creado' => parseCode('<%%creationDateTime%%>', true, true),
 		'creado_por' => parseCode('<%%creatorUsername%%>', true),
 	];
@@ -117,6 +118,7 @@ function ubicacion_articulo_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'id_articulo' => Request::lookup('id_articulo', ''),
 		'ubicacion' => Request::lookup('ubicacion', ''),
+		'nota' => br2nl(Request::val('nota', '')),
 	];
 
 	if($data['ubicacion'] === '') {
@@ -472,6 +474,7 @@ function ubicacion_articulo_form($selected_id = '', $AllowUpdate = 1, $AllowInse
 		$jsReadOnly .= "\tjQuery('#id_articulo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#ubicacion').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#ubicacion_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\tjQuery('#nota').replaceWith('<div class=\"form-control-static\" id=\"nota\">' + (jQuery('#nota').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -508,6 +511,7 @@ function ubicacion_articulo_form($selected_id = '', $AllowUpdate = 1, $AllowInse
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(id_articulo)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(ubicacion)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(nota)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(creado)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(creado_por)%%>', '', $templateCode);
 
@@ -522,6 +526,12 @@ function ubicacion_articulo_form($selected_id = '', $AllowUpdate = 1, $AllowInse
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', safe_html($urow['ubicacion']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', html_attr($row['ubicacion']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode($urow['ubicacion']), $templateCode);
+		if($dvprint || (!$AllowUpdate && !$AllowInsert)) {
+			$templateCode = str_replace('<%%VALUE(nota)%%>', safe_html($urow['nota']), $templateCode);
+		} else {
+			$templateCode = str_replace('<%%VALUE(nota)%%>', safe_html($urow['nota'], true), $templateCode);
+		}
+		$templateCode = str_replace('<%%URLVALUE(nota)%%>', urlencode($urow['nota']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado)%%>', app_datetime($row['creado'], 'dt'), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(creado)%%>', urlencode(app_datetime($urow['creado'], 'dt')), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado_por)%%>', safe_html($urow['creado_por']), $templateCode);
@@ -533,6 +543,8 @@ function ubicacion_articulo_form($selected_id = '', $AllowUpdate = 1, $AllowInse
 		$templateCode = str_replace('<%%URLVALUE(id_articulo)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(ubicacion)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(nota)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(nota)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado)%%>', '<%%creationDateTime%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(creado)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado_por)%%>', '<%%creatorUsername%%>', $templateCode);

@@ -26,6 +26,10 @@
 	*/
 
 	function movi_recepcion_articulos_init(&$options, $memberInfo, &$args) {
+		/* Inserted by Search Page Maker for AppGini on 2021-08-02 10:38:29 */
+		$options->FilterPage = 'hooks/movi_recepcion_articulos_filter.php';
+		/* End of Search Page Maker for AppGini code */
+
 
 		return TRUE;
 	}

@@ -17,6 +17,7 @@ function ubicacion_mobiliario_insert(&$error_message = '') {
 		'ubicacion' => Request::lookup('ubicacion', ''),
 		'creado' => parseCode('<%%creationDateTime%%>', true, true),
 		'creado_por' => parseCode('<%%creatorUsername%%>', true),
+		'nota' => br2nl(Request::val('nota', '')),
 	];
 
 	if($data['ubicacion'] === '') {
@@ -117,6 +118,7 @@ function ubicacion_mobiliario_update(&$selected_id, &$error_message = '') {
 	$data = [
 		'id_mobiliario' => Request::lookup('id_mobiliario', ''),
 		'ubicacion' => Request::lookup('ubicacion', ''),
+		'nota' => br2nl(Request::val('nota', '')),
 	];
 
 	if($data['ubicacion'] === '') {
@@ -472,6 +474,7 @@ function ubicacion_mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowIn
 		$jsReadOnly .= "\tjQuery('#id_mobiliario_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#ubicacion').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#ubicacion_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\tjQuery('#nota').replaceWith('<div class=\"form-control-static\" id=\"nota\">' + (jQuery('#nota').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -510,6 +513,7 @@ function ubicacion_mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowIn
 	$templateCode = str_replace('<%%UPLOADFILE(ubicacion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(creado)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(creado_por)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(nota)%%>', '', $templateCode);
 
 	// process values
 	if($selected_id) {
@@ -526,6 +530,12 @@ function ubicacion_mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowIn
 		$templateCode = str_replace('<%%URLVALUE(creado)%%>', urlencode(app_datetime($urow['creado'], 'dt')), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado_por)%%>', safe_html($urow['creado_por']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(creado_por)%%>', urlencode($urow['creado_por']), $templateCode);
+		if($dvprint || (!$AllowUpdate && !$AllowInsert)) {
+			$templateCode = str_replace('<%%VALUE(nota)%%>', safe_html($urow['nota']), $templateCode);
+		} else {
+			$templateCode = str_replace('<%%VALUE(nota)%%>', safe_html($urow['nota'], true), $templateCode);
+		}
+		$templateCode = str_replace('<%%URLVALUE(nota)%%>', urlencode($urow['nota']), $templateCode);
 	} else {
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -537,6 +547,8 @@ function ubicacion_mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowIn
 		$templateCode = str_replace('<%%URLVALUE(creado)%%>', urlencode('<%%creationDateTime%%>'), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado_por)%%>', '<%%creatorUsername%%>', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(creado_por)%%>', urlencode('<%%creatorUsername%%>'), $templateCode);
+		$templateCode = str_replace('<%%VALUE(nota)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(nota)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

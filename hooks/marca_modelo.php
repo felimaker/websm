@@ -2,6 +2,10 @@
 	// For help on using hooks, please refer to https://bigprof.com/appgini/help/working-with-generated-web-database-application/hooks
 
 	function marca_modelo_init(&$options, $memberInfo, &$args) {
+		/* Inserted by Search Page Maker for AppGini on 2021-08-02 10:38:29 */
+		$options->FilterPage = 'hooks/marca_modelo_filter.php';
+		/* End of Search Page Maker for AppGini code */
+
 
 		return TRUE;
 	}
