@@ -1238,9 +1238,7 @@
 				`presentacion` VARCHAR(40) NOT NULL,
 				`unidad_medida` INT UNSIGNED NULL
 			) CHARSET utf8",
-			$silent, [
-				"ALTER TABLE `marca_presetacion` CHANGE `marca` `modelo` INT UNSIGNED NULL ",
-			]
+			$silent
 		);
 		setupIndexes('marca_presetacion', ['modelo','unidad_medida',]);
 

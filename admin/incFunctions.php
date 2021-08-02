@@ -3883,10 +3883,8 @@ WHERE `dispositivos`.`id_dispo`=\'%ID%\'',
 WHERE `financiero`.`id_dispo`=\'%ID%\'',
 			),
 			'mobiliario' => array(
-				'codigo' => 'SELECT CONCAT("MO-", `tipo_grupo_mobilia`.`prefijo`, "-0", `mobiliario`.`id_mobiliario`)
+				'codigo' => 'SELECT CONCAT("SM", `mobiliario`.`id_mobiliario`)
 FROM `mobiliario`
-INNER JOIN `tipo_grupo_mobilia`
-ON `mobiliario`.`grupo` = `tipo_grupo_mobilia`.`id_gru_mo`
 WHERE `mobiliario`.`id_mobiliario`=%ID%',
 				'nombre' => 'SELECT CONCAT(`tipo_grupo_mobilia`.`grupo`,\' \',`tipo_mobiliario`.`tipo_mobiliario`, \' \',`mobiliario`.`id_mobiliario`)
 FROM `mobiliario` 
@@ -4071,10 +4069,8 @@ WHERE `compra_dispo`.`id`=%ID%',
 WHERE `financiero`.`id_dispo`=\'%ID%\'',
 			),
 			'articulos' => array(
-				'codigo' => 'SELECT CONCAT("D-",`tipo_dispositivo`.`prefijo`, "-0", `articulos`.`id`)
+				'codigo' => 'SELECT CONCAT("SM",`articulos`.`id`)
 FROM `articulos`
-INNER JOIN `tipo_dispositivo`
-ON `articulos`.`tipo_dispo` = `tipo_dispositivo`.`id_tipodispo`
 WHERE `articulos`.`id`=%ID%',
 				'nombre_unico' => 'SELECT CONCAT(`tipo_dispositivo`.`tipo_dispositivo`, \' \',`marcas`.`marca`, \' \',`marca_modelo`.`modelo`,\' \',`marca_presetacion`.`presentacion`)
 FROM `articulos` 
