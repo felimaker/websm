@@ -50,6 +50,8 @@
 				`tipo_mobiliario` INT UNSIGNED NOT NULL,
 				`descripcion` TEXT NULL,
 				`fecha_ingreso` DATE NOT NULL,
+				`ubicacion` INT UNSIGNED NULL,
+				`ubicacion_abreviado` INT UNSIGNED NULL,
 				`accesorios` TEXT NULL,
 				`foto` VARCHAR(40) NULL,
 				`unidad` INT UNSIGNED NULL,
@@ -62,7 +64,7 @@
 			) CHARSET utf8",
 			$silent
 		);
-		setupIndexes('mobiliario', ['grupo','tipo_mobiliario','unidad',]);
+		setupIndexes('mobiliario', ['grupo','tipo_mobiliario','ubicacion','unidad',]);
 
 		setupTable(
 			'contactos', " 
@@ -1204,14 +1206,21 @@
 				`codigo_proveedor` INT UNSIGNED NULL,
 				`caracteristicas` TEXT NULL,
 				`nota` VARCHAR(40) NULL,
+				`ubicacion` INT UNSIGNED NULL,
+				`ubicacion_abreviado` INT UNSIGNED NULL,
 				`imagen` INT UNSIGNED NULL,
 				`estado` INT UNSIGNED NULL,
 				`creado` DATETIME NULL,
 				`creado_por` VARCHAR(40) NULL
 			) CHARSET utf8",
-			$silent
+			$silent, [
+				"ALTER TABLE articulos ADD `field18` VARCHAR(40)",
+				"ALTER TABLE `articulos` CHANGE `field18` `ubicacion` VARCHAR(40) NULL ",
+				"ALTER TABLE articulos ADD `field19` VARCHAR(40)",
+				"ALTER TABLE `articulos` CHANGE `field19` `ubicacion_abreviado` VARCHAR(40) NULL ",
+			]
 		);
-		setupIndexes('articulos', ['tipo_dispo','marca','modelo','presentacion','familia','estado',]);
+		setupIndexes('articulos', ['tipo_dispo','marca','modelo','presentacion','familia','ubicacion','estado',]);
 
 		setupTable(
 			'cofig', " 
@@ -1421,10 +1430,15 @@
 				PRIMARY KEY (`id`),
 				`id_articulo` INT UNSIGNED NULL,
 				`ubicacion` INT UNSIGNED NOT NULL,
+				`nota` TEXT NULL,
 				`creado` DATETIME NULL,
 				`creado_por` VARCHAR(40) NULL
 			) CHARSET utf8",
-			$silent
+			$silent, [
+				"ALTER TABLE ubicacion_articulo ADD `field6` VARCHAR(40)",
+				"ALTER TABLE `ubicacion_articulo` CHANGE `field6` `nota` VARCHAR(40) NULL ",
+				" ALTER TABLE `ubicacion_articulo` CHANGE `nota` `nota` TEXT NULL ",
+			]
 		);
 		setupIndexes('ubicacion_articulo', ['id_articulo','ubicacion',]);
 
@@ -1436,9 +1450,14 @@
 				`id_mobiliario` INT UNSIGNED NULL,
 				`ubicacion` INT UNSIGNED NOT NULL,
 				`creado` DATETIME NULL,
-				`creado_por` VARCHAR(40) NULL
+				`creado_por` VARCHAR(40) NULL,
+				`nota` TEXT NULL
 			) CHARSET utf8",
-			$silent
+			$silent, [
+				"ALTER TABLE ubicacion_mobiliario ADD `field6` VARCHAR(40)",
+				"ALTER TABLE `ubicacion_mobiliario` CHANGE `field6` `nota` VARCHAR(40) NULL ",
+				" ALTER TABLE `ubicacion_mobiliario` CHANGE `nota` `nota` TEXT NULL ",
+			]
 		);
 		setupIndexes('ubicacion_mobiliario', ['id_mobiliario','ubicacion',]);
 

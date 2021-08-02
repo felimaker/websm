@@ -25,9 +25,11 @@
 			if(isset($data['grupo'])) $data['grupo'] = pkGivenLookupText($data['grupo'], 'mobiliario', 'grupo');
 			if(isset($data['tipo_mobiliario'])) $data['tipo_mobiliario'] = pkGivenLookupText($data['tipo_mobiliario'], 'mobiliario', 'tipo_mobiliario');
 			if(isset($data['fecha_ingreso'])) $data['fecha_ingreso'] = guessMySQLDateTime($data['fecha_ingreso']);
+			if(isset($data['ubicacion'])) $data['ubicacion'] = pkGivenLookupText($data['ubicacion'], 'mobiliario', 'ubicacion');
 			if(isset($data['unidad'])) $data['unidad'] = pkGivenLookupText($data['unidad'], 'mobiliario', 'unidad');
 			if(isset($data['creado'])) $data['creado'] = guessMySQLDateTime($data['creado']);
-			if(isset($data['uni_abreviado'])) $data['uni_abreviado'] = thisOr($data['unidad'], pkGivenLookupText($data['uni_abreviado'], 'mobiliario', 'uni_abreviado'));
+			if(isset($data['ubicacion_abreviado'])) $data['ubicacion_abreviado'] = thisOr($data['ubicacion'], pkGivenLookupText($data['ubicacion_abreviado'], 'mobiliario', 'ubicacion_abreviado'));
+			if(isset($data['uni_abreviado'])) $data['uni_abreviado'] = thisOr($data['ubicacion'], pkGivenLookupText($data['uni_abreviado'], 'mobiliario', 'uni_abreviado'));
 
 			return $data;
 		},
@@ -521,9 +523,11 @@
 			if(isset($data['modelo'])) $data['modelo'] = pkGivenLookupText($data['modelo'], 'articulos', 'modelo');
 			if(isset($data['presentacion'])) $data['presentacion'] = pkGivenLookupText($data['presentacion'], 'articulos', 'presentacion');
 			if(isset($data['familia'])) $data['familia'] = pkGivenLookupText($data['familia'], 'articulos', 'familia');
+			if(isset($data['ubicacion'])) $data['ubicacion'] = pkGivenLookupText($data['ubicacion'], 'articulos', 'ubicacion');
 			if(isset($data['estado'])) $data['estado'] = pkGivenLookupText($data['estado'], 'articulos', 'estado');
 			if(isset($data['creado'])) $data['creado'] = guessMySQLDateTime($data['creado']);
 			if(isset($data['codigo_proveedor'])) $data['codigo_proveedor'] = thisOr($data['familia'], pkGivenLookupText($data['codigo_proveedor'], 'articulos', 'codigo_proveedor'));
+			if(isset($data['ubicacion_abreviado'])) $data['ubicacion_abreviado'] = thisOr($data['ubicacion'], pkGivenLookupText($data['ubicacion_abreviado'], 'articulos', 'ubicacion_abreviado'));
 			if(isset($data['imagen'])) $data['imagen'] = thisOr($data['modelo'], pkGivenLookupText($data['imagen'], 'articulos', 'imagen'));
 
 			return $data;

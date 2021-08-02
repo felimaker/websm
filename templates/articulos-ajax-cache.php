@@ -14,6 +14,8 @@
 			presentacion: <?php echo json_encode(array('id' => $rdata['presentacion'], 'value' => $rdata['presentacion'], 'text' => $jdata['presentacion'])); ?>,
 			familia: <?php echo json_encode(array('id' => $rdata['familia'], 'value' => $rdata['familia'], 'text' => $jdata['familia'])); ?>,
 			codigo_proveedor: <?php echo json_encode($jdata['codigo_proveedor']); ?>,
+			ubicacion: <?php echo json_encode(array('id' => $rdata['ubicacion'], 'value' => $rdata['ubicacion'], 'text' => $jdata['ubicacion'])); ?>,
+			ubicacion_abreviado: <?php echo json_encode($jdata['ubicacion_abreviado']); ?>,
 			imagen: (<?php echo strlen($jdata['imagen']); ?> > 0 ? '<a href="<?php echo getUploadDir('') . addslashes(str_replace(["\r", "\n"], '', $jdata['imagen'])); ?>" data-lightbox="articulos_dv"><img src="thumbnail.php?i=<?php echo urlencode($jdata['imagen']); ?>&t=marca_modelo&f=img&v=dv" class="img-thumbnail"></a>' : '<img src="photo.gif" class="img-thumbnail">'),
 			estado: <?php echo json_encode(array('id' => $rdata['estado'], 'value' => $rdata['estado'], 'text' => $jdata['estado'])); ?>
 		};
@@ -85,6 +87,28 @@
 
 			if(d.mfk == 'familia' && d.id == data.familia.id) {
 				$j('#codigo_proveedor' + d[rnd]).html(data.codigo_proveedor);
+				return true;
+			}
+
+			return false;
+		});
+
+		/* saved value for ubicacion */
+		cache.addCheck(function(u, d) {
+			if(u != 'ajax_combo.php') return false;
+			if(d.t == tn && d.f == 'ubicacion' && d.id == data.ubicacion.id)
+				return { results: [ data.ubicacion ], more: false, elapsed: 0.01 };
+			return false;
+		});
+
+		/* saved value for ubicacion autofills */
+		cache.addCheck(function(u, d) {
+			if(u != tn + '_autofill.php') return false;
+
+			for(var rnd in d) if(rnd.match(/^rnd/)) break;
+
+			if(d.mfk == 'ubicacion' && d.id == data.ubicacion.id) {
+				$j('#ubicacion_abreviado' + d[rnd]).html(data.ubicacion_abreviado);
 				return true;
 			}
 

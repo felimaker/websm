@@ -22,9 +22,10 @@
 
 	switch($mfk) {
 
-		case 'unidad':
+		case 'ubicacion':
 			if(!$id) {
 				?>
+				$j('#ubicacion_abreviado<?php echo $rnd1; ?>').html('&nbsp;');
 				$j('#uni_abreviado<?php echo $rnd1; ?>').html('&nbsp;');
 				<?php
 				break;
@@ -32,6 +33,7 @@
 			$res = sql("SELECT `unidades`.`id_unidades` as 'id_unidades', `unidades`.`nombre` as 'nombre', `unidades`.`abreviado` as 'abreviado', IF(    CHAR_LENGTH(`ciudades1`.`ciudad`), CONCAT_WS('',   `ciudades1`.`ciudad`), '') as 'ciudad', `unidades`.`telefono` as 'telefono', `unidades`.`direccion` as 'direccion', `unidades`.`ubicacion` as 'ubicacion', IF(    CHAR_LENGTH(`prestador1`.`nombre`) || CHAR_LENGTH(`prestador1`.`nit`), CONCAT_WS('',   `prestador1`.`nombre`, ' | ', `prestador1`.`nit`), '') as 'prestador', `unidades`.`logo` as 'logo', `unidades`.`dispositivos_costo` as 'dispositivos_costo', `unidades`.`mobiliario_costo` as 'mobiliario_costo', `unidades`.`costo_total` as 'costo_total' FROM `unidades` LEFT JOIN `ciudades` as ciudades1 ON `ciudades1`.`id_ciudad`=`unidades`.`ciudad` LEFT JOIN `prestador` as prestador1 ON `prestador1`.`id`=`unidades`.`prestador`  WHERE `unidades`.`id_unidades`='{$id}' limit 1", $eo);
 			$row = db_fetch_assoc($res);
 			?>
+			$j('#ubicacion_abreviado<?php echo $rnd1; ?>').html('<?php echo addslashes(str_replace(array("\r", "\n"), '', nl2br($row['abreviado']))); ?>&nbsp;');
 			$j('#uni_abreviado<?php echo $rnd1; ?>').html('<?php echo addslashes(str_replace(array("\r", "\n"), '', nl2br($row['abreviado']))); ?>&nbsp;');
 			<?php
 			break;

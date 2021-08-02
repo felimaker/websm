@@ -23,6 +23,8 @@ function articulos_insert(&$error_message = '') {
 		'codigo_proveedor' => Request::lookup('familia'),
 		'caracteristicas' => br2nl(Request::val('caracteristicas', '')),
 		'nota' => Request::val('nota', ''),
+		'ubicacion' => Request::lookup('ubicacion', ''),
+		'ubicacion_abreviado' => Request::lookup('ubicacion'),
 		'imagen' => Request::lookup('modelo'),
 		'estado' => Request::lookup('estado', ''),
 		'creado' => parseCode('<%%creationDateTime%%>', true, true),
@@ -211,6 +213,8 @@ function articulos_update(&$selected_id, &$error_message = '') {
 		'codigo_proveedor' => Request::lookup('familia'),
 		'caracteristicas' => br2nl(Request::val('caracteristicas', '')),
 		'nota' => Request::val('nota', ''),
+		'ubicacion' => Request::lookup('ubicacion', ''),
+		'ubicacion_abreviado' => Request::lookup('ubicacion'),
 		'imagen' => Request::lookup('modelo'),
 		'estado' => Request::lookup('estado', ''),
 	];
@@ -296,6 +300,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$filterer_modelo = thisOr($_REQUEST['filterer_modelo'], '');
 	$filterer_presentacion = thisOr($_REQUEST['filterer_presentacion'], '');
 	$filterer_familia = thisOr($_REQUEST['filterer_familia'], '');
+	$filterer_ubicacion = thisOr($_REQUEST['filterer_ubicacion'], '');
 	$filterer_estado = thisOr($_REQUEST['filterer_estado'], '');
 
 	// populate filterers, starting from children to grand-parents
@@ -315,6 +320,8 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$combo_presentacion = new DataCombo;
 	// combobox: familia
 	$combo_familia = new DataCombo;
+	// combobox: ubicacion
+	$combo_ubicacion = new DataCombo;
 	// combobox: estado
 	$combo_estado = new DataCombo;
 
@@ -344,6 +351,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$combo_modelo->SelectedData = $row['modelo'];
 		$combo_presentacion->SelectedData = $row['presentacion'];
 		$combo_familia->SelectedData = $row['familia'];
+		$combo_ubicacion->SelectedData = $row['ubicacion'];
 		$combo_estado->SelectedData = $row['estado'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
@@ -353,6 +361,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$combo_modelo->SelectedData = $filterer_modelo;
 		$combo_presentacion->SelectedData = $filterer_presentacion;
 		$combo_familia->SelectedData = $filterer_familia;
+		$combo_ubicacion->SelectedData = $filterer_ubicacion;
 		$combo_estado->SelectedData = $filterer_estado;
 	}
 	$combo_tipo_dispo->HTML = '<span id="tipo_dispo-container' . $rnd1 . '"></span><input type="hidden" name="tipo_dispo" id="tipo_dispo' . $rnd1 . '" value="' . html_attr($combo_tipo_dispo->SelectedData) . '">';
@@ -365,6 +374,8 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$combo_presentacion->MatchText = '<span id="presentacion-container-readonly' . $rnd1 . '"></span><input type="hidden" name="presentacion" id="presentacion' . $rnd1 . '" value="' . html_attr($combo_presentacion->SelectedData) . '">';
 	$combo_familia->HTML = '<span id="familia-container' . $rnd1 . '"></span><input type="hidden" name="familia" id="familia' . $rnd1 . '" value="' . html_attr($combo_familia->SelectedData) . '">';
 	$combo_familia->MatchText = '<span id="familia-container-readonly' . $rnd1 . '"></span><input type="hidden" name="familia" id="familia' . $rnd1 . '" value="' . html_attr($combo_familia->SelectedData) . '">';
+	$combo_ubicacion->HTML = '<span id="ubicacion-container' . $rnd1 . '"></span><input type="hidden" name="ubicacion" id="ubicacion' . $rnd1 . '" value="' . html_attr($combo_ubicacion->SelectedData) . '">';
+	$combo_ubicacion->MatchText = '<span id="ubicacion-container-readonly' . $rnd1 . '"></span><input type="hidden" name="ubicacion" id="ubicacion' . $rnd1 . '" value="' . html_attr($combo_ubicacion->SelectedData) . '">';
 	$combo_estado->HTML = '<span id="estado-container' . $rnd1 . '"></span><input type="hidden" name="estado" id="estado' . $rnd1 . '" value="' . html_attr($combo_estado->SelectedData) . '">';
 	$combo_estado->MatchText = '<span id="estado-container-readonly' . $rnd1 . '"></span><input type="hidden" name="estado" id="estado' . $rnd1 . '" value="' . html_attr($combo_estado->SelectedData) . '">';
 
@@ -378,6 +389,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		AppGini.current_modelo__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['modelo'] : htmlspecialchars($filterer_modelo, ENT_QUOTES)); ?>"};
 		AppGini.current_presentacion__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['presentacion'] : htmlspecialchars($filterer_presentacion, ENT_QUOTES)); ?>"};
 		AppGini.current_familia__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['familia'] : htmlspecialchars($filterer_familia, ENT_QUOTES)); ?>"};
+		AppGini.current_ubicacion__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['ubicacion'] : htmlspecialchars($filterer_ubicacion, ENT_QUOTES)); ?>"};
 		AppGini.current_estado__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['estado'] : htmlspecialchars($filterer_estado, ENT_QUOTES)); ?>"};
 
 		jQuery(function() {
@@ -387,6 +399,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 				<?php echo (!$AllowUpdate || $dvprint ? 'if(typeof(modelo_reload__RAND__) == \'function\') modelo_reload__RAND__(AppGini.current_marca__RAND__.value);' : ''); ?>
 				<?php echo (!$AllowUpdate || $dvprint ? 'if(typeof(presentacion_reload__RAND__) == \'function\') presentacion_reload__RAND__(AppGini.current_marca__RAND__.value);' : ''); ?>
 				if(typeof(familia_reload__RAND__) == 'function') familia_reload__RAND__();
+				if(typeof(ubicacion_reload__RAND__) == 'function') ubicacion_reload__RAND__();
 				if(typeof(estado_reload__RAND__) == 'function') estado_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -781,6 +794,83 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		<?php } ?>
 
 		}
+		function ubicacion_reload__RAND__() {
+		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint) { ?>
+
+			$j("#ubicacion-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c) {
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_ubicacion__RAND__.value, t: 'articulos', f: 'ubicacion' },
+						success: function(resp) {
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="ubicacion"]').val(resp.results[0].id);
+							$j('[id=ubicacion-container-readonly__RAND__]').html('<span id="ubicacion-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+
+							if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page) { return { s: term, p: page, t: 'articulos', f: 'ubicacion' }; },
+					results: function(resp, page) { return resp; }
+				},
+				escapeMarkup: function(str) { return str; }
+			}).on('change', function(e) {
+				AppGini.current_ubicacion__RAND__.value = e.added.id;
+				AppGini.current_ubicacion__RAND__.text = e.added.text;
+				$j('[name="ubicacion"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+
+				if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+			});
+
+			if(!$j("#ubicacion-container__RAND__").length) {
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_ubicacion__RAND__.value, t: 'articulos', f: 'ubicacion' },
+					success: function(resp) {
+						$j('[name="ubicacion"]').val(resp.results[0].id);
+						$j('[id=ubicacion-container-readonly__RAND__]').html('<span id="ubicacion-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+						if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php } else { ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_ubicacion__RAND__.value, t: 'articulos', f: 'ubicacion' },
+				success: function(resp) {
+					$j('[id=ubicacion-container__RAND__], [id=ubicacion-container-readonly__RAND__]').html('<span id="ubicacion-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+					if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
 		function estado_reload__RAND__() {
 		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint) { ?>
 
@@ -931,6 +1021,8 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$jsReadOnly .= "\tjQuery('#familia_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#caracteristicas').replaceWith('<div class=\"form-control-static\" id=\"caracteristicas\">' + (jQuery('#caracteristicas').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#nota').replaceWith('<div class=\"form-control-static\" id=\"nota\">' + (jQuery('#nota').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#ubicacion').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#ubicacion_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#estado').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#estado_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
@@ -957,12 +1049,15 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$templateCode = str_replace('<%%COMBO(familia)%%>', $combo_familia->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(familia)%%>', $combo_familia->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(familia)%%>', urlencode($combo_familia->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(ubicacion)%%>', $combo_ubicacion->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(ubicacion)%%>', $combo_ubicacion->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(ubicacion)%%>', urlencode($combo_ubicacion->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(estado)%%>', $combo_estado->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(estado)%%>', $combo_estado->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(estado)%%>', urlencode($combo_estado->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => array('parent table name', 'lookup field caption') */
-	$lookup_fields = array('tipo_dispo' => array('tipo_dispositivo', 'Tipo de articulo'), 'marca' => array('marcas', 'Marca'), 'modelo' => array('marca_modelo', 'Modelo'), 'presentacion' => array('marca_presetacion', 'Presentacion'), 'familia' => array('articulos_familia', 'Familia'), 'estado' => array('tipo_estado_dispo', 'Estado'), );
+	$lookup_fields = array('tipo_dispo' => array('tipo_dispositivo', 'Tipo de articulo'), 'marca' => array('marcas', 'Marca'), 'modelo' => array('marca_modelo', 'Modelo'), 'presentacion' => array('marca_presetacion', 'Presentacion'), 'familia' => array('articulos_familia', 'Familia'), 'ubicacion' => array('unidades', 'Ubicacion'), 'estado' => array('tipo_estado_dispo', 'Estado'), );
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -990,6 +1085,7 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$templateCode = str_replace('<%%UPLOADFILE(familia)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(caracteristicas)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(nota)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(ubicacion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(estado)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(creado)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(creado_por)%%>', '', $templateCode);
@@ -1033,6 +1129,9 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(nota)%%>', safe_html($urow['nota']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(nota)%%>', html_attr($row['nota']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(nota)%%>', urlencode($urow['nota']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', safe_html($urow['ubicacion']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', html_attr($row['ubicacion']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode($urow['ubicacion']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(estado)%%>', safe_html($urow['estado']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(estado)%%>', html_attr($row['estado']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(estado)%%>', urlencode($urow['estado']), $templateCode);
@@ -1065,6 +1164,8 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		$templateCode = str_replace('<%%URLVALUE(caracteristicas)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(nota)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(nota)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(ubicacion)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(estado)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(estado)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(creado)%%>', '<%%creationDateTime%%>', $templateCode);
@@ -1135,6 +1236,23 @@ function articulos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 	$templateCode .= "\t\t});\n";
 	$templateCode .= "\t};\n";
 	if(!$dvprint) $templateCode .= "\tif(\$j('#familia_caption').length) \$j('#familia_caption').click(function() { familia_update_autofills$rnd1(); });\n";
+
+	$templateCode .= "\tubicacion_update_autofills$rnd1 = function() {\n";
+	$templateCode .= "\t\t\$j.ajax({\n";
+	if($dvprint) {
+		$templateCode .= "\t\t\turl: 'articulos_autofill.php?rnd1=$rnd1&mfk=ubicacion&id=' + encodeURIComponent('".addslashes($row['ubicacion'])."'),\n";
+		$templateCode .= "\t\t\tcontentType: 'application/x-www-form-urlencoded; charset=" . datalist_db_encoding . "',\n";
+		$templateCode .= "\t\t\ttype: 'GET'\n";
+	} else {
+		$templateCode .= "\t\t\turl: 'articulos_autofill.php?rnd1=$rnd1&mfk=ubicacion&id=' + encodeURIComponent(AppGini.current_ubicacion{$rnd1}.value),\n";
+		$templateCode .= "\t\t\tcontentType: 'application/x-www-form-urlencoded; charset=" . datalist_db_encoding . "',\n";
+		$templateCode .= "\t\t\ttype: 'GET',\n";
+		$templateCode .= "\t\t\tbeforeSend: function() { \$j('#ubicacion$rnd1').prop('disabled', true); \$j('#ubicacionLoading').html('<img src=loading.gif align=top>'); },\n";
+		$templateCode .= "\t\t\tcomplete: function() { " . (($arrPerm[1] || (($arrPerm[3] == 1 && $ownerMemberID == getLoggedMemberID()) || ($arrPerm[3] == 2 && $ownerGroupID == getLoggedGroupID()) || $arrPerm[3] == 3)) ? "\$j('#ubicacion$rnd1').prop('disabled', false); " : "\$j('#ubicacion$rnd1').prop('disabled', true); ")."\$j('#ubicacionLoading').html(''); \$j(window).resize(); }\n";
+	}
+	$templateCode .= "\t\t});\n";
+	$templateCode .= "\t};\n";
+	if(!$dvprint) $templateCode .= "\tif(\$j('#ubicacion_caption').length) \$j('#ubicacion_caption').click(function() { ubicacion_update_autofills$rnd1(); });\n";
 
 
 	$templateCode.="});";

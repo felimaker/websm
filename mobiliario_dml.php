@@ -17,6 +17,8 @@ function mobiliario_insert(&$error_message = '') {
 		'tipo_mobiliario' => Request::lookup('tipo_mobiliario', ''),
 		'descripcion' => Request::val('descripcion', ''),
 		'fecha_ingreso' => Request::dateComponents('fecha_ingreso', ''),
+		'ubicacion' => Request::lookup('ubicacion', ''),
+		'ubicacion_abreviado' => Request::lookup('ubicacion'),
 		'accesorios' => Request::val('accesorios', ''),
 		'foto' => Request::fileUpload('foto', [
 			'maxSize' => 1024000,
@@ -35,7 +37,7 @@ function mobiliario_insert(&$error_message = '') {
 			},
 		]),
 		'unidad' => Request::lookup('unidad', ''),
-		'uni_abreviado' => Request::lookup('unidad'),
+		'uni_abreviado' => Request::lookup('ubicacion'),
 		'creado' => parseCode('<%%creationDateTime%%>', true, true),
 		'creado_por' => parseCode('<%%creatorUsername%%>', true),
 		'id_compra' => Request::val('id_compra', ''),
@@ -69,6 +71,11 @@ function mobiliario_insert(&$error_message = '') {
 		die("{$error}<br><a href=\"#\" onclick=\"history.go(-1);\">{$Translation['< back']}</a>");
 
 	$recID = db_insert_id(db_link());
+
+	// automatic ubicacion_abreviado if passed as filterer
+	if($_REQUEST['filterer_ubicacion_abreviado']) {
+		sql("UPDATE `mobiliario` SET `ubicacion_abreviado`='" . makeSafe($_REQUEST['filterer_ubicacion_abreviado']) . "' WHERE `id_mobiliario`='" . makeSafe($recID, false) . "'", $eo);
+	}
 
 	update_calc_fields('mobiliario', $recID, calculated_fields()['mobiliario']);
 
@@ -203,6 +210,8 @@ function mobiliario_update(&$selected_id, &$error_message = '') {
 		'tipo_mobiliario' => Request::lookup('tipo_mobiliario', ''),
 		'descripcion' => Request::val('descripcion', ''),
 		'fecha_ingreso' => Request::dateComponents('fecha_ingreso', ''),
+		'ubicacion' => Request::lookup('ubicacion', ''),
+		'ubicacion_abreviado' => Request::lookup('ubicacion'),
 		'accesorios' => Request::val('accesorios', ''),
 		'foto' => Request::fileUpload('foto', [
 			'maxSize' => 1024000,
@@ -220,7 +229,7 @@ function mobiliario_update(&$selected_id, &$error_message = '') {
 			},
 		]),
 		'unidad' => Request::lookup('unidad', ''),
-		'uni_abreviado' => Request::lookup('unidad'),
+		'uni_abreviado' => Request::lookup('ubicacion'),
 		'editado' => parseCode('<%%editingDateTime%%>', false),
 		'editado_por' => parseCode('<%%editorUsername%%>', false),
 		'id_compra' => Request::val('id_compra', ''),
@@ -309,6 +318,7 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 
 	$filterer_grupo = thisOr($_REQUEST['filterer_grupo'], '');
 	$filterer_tipo_mobiliario = thisOr($_REQUEST['filterer_tipo_mobiliario'], '');
+	$filterer_ubicacion = thisOr($_REQUEST['filterer_ubicacion'], '');
 	$filterer_unidad = thisOr($_REQUEST['filterer_unidad'], '');
 
 	// populate filterers, starting from children to grand-parents
@@ -328,6 +338,8 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 	$combo_fecha_ingreso->DefaultDate = parseMySQLDate('', '');
 	$combo_fecha_ingreso->MonthNames = $Translation['month names'];
 	$combo_fecha_ingreso->NamePrefix = 'fecha_ingreso';
+	// combobox: ubicacion
+	$combo_ubicacion = new DataCombo;
 	// combobox: unidad
 	$combo_unidad = new DataCombo;
 
@@ -355,18 +367,22 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 		$combo_grupo->SelectedData = $row['grupo'];
 		$combo_tipo_mobiliario->SelectedData = $row['tipo_mobiliario'];
 		$combo_fecha_ingreso->DefaultDate = $row['fecha_ingreso'];
+		$combo_ubicacion->SelectedData = $row['ubicacion'];
 		$combo_unidad->SelectedData = $row['unidad'];
 		$urow = $row; /* unsanitized data */
 		$row = array_map('safe_html', $row);
 	} else {
 		$combo_grupo->SelectedData = $filterer_grupo;
 		$combo_tipo_mobiliario->SelectedData = $filterer_tipo_mobiliario;
+		$combo_ubicacion->SelectedData = $filterer_ubicacion;
 		$combo_unidad->SelectedData = $filterer_unidad;
 	}
 	$combo_grupo->HTML = '<span id="grupo-container' . $rnd1 . '"></span><input type="hidden" name="grupo" id="grupo' . $rnd1 . '" value="' . html_attr($combo_grupo->SelectedData) . '">';
 	$combo_grupo->MatchText = '<span id="grupo-container-readonly' . $rnd1 . '"></span><input type="hidden" name="grupo" id="grupo' . $rnd1 . '" value="' . html_attr($combo_grupo->SelectedData) . '">';
 	$combo_tipo_mobiliario->HTML = '<span id="tipo_mobiliario-container' . $rnd1 . '"></span><input type="hidden" name="tipo_mobiliario" id="tipo_mobiliario' . $rnd1 . '" value="' . html_attr($combo_tipo_mobiliario->SelectedData) . '">';
 	$combo_tipo_mobiliario->MatchText = '<span id="tipo_mobiliario-container-readonly' . $rnd1 . '"></span><input type="hidden" name="tipo_mobiliario" id="tipo_mobiliario' . $rnd1 . '" value="' . html_attr($combo_tipo_mobiliario->SelectedData) . '">';
+	$combo_ubicacion->HTML = '<span id="ubicacion-container' . $rnd1 . '"></span><input type="hidden" name="ubicacion" id="ubicacion' . $rnd1 . '" value="' . html_attr($combo_ubicacion->SelectedData) . '">';
+	$combo_ubicacion->MatchText = '<span id="ubicacion-container-readonly' . $rnd1 . '"></span><input type="hidden" name="ubicacion" id="ubicacion' . $rnd1 . '" value="' . html_attr($combo_ubicacion->SelectedData) . '">';
 	$combo_unidad->HTML = '<span id="unidad-container' . $rnd1 . '"></span><input type="hidden" name="unidad" id="unidad' . $rnd1 . '" value="' . html_attr($combo_unidad->SelectedData) . '">';
 	$combo_unidad->MatchText = '<span id="unidad-container-readonly' . $rnd1 . '"></span><input type="hidden" name="unidad" id="unidad' . $rnd1 . '" value="' . html_attr($combo_unidad->SelectedData) . '">';
 
@@ -377,12 +393,14 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 		// initial lookup values
 		AppGini.current_grupo__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['grupo'] : htmlspecialchars($filterer_grupo, ENT_QUOTES)); ?>"};
 		AppGini.current_tipo_mobiliario__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['tipo_mobiliario'] : htmlspecialchars($filterer_tipo_mobiliario, ENT_QUOTES)); ?>"};
+		AppGini.current_ubicacion__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['ubicacion'] : htmlspecialchars($filterer_ubicacion, ENT_QUOTES)); ?>"};
 		AppGini.current_unidad__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['unidad'] : htmlspecialchars($filterer_unidad, ENT_QUOTES)); ?>"};
 
 		jQuery(function() {
 			setTimeout(function() {
 				if(typeof(grupo_reload__RAND__) == 'function') grupo_reload__RAND__();
 				<?php echo (!$AllowUpdate || $dvprint ? 'if(typeof(tipo_mobiliario_reload__RAND__) == \'function\') tipo_mobiliario_reload__RAND__(AppGini.current_grupo__RAND__.value);' : ''); ?>
+				if(typeof(ubicacion_reload__RAND__) == 'function') ubicacion_reload__RAND__();
 				if(typeof(unidad_reload__RAND__) == 'function') unidad_reload__RAND__();
 			}, 50); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
@@ -542,6 +560,83 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 		<?php } ?>
 
 		}
+		function ubicacion_reload__RAND__() {
+		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint) { ?>
+
+			$j("#ubicacion-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c) {
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_ubicacion__RAND__.value, t: 'mobiliario', f: 'ubicacion' },
+						success: function(resp) {
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="ubicacion"]').val(resp.results[0].id);
+							$j('[id=ubicacion-container-readonly__RAND__]').html('<span id="ubicacion-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+
+							if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term) { return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page) { return { s: term, p: page, t: 'mobiliario', f: 'ubicacion' }; },
+					results: function(resp, page) { return resp; }
+				},
+				escapeMarkup: function(str) { return str; }
+			}).on('change', function(e) {
+				AppGini.current_ubicacion__RAND__.value = e.added.id;
+				AppGini.current_ubicacion__RAND__.text = e.added.text;
+				$j('[name="ubicacion"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+
+				if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+			});
+
+			if(!$j("#ubicacion-container__RAND__").length) {
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_ubicacion__RAND__.value, t: 'mobiliario', f: 'ubicacion' },
+					success: function(resp) {
+						$j('[name="ubicacion"]').val(resp.results[0].id);
+						$j('[id=ubicacion-container-readonly__RAND__]').html('<span id="ubicacion-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+						if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php } else { ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_ubicacion__RAND__.value, t: 'mobiliario', f: 'ubicacion' },
+				success: function(resp) {
+					$j('[id=ubicacion-container__RAND__], [id=ubicacion-container-readonly__RAND__]').html('<span id="ubicacion-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>') { $j('.btn[id=unidades_view_parent]').hide(); } else { $j('.btn[id=unidades_view_parent]').show(); }
+
+					if(typeof(ubicacion_update_autofills__RAND__) == 'function') ubicacion_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
 		function unidad_reload__RAND__() {
 		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint) { ?>
 
@@ -684,6 +779,8 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 		$jsReadOnly .= "\tjQuery('#tipo_mobiliario_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#fecha_ingreso').prop('readonly', true);\n";
 		$jsReadOnly .= "\tjQuery('#fecha_ingresoDay, #fecha_ingresoMonth, #fecha_ingresoYear').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#ubicacion').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#ubicacion_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#foto').replaceWith('<div class=\"form-control-static\" id=\"foto\">' + (jQuery('#foto').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#unidad').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#unidad_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
@@ -705,12 +802,15 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 	$templateCode = str_replace('<%%URLCOMBOTEXT(tipo_mobiliario)%%>', urlencode($combo_tipo_mobiliario->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(fecha_ingreso)%%>', ($selected_id && !$arrPerm[3] ? '<div class="form-control-static">' . $combo_fecha_ingreso->GetHTML(true) . '</div>' : $combo_fecha_ingreso->GetHTML()), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(fecha_ingreso)%%>', $combo_fecha_ingreso->GetHTML(true), $templateCode);
+	$templateCode = str_replace('<%%COMBO(ubicacion)%%>', $combo_ubicacion->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(ubicacion)%%>', $combo_ubicacion->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(ubicacion)%%>', urlencode($combo_ubicacion->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(unidad)%%>', $combo_unidad->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(unidad)%%>', $combo_unidad->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(unidad)%%>', urlencode($combo_unidad->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => array('parent table name', 'lookup field caption') */
-	$lookup_fields = array('grupo' => array('tipo_grupo_mobilia', 'Grupo'), 'tipo_mobiliario' => array('tipo_mobiliario', 'Tipo de mobiliario'), 'unidad' => array('unidades', 'Unidad'), );
+	$lookup_fields = array('grupo' => array('tipo_grupo_mobilia', 'Grupo'), 'tipo_mobiliario' => array('tipo_mobiliario', 'Tipo de mobiliario'), 'ubicacion' => array('unidades', 'Ubicacion'), 'unidad' => array('unidades', 'Unidad'), );
 	foreach($lookup_fields as $luf => $ptfc) {
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -733,6 +833,7 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 	$templateCode = str_replace('<%%UPLOADFILE(tipo_mobiliario)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(descripcion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(fecha_ingreso)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(ubicacion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(accesorios)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(foto)%%>', ($noUploads ? '' : "<div>{$Translation['upload image']}</div>" . '<i class="glyphicon glyphicon-remove text-danger clear-upload hidden"></i> <input type="file" name="foto" id="foto" data-filetypes="jpg|jpeg|gif|png" data-maxsize="1024000" accept=".jpg,.jpeg,.gif,.png">'), $templateCode);
 	if($AllowUpdate && $row['foto'] != '') {
@@ -771,6 +872,9 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 		$templateCode = str_replace('<%%URLVALUE(descripcion)%%>', urlencode($urow['descripcion']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(fecha_ingreso)%%>', @date('d/m/Y', @strtotime(html_attr($row['fecha_ingreso']))), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(fecha_ingreso)%%>', urlencode(@date('d/m/Y', @strtotime(html_attr($urow['fecha_ingreso'])))), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', safe_html($urow['ubicacion']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', html_attr($row['ubicacion']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode($urow['ubicacion']), $templateCode);
 		if($AllowUpdate || $AllowInsert) {
 			$templateCode = str_replace('<%%HTMLAREA(accesorios)%%>', '<textarea name="accesorios" id="accesorios" rows="5">' . html_attr($row['accesorios']) . '</textarea>', $templateCode);
 		} else {
@@ -810,6 +914,8 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 		$templateCode = str_replace('<%%HTMLAREA(descripcion)%%>', '<textarea name="descripcion" id="descripcion" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(fecha_ingreso)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(fecha_ingreso)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(ubicacion)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%HTMLAREA(accesorios)%%>', '<textarea name="accesorios" id="accesorios" rows="5"></textarea>', $templateCode);
 		$templateCode = str_replace('<%%VALUE(foto)%%>', 'blank.gif', $templateCode);
 		$templateCode = str_replace('<%%VALUE(unidad)%%>', '', $templateCode);
@@ -855,22 +961,22 @@ function mobiliario_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, 
 	$templateCode .= '<script>';
 	$templateCode .= '$j(function() {';
 
-	$templateCode .= "\tunidad_update_autofills$rnd1 = function() {\n";
+	$templateCode .= "\tubicacion_update_autofills$rnd1 = function() {\n";
 	$templateCode .= "\t\t\$j.ajax({\n";
 	if($dvprint) {
-		$templateCode .= "\t\t\turl: 'mobiliario_autofill.php?rnd1=$rnd1&mfk=unidad&id=' + encodeURIComponent('".addslashes($row['unidad'])."'),\n";
+		$templateCode .= "\t\t\turl: 'mobiliario_autofill.php?rnd1=$rnd1&mfk=ubicacion&id=' + encodeURIComponent('".addslashes($row['ubicacion'])."'),\n";
 		$templateCode .= "\t\t\tcontentType: 'application/x-www-form-urlencoded; charset=" . datalist_db_encoding . "',\n";
 		$templateCode .= "\t\t\ttype: 'GET'\n";
 	} else {
-		$templateCode .= "\t\t\turl: 'mobiliario_autofill.php?rnd1=$rnd1&mfk=unidad&id=' + encodeURIComponent(AppGini.current_unidad{$rnd1}.value),\n";
+		$templateCode .= "\t\t\turl: 'mobiliario_autofill.php?rnd1=$rnd1&mfk=ubicacion&id=' + encodeURIComponent(AppGini.current_ubicacion{$rnd1}.value),\n";
 		$templateCode .= "\t\t\tcontentType: 'application/x-www-form-urlencoded; charset=" . datalist_db_encoding . "',\n";
 		$templateCode .= "\t\t\ttype: 'GET',\n";
-		$templateCode .= "\t\t\tbeforeSend: function() { \$j('#unidad$rnd1').prop('disabled', true); \$j('#unidadLoading').html('<img src=loading.gif align=top>'); },\n";
-		$templateCode .= "\t\t\tcomplete: function() { " . (($arrPerm[1] || (($arrPerm[3] == 1 && $ownerMemberID == getLoggedMemberID()) || ($arrPerm[3] == 2 && $ownerGroupID == getLoggedGroupID()) || $arrPerm[3] == 3)) ? "\$j('#unidad$rnd1').prop('disabled', false); " : "\$j('#unidad$rnd1').prop('disabled', true); ")."\$j('#unidadLoading').html(''); \$j(window).resize(); }\n";
+		$templateCode .= "\t\t\tbeforeSend: function() { \$j('#ubicacion$rnd1').prop('disabled', true); \$j('#ubicacionLoading').html('<img src=loading.gif align=top>'); },\n";
+		$templateCode .= "\t\t\tcomplete: function() { " . (($arrPerm[1] || (($arrPerm[3] == 1 && $ownerMemberID == getLoggedMemberID()) || ($arrPerm[3] == 2 && $ownerGroupID == getLoggedGroupID()) || $arrPerm[3] == 3)) ? "\$j('#ubicacion$rnd1').prop('disabled', false); " : "\$j('#ubicacion$rnd1').prop('disabled', true); ")."\$j('#ubicacionLoading').html(''); \$j(window).resize(); }\n";
 	}
 	$templateCode .= "\t\t});\n";
 	$templateCode .= "\t};\n";
-	if(!$dvprint) $templateCode .= "\tif(\$j('#unidad_caption').length) \$j('#unidad_caption').click(function() { unidad_update_autofills$rnd1(); });\n";
+	if(!$dvprint) $templateCode .= "\tif(\$j('#ubicacion_caption').length) \$j('#ubicacion_caption').click(function() { ubicacion_update_autofills$rnd1(); });\n";
 
 
 	$templateCode.="});";
